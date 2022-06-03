@@ -1,0 +1,27 @@
+mixin mix-slider-swip
+    //if (slides.length > 0)
+    //section
+    #swiper1.swiper-container(style="height:400px;")
+        //.container.headBigText
+            .row
+                i#closeBText.fa.fa-close
+                .col-xs-12.bigContent
+                    img(src='../assets/images/logoSlider.png')
+                    div
+                        h4
+                            = trads.t5c5d27aef52f110004a93976
+        .swiper-wrapper(style="height:400px;")
+            each slid, index in slides
+                .swiper-slide
+                    .slide-bg.swiper-lazy(data-background=s3 + slid.p5c332d1907c805cd14cf2042,style="height: 100%;")
+                    .swiper-lazy-preloader.swiper-lazy-preloader-white
+                    .flex_in_flex.flexslider
+                        ul.flex_in_slides
+                            li
+                            .flex_in
+                                //span.flex_in1 Bienvenue !
+                                span.flex_in2.upper.oswald_font
+                                    span.flex_in_color1= trads.t5e7f827693d1d94013b35a83
+                                span.flex_in3.upper.light.oswald_font
+                                    = trads.t5e7f827d8f634cbd484314f5
+                                a.bordered_btn_white.upper(href='/' + lang + '/7_24/5e916cd910e2df7f3464cf71/plateforme.html')= trads.t5fc5df36ca1df77ba2f52a31

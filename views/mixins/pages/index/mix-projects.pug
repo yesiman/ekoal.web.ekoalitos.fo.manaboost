@@ -1,0 +1,50 @@
+mixin mix-projects
+    //section.content_section.white_section.bg-color20
+        .content.row_spacer.no_padding
+            .main_title.centered.upper
+                h2(style="color:#324545;")
+                    span.line
+                    = trads.t6051b60fca045572d27e1a4a
+            .team_block3.rows_container.clearfix
+                each project,index in projects
+                    - var title= (project.p5c332d2707c805cd14cf217d?project.p5c332d2707c805cd14cf217d:"") + (project.p5c332d0b07c805cd14cf1ef5?project.p5c332d0b07c805cd14cf1ef5:"")
+                    - var uri = encodeURIComponent(title)
+                    if index < 6
+                        .team-col.no_padding.clearfix(data-color='#279c38', style='background:#279c38;')
+                            .team-col-1
+                                a.member_img2(href='/fr/7_113/'+project._id+'/'+uri+'.html')
+                                    span(style="height:250px;")
+                                        img(alt='', src=s3+project.p5c332d1907c805cd14cf2042, style="max-height:100%;")
+                            .team-col-2
+                                .team-col-2-con
+                                    a(href='/fr/7_113/'+project._id+'/'+uri+'.html')
+                                        span.person_name= project.p5c332d2707c805cd14cf217d
+                                        span.person_desc= project.p5c332d2807c805cd14cf2194
+                                span.arrow(style='background: #279c38;')
+    section.content_section.white_section.bg-color20.projects
+        .content.row_spacer.no_padding
+            .main_title.centered.upper
+                h2(style="color:#324545;")
+                    span.line
+                    = trads.t6051b60fca045572d27e1a4a
+            // Filter Content
+            .hm_filter_wrapper.masonry_posts.three_blocks
+                ul.hm_filter_wrapper_con(style='position: relative;')
+                    each project,index in projects
+                        - var title= (project.p5c332d2707c805cd14cf217d?project.p5c332d2707c805cd14cf217d:"") + (project.p5c332d0b07c805cd14cf1ef5?project.p5c332d0b07c805cd14cf1ef5:"")
+                        - var uri = encodeURIComponent(title)
+                        - var href = '/fr/7_113/'+project._id+'/'+uri+'.html'
+                        li.filter_item_block.animated.fadeInUp.visible(data-animation-delay='300' data-animation='fadeInUp')
+                            .blog_grid_block
+                                .blog_grid_desc
+                                    h6.title
+                                        a(href=href)= title
+                                .feature_inner
+                                    .feature_inner_corners
+                                        .feature_inner_btns
+                                            a.icon_link(href=href)
+                                                i.ico-link3
+                                        a
+                                            img(src=s3+project.p5c332d1907c805cd14cf2042 alt='Post Title')
+                                .blog_grid_con
+                                    p.desc= project.p5c332d2807c805cd14cf2194

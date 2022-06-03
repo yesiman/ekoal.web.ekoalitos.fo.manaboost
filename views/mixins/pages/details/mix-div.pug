@@ -1,0 +1,14 @@
+mixin mix-div
+    .widget_block
+        span.desc-text
+            = (object.version.p5c332d4f07c805cd14cf24e3?object.version.p5c332d4f07c805cd14cf24e3:"")
+            br
+            = " " + (object.version.p5c332d5007c805cd14cf2503?object.version.p5c332d5007c805cd14cf2503:"") + " " + (object.version.p5c332d5107c805cd14cf251c?object.version.p5c332d5107c805cd14cf251c:"")
+            br
+        if object.version.p5c332d5507c805cd14cf2563
+            i.ico-link4= " "
+            - var url = object.version.p5c332d5507c805cd14cf2563
+            if !url.includes("http") && !url.includes("https")
+                - url = "http://" + url
+            a(href=url, target="_blank")
+                = object.version.p5c332d5507c805cd14cf2563

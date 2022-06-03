@@ -1,0 +1,30 @@
+.div
+  .ib-head(style='float:left;')
+    img.avatar.avatar-60.photo(alt='', width='50',src=(objectPop.version.p5c332d1907c805cd14cf2042 && (objectPop.version.p5c332d1907c805cd14cf2042.length > 0)?s3 + objectPop.version.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.png"))
+  .ib-body(style='display:block;padding: 7px;margin-left: 60px;white-space: normal;')
+    - var uri = encodeURIComponent(objectPop.version.p5c332d2707c805cd14cf217d)
+    a(href="/" + lang + "/7_"+objectPop.oldProfilId+"/" + objectPop._id + "/" + uri + ".html")
+      h4= objectPop.version.p5c332d2707c805cd14cf217d
+    div(style='margin-top:5px;')
+      span.desc-text
+        = (objectPop.version.p5c332d4f07c805cd14cf24e3?objectPop.version.p5c332d4f07c805cd14cf24e3:"")
+        br
+        = " " + (objectPop.version.p5c332d5007c805cd14cf2503?objectPop.version.p5c332d5007c805cd14cf2503:"") + " " + (objectPop.version.p5c332d5107c805cd14cf251c?objectPop.version.p5c332d5107c805cd14cf251c:"")
+      div
+        if pageId == "2_3"
+          a.btn.btn-sm(onclick='OIP_relat.d3.reduce("' + objectPop._id + '");')
+            = trads.t5c6554b71983cd0004f9fc6c
+          - var oldid = -1;
+          case objectPop.proto[0]
+            when "5c2c4dea07c805cd14b33488"
+              - oldid = "113"
+            when "5c2c4de807c805cd14b3345c"
+              - oldid = "108"
+            when "5c2c4de807c805cd14b33449"
+              - oldid = "102"
+            when "5c2c4dea07c805cd14b3349f"
+              - oldid = "114"
+          a.btn.btn-sm(onclick='OIP_relat.d3.expand("' + objectPop._id + '","'+oldid+'");')
+            = trads.t5c6554ca1983cd0004f9fc6e
+        else
+          a.btn.btn-sm(href="/" + lang + "/7_"+objectPop.oldProfilId+"/" + objectPop._id + "/" + uri + ".html")= trads.t5c5d286275254800049b21d9

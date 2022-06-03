@@ -1,0 +1,32 @@
+extends layout.pug
+block content
+    section.cover.fullscreen.image-bg.overlay
+      .background-image-holder
+        img.background-image(alt='image', src='img/home2.jpg')
+      .container.v-align-transform
+        .row
+          .col-sm-6.col-sm-offset-3
+            .feature.bordered.text-center
+              h4.uppercase= trads.t5c5d3a8cf52f110004a93c3a
+              form.text-left#register-modal
+                div
+                  input#register_company_nom.req(name='register_company_nom', type='text', value='', placeholder=trads.t5c5d3acc75254800049b2489)
+                div
+                  input#reg_company_contact_nom.req(name='reg_company_contact_nom', type='text', value='', placeholder=trads.t5c5d3adb75254800049b2490)
+                div
+                  input#reg_company_contact_prenom.req(name='reg_company_contact_prenom', type='text', value='', placeholder=trads.t5c5d3ae9f52f110004a93c54)
+                div
+                  input#reg_company_contact_email.req(name='reg_company_contact_email', mytype='mail', type='text', value='', placeholder=trads.t5c5d3af8f52f110004a93c5a)
+                div
+                  textarea#reg_company_contact_message.req(name='reg_company_contact_message', value='', placeholder=trads.t5c5d3b0a75254800049b249f,style="width:100%;")
+                input#honeyRegis(type='hidden', name='honeyRegis')
+                input#regis_btn_submit(type="submit",value=trads.t5c5d29c075254800049b22b4)
+              p.mb0
+                span#regisOk(style='display:none;color:#23a335;')= trads.t5db681d78aae6a8944f3c705
+                span#badCredR(style='display:none;color:#d45151;')= trads.t5db681e40964a28010726d94
+                span#badNetworkR(style='display:none;color:#d45151;')= trads.t5db681e913ab9454dc384587
+        // end of row
+        // end of container
+block append scripts
+  script(type='text/javascript', src='../assets/js/validation.js')
+  script(src='../assets/js/pages/register.js')

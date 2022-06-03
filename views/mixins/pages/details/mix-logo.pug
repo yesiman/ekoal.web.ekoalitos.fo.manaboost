@@ -1,0 +1,6 @@
+mixin mix-logo
+    a(style="margin-bottom:20px;")
+        if oldid == 102
+            img(src=(object.version.p5c332d2907c805cd14cf21ae && (object.version.p5c332d2907c805cd14cf21ae.length > 0)?s3 + object.version.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"))
+        else
+            img(src=(object.version.p5c332d1907c805cd14cf2042 && (object.version.p5c332d1907c805cd14cf2042.length > 0)?s3 + object.version.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.png"))

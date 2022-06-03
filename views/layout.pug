@@ -1,0 +1,115 @@
+//
+include mixins/layout/mix-topbar.pug
+include mixins/layout/mix-footer.pug
+//
+<!DOCTYPE html>
+html.js.flexbox.flexboxlegacy.canvas.canvastext.webgl.no-touch.geolocation.postmessage.websqldatabase.indexeddb.hashchange.history.draganddrop.websockets.rgba.hsla.multiplebgs.backgroundsize.borderimage.borderradius.boxshadow.textshadow.opacity.cssanimations.csscolumns.cssgradients.cssreflections.csstransforms.csstransforms3d.csstransitions.fontface.generatedcontent.video.audio.localstorage.sessionstorage.webworkers.applicationcache.svg.inlinesvg.smil.svgclippaths(lang='en')
+  head
+    
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name="google-site-verification" content="OYEXUmGvcEATa9KYCmwqHUQ8CG-j05EGgqCKkhoaA8Q")
+    base(href='/')
+    title= "BOOST-AE | " + title
+    block styles
+      link(rel='shortcut icon', href='images/favicon/favicon.ico', type='image/x-icon')
+      link(rel='apple-touch-icon', href='images/favicon/apple-touch-icon.png')
+      link(rel='apple-touch-icon', sizes='57x57', href='images/favicon/apple-touch-icon-57x57.png')
+      link(rel='apple-touch-icon', sizes='72x72', href='images/favicon/apple-touch-icon-72x72.png')
+      link(rel='apple-touch-icon', sizes='76x76', href='images/favicon/apple-touch-icon-76x76.png')
+      link(rel='apple-touch-icon', sizes='114x114', href='images/favicon/apple-touch-icon-114x114.png')
+      link(rel='apple-touch-icon', sizes='120x120', href='images/favicon/apple-touch-icon-120x120.png')
+      link(rel='apple-touch-icon', sizes='144x144', href='images/favicon/apple-touch-icon-144x144.png')
+      link(rel='apple-touch-icon', sizes='152x152', href='images/favicon/apple-touch-icon-152x152.png')
+      // concatenate and minify for production
+      link(rel='stylesheet', href='../assets/css/style.css')
+      link(rel='stylesheet', href='../assets/css/dark.css')
+      link(rel='stylesheet', href='../assets/css/flexslider.css')
+      link(rel='stylesheet', href='../assets/css/bootstrap.css')
+      link(href='../assets/js/cookie/cookie.css', type='text/css', rel='stylesheet')
+      link(rel='stylesheet', href='../assets/css/animate.min.css')
+      link(rel='stylesheet', href='../assets/css/sliders.css')
+      link(rel='stylesheet', href='../assets/css/magnific-popup.css')
+      link(rel='stylesheet', href='../assets/css/icon-fonts.css')
+      link(href='http://fonts.googleapis.com/css?family=Oswald:400,700,300', rel='stylesheet', type='text/css')
+      link(href='http://fonts.googleapis.com/css?family=Lato:300,300italic,400italic,600,600italic,700,700italic,800,800italic', rel='stylesheet', type='text/css')
+      link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic', rel='stylesheet', type='text/css')
+      // Lea Verou's Prefix Free, lets you use un-prefixed properties in your CSS files
+
+      
+      // <script src="js/prefixfree.min.js"></script>
+      //
+        This is an un-minified, complete version of Modernizr.
+        Before you move to production, you should generate a custom build that only has the detects you need.
+      script(src='../assets/js/modernizr.js')
+      //
+      input#logName(type='hidden', value='', name='logName')
+      input#page(type='hidden', value=pageId, name='page')
+      input#lang(type='hidden', value=lang, name='lang')
+      input#baseUrl(type='hidden', value='', name='baseUrl')
+      input#numero_client(type='hidden', name='numero_client', value='37')
+  body.dark_sup_menu.light_header
+    //#preloader
+      .spinner1
+        .rect1
+        .rect2
+        .rect3
+        .rect4
+        .rect5
+      .spinner2
+        .sk-dot1
+        .sk-dot2
+    
+    
+    .main_wrapper
+      +mix_topbar
+      // fullscreen
+      block content
+      +mix_footer
+      a.hm_go_top(href="#0")
+    block scripts
+      script.
+        var trads = {
+          yourC:"#{trads['t5c98603caa6fb41e853ade1b']}",
+          cookMsg:"#{trads['t5c98609caa6fb41e853ade1d']}",
+          valid:"#{trads['t5c5d29c075254800049b22b4']}",
+          plus:"#{trads['t5c5d288f75254800049b21ef']}",
+          params:"#{trads['t5c5d274c75254800049b2162']}",
+          indis:"#{trads['t5c9862273e4c161c8ccedb26']}"
+        };
+        var BOWL_API_URL = "#{BOWL_API_URL}";
+        var BOWL_MEDIA_URL = "#{BOWL_MEDIA_URL}";
+        var s3 = "#{s3}";
+        var projectUID = "#{projectUID}";
+        var webUrl = "#{webUrl}";
+      script(src='../assets/js/jquery.js', type='text/javascript')
+      //script(src='../assets/js/bootstrap.min.js', type='text/javascript')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')
+      script(src='../assets/js/cookie/jquery.ihavecookies.js')
+      script(src='../assets/js/cookie/cookie.js')
+      //
+      script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-203ELZ0FGS')
+      script.
+        if ($.fn.ihavecookies.preference('marketing') === true)
+        {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-203ELZ0FGS');
+        }
+      script(src='../assets/js/flexslider-min.js', type='text/javascript')
+      script(src='../assets/js/plugins.js', type='text/javascript')
+      script(src='../assets/js/isotope.pkgd.min.js', type='text/javascript')
+      //script(src='https://maps.googleapis.com/maps/api/js?v=3&sensor=true', type='text/javascript')
+      //script(src='../assets/js/gmaps.js', type='text/javascript')
+      script(src='../assets/js/progressbar.min.js', type='text/javascript')
+      script(src='/ekit/ekit_helper.js')
+      script(src='../assets/js/globals.js')
+      script(src='../assets/js/pages/login.js')
+      script(src='../assets/js/pages/forgot.js')
+      script(src='../assets/js/pages/register.js')
+      script(type='text/javascript', src='../assets/js/validation.js')
+      // this is where we put our custom functions
+      script(src='../assets/js/functions.js')
+

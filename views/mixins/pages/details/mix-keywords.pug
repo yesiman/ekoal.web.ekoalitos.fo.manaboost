@@ -1,0 +1,19 @@
+mixin mix-keywords
+    if allRelats
+        - var itExists = false
+        for ar in allRelats
+            - if (ar.proto.includes('5c2c4dec07c805cd14b334d9'))
+                - itExists = true
+        if itExists = true
+            .widget_block
+                h6.widget_title= trads.t5c5d26eb75254800049b2115
+                .tagcloud.style2.clearfix
+                    //a.up(href='/')
+                        span.tag.up= "testttt"
+                        //.button-triangle2
+                    each ar in allRelats
+                        - if (ar.proto.includes('5c2c4dec07c805cd14b334d9'))
+                            - var uri = encodeURIComponent(ar.p5c332d2707c805cd14cf217d)
+                            a.up(href='/'+lang+'/2/108/global.html?fulltext='+uri)
+                                span.tag= ar.p5c332d2707c805cd14cf217d
+                                .button-triangle2

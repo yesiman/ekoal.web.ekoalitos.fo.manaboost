@@ -1,0 +1,15 @@
+mixin mix-menu-footer
+  ul.footer-ul
+    for mnu in header.menu
+      if !mnu.parent
+        li
+          span.custom-ul-bullet
+          a(href='/'+lang+ mnu.p5bc4396c219d500400bbbfee)= mnu.p5c374961b2b8600004dc97d1
+    li
+      span.custom-ul-bullet
+      a(href='/'+lang+'/7_24/1335/cgu.html')
+        | Cgu
+    li
+      span.custom-ul-bullet
+      a(href='/'+lang+'/7_24/1336/mentions_legales.html')
+        | Mentions légales

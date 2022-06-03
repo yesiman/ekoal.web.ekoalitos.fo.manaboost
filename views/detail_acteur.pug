@@ -1,0 +1,100 @@
+extends layout.pug
+include mixins/pages/details/mix-present.pug
+include mixins/pages/details/mix-relats.pug
+include mixins/pages/details/mix-keywords.pug
+include mixins/pages/details/mix-search.pug
+include mixins/pages/details/mix-news.pug
+include mixins/pages/details/mix-subdir.pug
+include mixins/pages/details/mix-logo.pug
+include mixins/pages/details/mix-categs.pug
+include mixins/pages/details/mix-referent.pug
+include mixins/pages/details/mix-contact.pug
+include mixins/pages/details/mix-div.pug
+include mixins/pages/details/mix-adress.pug
+include mixins/pages/details/mix-hidden.pug
+
+block append styles
+    link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
+    link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
+    link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.Default.css')
+    link(href="../assets/css/details.css" rel="stylesheet")
+    link(href="../assets/css/custom-carto.css" rel="stylesheet")
+    link(href="../assets/css/pages/details.css" rel="stylesheet")
+    link(href="../assets/css/pages/directory_map.css" rel="stylesheet")
+
+block content
+  +mix-hidden
+  section.content_section.page_title
+    .content.clearfix
+      h1= object.version.p5c332d2707c805cd14cf217d
+      .breadcrumbs
+        a(href='/')= trads.t5fc5e2a6b4b8eb1f1e4358a1
+        span.crumbs-spacer
+          i.ico-angle-right
+        a(href='#')= object.version.p5c332d2707c805cd14cf217d
+  section.content_section
+    .content.row_spacer
+      .rows_container.clearfix
+        .col-md-3
+          +mix-logo
+          +mix-div
+          +mix-categs(trads.t5fc5e37aca1df77ba2f52a74,"5e74f50995649d9402657b44")
+          +mix-categs(trads.t5fc5e383b4b8eb1f1e4358b1,"5e74f526466f900b86e0765f")
+          +mix-categs(trads.t5fc5e389d744fd443ea6b034,"5e74f5384087d8f50245cf5a")
+          +mix-keywords
+          +mix-referent
+          //+mix-adress
+        .col-md-9
+          //h2.title1.upper Project Description
+          .hm-tabs.tabs2.fill_active.is-ended
+            nav
+              ul.tabs-navi
+                li.selected
+                  a.selected(data-content='inbox', href='#')
+                    span
+                    = trads.t5c5db74f43fef3000484f667
+                li
+                  a(data-content='prof108', href='#')
+                    span
+                    = trads.t5fc5e1f1b4b8eb1f1e435894
+                li
+                  a(data-content='prof102', href='#')
+                    span
+                    = trads.t5c5d272675254800049b213b
+                if object.version.p5b614f984bfe681400f79ff5
+                  li
+                    a(data-content='localize', href='#')
+                      span
+                      = trads.t5c5d277275254800049b2169
+            ul.tabs-body(style='height: auto;')
+              li.selected(data-content='inbox', style='')
+                +mix-present
+              li(data-content='prof108', style='')
+                +mix-subdir("108","5c2c4de807c805cd14b3345c","108")
+              li(data-content='prof102', style='')
+                +mix-subdir("102","5c2c4de807c805cd14b33449","102")
+              if object.version.p5b614f984bfe681400f79ff5
+                li(data-content='localize', style='')
+                  #map_detail(style="width:100%;height:500px;")
+                
+  +mix-relats    
+  +mix-contact
+
+block append scripts
+  script.
+    var item = {
+      uid:"#{object.version.objectid}",
+      proto:"#{object.proto[0]}",
+      lat:"#{(object.version.p5b614f984bfe681400f79ff5?object.version.p5b614f984bfe681400f79ff5[1]:'0')}",
+      lng:"#{(object.version.p5b614f984bfe681400f79ff5?object.version.p5b614f984bfe681400f79ff5[0]:'0')}",
+      title:"#{(object.version.p5c332d4d07c805cd14cf24b7 && (object.version.p5c332d4d07c805cd14cf24b7!='')?object.version.p5c332d4d07c805cd14cf24b7:object.version.p5c332d2707c805cd14cf217d)}"
+    };
+  script(type='text/javascript', src='https://d3js.org/d3.v5.min.js')
+  script(type='text/javascript', src='../assets/js/cola/cola.js')
+  script(type='text/javascript', src='../assets/js/pages/custom_relat.js')
+  script(type="text/javascript" src="../assets/js/star-rating/star-rating.min.js")
+  script(src='https://unpkg.com/leaflet@1.2.0/dist/leaflet.js', integrity='sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==', crossorigin='')
+  script(src='https://unpkg.com/leaflet.markercluster@1.2.0/dist/leaflet.markercluster.js')
+  script(src="../assets/js/validation.js")
+  script(src='../assets/js/pages/directory_map.js')
+  script(src='../assets/js/pages/detail.js')

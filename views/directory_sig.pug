@@ -1,0 +1,21 @@
+extends layout.pug
+include mixins/pages/directory/mix-sidebar.pug
+block append styles
+    //link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
+    //link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
+    //link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.Default.css')
+    //link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
+    //link(href="../assets/css/pages/directory_map.css" rel="stylesheet")
+block content
+    //section.page-title.page-title-4
+        .container
+    section.no-padding(style="height:100%;")
+        .map-wrapper
+            iframe(src="http://ns3036890.ip-149-202-208.eu:3001/fr/2_2/map.html", style="width:100%;height:100%;",frameborder="0",allowfullscreen)
+                
+
+block append scripts
+    //script(src='https://unpkg.com/leaflet@1.2.0/dist/leaflet.js', integrity='sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==', crossorigin='')
+    //script(src='https://unpkg.com/leaflet.markercluster@1.2.0/dist/leaflet.markercluster.js')
+    //script(src='../assets/js/pages/directory_sidebar.js')
+    script(src='../assets/js/pages/directory_sig.js')

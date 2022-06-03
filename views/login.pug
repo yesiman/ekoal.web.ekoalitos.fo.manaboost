@@ -1,0 +1,22 @@
+extends layout.pug
+block content
+    section.cover.fullscreen.image-bg.overlay
+      .background-image-holder
+        img.background-image(alt='image', src='img/home12.jpg')
+      .container.v-align-transform
+        .row
+          .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2
+            .feature.bordered.text-center
+              h4.uppercase= trads.t5c5d3d1ff52f110004a93ca6
+              form.text-left
+                input.mb0#username(type='text', placeholder=placeholder=trads.t5c5d3af8f52f110004a93c5a)
+                input.mb0#password(type='password', placeholder=placeholder=trads.t5c5db5f743fef3000484f618)
+                input#login_btn_submit(href="javascript:void(0);", value=trads.t5c5d29c075254800049b22b4)
+              p.mb0
+                span#badCred(style='display:none;color:#d45151;')= trads.t5c5d3e0df52f110004a93cc7
+                a(href='/' + lang + "/forgot")= trads.t5c5d3d4775254800049b24fd
+        // end of row
+        // end of container
+block append scripts
+  script(type='text/javascript', src='../assets/js/validation.js')
+  script(src='../assets/js/pages/login.js')

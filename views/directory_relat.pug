@@ -1,0 +1,27 @@
+extends layout.pug
+include mixins/pages/details/mix-sidebar-relat.pug
+block append styles
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.css')
+    link(href="../assets/css/custom-carto.css" rel="stylesheet")
+    link(href="../assets/css/pages/directory_relat.css" rel="stylesheet")
+block content
+    input#numero_entite(type="hidden", name="numero_entite", value="5c332f2307c805cd14cf5421")
+    input#numero_profil(type="hidden", name="numero_profil", value="108")
+    section.content_section
+        .content(style="max-width:100%;width:100%;height:100%")
+            .map-wrapper
+                //+mix-sidebar
+                #relat(style='width:100%;height:800px;')
+                    +mix-sidebar-relat
+                //.row
+
+block append scripts
+    script(type='text/javascript', src='https://d3js.org/d3.v5.min.js')
+    script(type='text/javascript', src='../assets/js/cola/cola.js')
+    script(type='text/javascript', src='../assets/js/pages/custom_relat.js')
+    script(type="text/javascript" src="../assets/js/star-rating/star-rating.min.js")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.js")
+    script(src='../assets/js/pages/directory_map.js')
+    script(src='../assets/js/pages/directory_sidebar.js')
+    script(src='../assets/js/pages/directory_relat.js')
+    

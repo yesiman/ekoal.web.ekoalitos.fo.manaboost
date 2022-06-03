@@ -1,0 +1,12 @@
+mixin mix-categ_bowl(categs,title,paramid)
+    span.enar_occ_title= title
+    .enar_occ_content
+        .acc_content
+            input(id="param"+paramid,type="hidden",value="")
+            ul
+                for sc, idx in categs
+                    li(id="categ"+sc._id.replace(/\s/g,'__'))
+                        label.chk= sc.lib
+                            input(type="checkbox" onclick="VV_dir_sb.categs.add('"+paramid+"','"+sc._id+"')")
+                            span.checkmark
+                            .badge(id="b"+sc._id.replace(/\s/g,'__'))= sc.count

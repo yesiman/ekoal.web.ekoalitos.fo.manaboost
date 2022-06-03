@@ -1,0 +1,50 @@
+extends layout.pug
+include mixins/pages/details/mix-present.pug
+include mixins/pages/details/mix-relats.pug
+include mixins/pages/details/mix-keywords.pug
+include mixins/pages/details/mix-search.pug
+include mixins/pages/details/mix-news.pug
+include mixins/pages/details/mix-referent.pug
+include mixins/pages/details/mix-video.pug
+include mixins/pages/details/mix-div.pug
+include mixins/pages/details/mix-contact.pug
+include mixins/pages/details/mix-hidden.pug
+
+block append styles
+  link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
+  link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
+  link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.Default.css')
+
+block content
+  +mix-hidden
+  section.content_section.page_title
+    .content.clearfix
+      h1= object.version.p5c332d2707c805cd14cf217d
+      .breadcrumbs
+        a(href='/')= trads.t5fc5e2a6b4b8eb1f1e4358a1
+        span.crumbs-spacer
+          i.ico-angle-right
+        a(href='#')= object.version.p5c332d2707c805cd14cf217d
+  section.content_section
+    .content.row_spacer
+      .rows_container.clearfix
+        .col-md-3
+          //+mix-div
+          +mix-keywords
+          .widget_block
+            h6.widget_title= "Publié le"
+            span= moment(object.version.p5c332d9907c805cd14cf2b18).format('DD/MM/YYYY') + " "
+          +mix-referent
+        // End grid 6
+        // grid 6
+        .col-md-9
+          .embed-container
+            iframe(src=object.version.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+          +mix-present
+  +mix-contact
+block append scripts
+  script(src='https://unpkg.com/leaflet@1.2.0/dist/leaflet.js', integrity='sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==', crossorigin='')
+  script(src='https://unpkg.com/leaflet.markercluster@1.2.0/dist/leaflet.markercluster.js')
+  script(src="../assets/js/validation.js")
+  script(src='../assets/js/pages/directory_map.js')
+  script(src='../assets/js/pages/detail.js')

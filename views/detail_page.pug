@@ -1,0 +1,25 @@
+extends layout.pug
+include mixins/pages/details/mix-hidden.pug
+include mixins/pages/details/mix-comments.pug
+block content
+  +mix-hidden
+  section.content_section.page_title
+    .content.clearfix
+      h1= object.version.p5c332d0b07c805cd14cf1ef5
+      //.breadcrumbs
+        a(href='/')= trads.t5fc5e2a6b4b8eb1f1e4358a1
+        span.crumbs-spacer
+          i.ico-angle-right
+        a(href='#')= object.version.p5c332d0b07c805cd14cf1ef5
+  section.content_section
+    .content.row_spacer
+      .rows_container.clearfix
+        .col-md-12
+          - var content = object.version.p5c332d0d07c805cd14cf1f23
+          p !{content}
+      +mix-comments
+block append scripts
+  script.
+    var uid = "#{uid}";
+  script(src="../assets/js/validation.js")
+  script(src='../assets/js/pages/detail.js')

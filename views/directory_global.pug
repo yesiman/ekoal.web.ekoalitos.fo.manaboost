@@ -1,0 +1,316 @@
+extends layout.pug
+include mixins/globals/widgets/mix-compteurs.pug
+include mixins/globals/widgets/mix-search-bar.pug
+include mixins/globals/widgets/mix-loader.pug
+include mixins/pages/directory/mix-categ_global.pug
+include mixins/pages/directory/mix-categ_bowl.pug
+block append styles
+  link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
+  link(href="../assets/css/pages/directory_global.css" rel="stylesheet")
+  link(href="../assets/css/pages/bowl.css" rel="stylesheet")
+block content
+  // Page Title
+  //section.content_section.page_title
+    .content.clearfix
+      h1= trads.t5fb63c2af36bca70aaf83219
+      .breadcrumbs
+        a(href='/')= trads.t5fc5e2a6b4b8eb1f1e4358a1
+        span.crumbs-spacer
+          i.ico-angle-right
+        span= trads.t5fb63c2af36bca70aaf83219
+  // End Page Title
+  
+  // Our Blog Grids
+  section.content_section(style="min-height:500px;")
+    .content
+      
+      //.main_title.centered.upper
+        h2
+          span.line
+            i.ico-pencil2
+          | From The Blog
+      // All Content
+      .content_spacer.clearfix
+        .content_block
+          .row
+            //.col-md-3
+              <div class="enar_accordion plus_minus" data-type="accordion"><div class="enar_occ_container occ_expanded" data-expanded="true">
+                <span class="enar_occ_title"><i class="ico-shuffle2"></i>Sources</span>
+                <div class="enar_occ_content" style="height: 278px;">
+                  <div class="acc_content">
+                    <ul>
+                      for sc, idx in bowlSources.sources
+                        <li>
+                          = idx
+                          .badge= sc
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+                </div><div class="enar_occ_container" data-expanded="false">
+                  <span class="enar_occ_title"><i class="ico-glass3"></i>Languages</span>
+                  <div class="enar_occ_content">
+                    <div class="acc_content">
+                      <ul>
+                        for sc, idx in bowlSources.languages
+                          <li>
+                            = idx
+                            .badge= sc
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><div class="enar_occ_container" data-expanded="false">
+                  <span class="enar_occ_title"><i class="ico-check3"></i>Countries</span>
+                  <div class="enar_occ_content">
+                    <div class="acc_content">
+                      <ul>
+                        for sc, idx in bowlSources.countries
+                          <li>
+                            = idx
+                            .badge= sc
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            .col-md-12
+              //.widget_block
+              //h6.widget_title= trads.t5c5d27a175254800049b2190
+              .search_block.widget_block
+                form.widget_search( autocomplete="off", action='', method='get', style="margin-bottom:20px;")
+                  .autocomplete
+                    input#s.serch_input(type='search', placeholder=trads.t5c5d270075254800049b2122, name='s', value=fulltext)
+                  button#searchsubmit.search_btn(type='submit')
+                    i.ico-search2
+                  .clear
+                  
+              .hm-tabs.tabs2.fill_active(style="overflow:hidden;")
+                nav.clearfix
+                  ul.tabs-navi
+                    li#prof108
+                      a(class=(oldid=="108"?"selected":""), href='#',data-content='pc108')
+                        = trads.t5c5d278075254800049b2176
+                        | 
+                        .badge= playersCount
+                    li#prof102
+                      a(class=(oldid=="102"?"selected":""), href='#',data-content='pc102')
+                        = trads.t5c5d272675254800049b213b
+                        | 
+                        .badge= documentsCount
+                    li#prof113
+                      a(class=(oldid=="113"?"selected":""), href='#',data-content='pc113')
+                        = trads.t5c5d2793f52f110004a93966 
+                        | 
+                        .badge= projectsCount
+                    //li#prof114
+                      a(class=(oldid=="114"?"selected":""), href='#',data-content='pc114')
+                        = trads.t5c5d271875254800049b212e
+                        | 
+                        .badge= innosCount
+                    li#prof110
+                      a(class=(oldid=="110"?"selected":""), href='#',data-content='pc110')
+                        = trads.t5c5d272df52f110004a93932
+                        | 
+                        .badge= newsCount
+                    //li#prof115
+                      a(class=(oldid=="115"?"selected":""), href='#',data-content='pc115')
+                        = trads.t5c5d273375254800049b214c
+                        | 
+                        .badge= eventsCount
+                    li#prof116
+                      a(class=(oldid=="116"?"selected":""), href='#',data-content='pc116')
+                        = "videos"
+                        | 
+                        .badge= videosCount
+                ul.tabs-body(style="min-height:500px;")
+                  li(data-content='pc108',class=(oldid=="108" ? "selected" : ""))
+                    .row.criterias(style="width:auto;")
+                      .col-md-12
+                        div( style="display: inline-block;")
+                          a(style="float:left;font-size:10px;",href="javascript:void(0)",onclick="VV_dir_sb.categs.removeAll(108)") 
+                            i.ico-remove
+                            = " " + trads.t6062f4a2d243f43a9d03e6d1
+                        .news-tags.tagcloud.style2  
+                    .row
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b317dedf2a1fdb57fbe7
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param1",type="hidden",value="")
+                                    +mix-categ_global("5e7b914ec83d033b137f0ba2","a",-1,1)
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b31ededf2a1fdb57fbf3
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param2",type="hidden",value="")
+                                    +mix-categ_global("5e74f50995649d9402657b44","a",-1,2)
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b324dedf2a1fdb57fbf8
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param3",type="hidden",value="")
+                                    +mix-categ_global("5e74f526466f900b86e0765f","a",-1,3)
+                    hr  
+                    .hm_blog_list.clearfix#is-container-108(style="margin-top:15px;")
+                      +mix-loader
+                  li(data-content='pc102',class=(oldid=="102" ? "selected" : ""))
+                    .row.criterias(style="width:auto;")
+                      .col-md-10
+                        div( style="display: inline-block;")
+                          a(style="float:left;font-size:10px;",href="javascript:void(0)",onclick="VV_dir_sb.categs.removeAll(102)") 
+                            i.ico-remove
+                            = " " + trads.t6062f4a2d243f43a9d03e6d1
+                        .news-tags.tagcloud.style2  
+                      .col-md-2
+                        .btn-toolbar#tbmode.justify-content-between(style="float:right;" role='toolbar' aria-label='Toolbar with button groups')
+                          .btn-group(role='group' aria-label='First group')
+                            button#linem.small_btn.btn.btn-primary.active(type='button')
+                              i.ico-th
+                            button#listm.small_btn.btn.btn-primary(type='button')
+                              i.ico-list
+                        button#menu-toggle.small_btn.btn.btn-primary.active(type='button',style="float:right;margin-right:5px;")
+                          i.ico-filter-vintage
+                          | Filtres
+                    .row
+                      nav#sidebar-wrapper
+                        h6.title1 Filtres avancés
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            +mix-categ_bowl(bowlSources,"Sources",20)
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            +mix-categ_bowl(bowlLanguages,"Languages",21)
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            +mix-categ_bowl(bowlCountries,"Pays",22)
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            +mix-categ_bowl(bowlExtensions,"Formats",23)
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            +mix-categ_bowl(bowlProvinces,"Provinces",24)
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            +mix-categ_bowl(bowlKeywords,"Mots clés",25)
+                        form.login_form_colored
+                          .lfc_user_row
+                            label(for='inpPublishers')
+                              span.label_space
+                                span.hm_field_name Auteurs
+                              input#inpPublishers.input_no_icon(type='text' name='inpPublishers')
+                          .lfc_user_row
+                            label(for='inpKeywords')
+                              span.label_space
+                                span.hm_field_name Mots clés
+                              input#inpKeywords.input_no_icon(type='text' name='inpKeywords')   
+                          .lfc_user_row
+                            button.btn.btn-primary#btFiltersMore Filtrer
+                    .hm_blog_list.clearfix#is-container-102(style="margin-top:15px;")
+                      +mix-loader
+                  li(data-content='pc113',class=(oldid=="113" ? "selected" : ""))
+                    .row.criterias(style="width:auto;")
+                      .col-md-12
+                        div( style="display: inline-block;")
+                          a(style="float:left;font-size:10px;",href="javascript:void(0)",onclick="VV_dir_sb.categs.removeAll(113)") 
+                            i.ico-remove
+                            = " " + trads.t6062f4a2d243f43a9d03e6d1
+                        .news-tags.tagcloud.style2  
+                    .row
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b3313b189b1ff26283d6
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param5",type="hidden",value="")
+                                    +mix-categ_global("5e667c62a91cb09eca7a6b1d","a",-1,5)
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b3363b189b1ff26283db
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param6",type="hidden",value="")
+                                    +mix-categ_global("5e74f5384087d8f50245cf5a","b",-1,6)
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b33c14b3991fe586edaf
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param7",type="hidden",value="")
+                                    +mix-categ_global("5e670cc7ea6093d8137de073","b",-1,7)
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b3413b189b1ff26283e5
+                            .enar_occ_content
+                                .acc_content
+                                  input(id="param8",type="hidden",value="")
+                                  +mix-categ_global("5e670bf17af9c8e42ce7a479","b",-1,8)
+                    .hm_blog_list.clearfix#is-container-113(style="margin-top:15px;")
+                      +mix-loader
+                  //li(data-content='pc114')
+                    .hm_blog_list.clearfix#is-container-114
+                      +mix-loader
+                  li(data-content='pc110',class=(oldid=="110" ? "selected" : ""))
+                    .hm_blog_list.clearfix#is-container-110(style="margin-top:15px;")
+                      +mix-loader
+                  //li(data-content='pc115',class=(oldid=="115" ? "selected" : ""))
+                    .hm_blog_list.clearfix#is-container-115
+                      +mix-loader
+                  li(data-content='pc116',class=(oldid=="116" ? "selected" : ""))
+                    .hm_blog_list.clearfix#is-container-116(style="margin-top:15px;")
+                      +mix-loader
+            //aside#sidebar.col-md-3.right_sidebar
+              .widget_block
+                h6.widget_title= trads.t5c5d27a175254800049b2190
+                .search_block
+                  form.widget_search( autocomplete="off", action='', method='get', style="margin-bottom:20px;")
+                    .autocomplete
+                      input#s.serch_input(type='search', placeholder=trads.t5c5d270075254800049b2122, name='s')
+                    button#searchsubmit.search_btn(type='submit')
+                      i.ico-search2
+                    .clear
+                  .enar_accordion.plus_minus(data-type='accordion')
+                    .enar_occ_container(data-expanded='false')
+                      span.enar_occ_title Domaines d’intervention
+                      .enar_occ_content
+                          .acc_content
+                              input(id="param2",type="hidden",value="")
+                              +mix-categ_global("5e667c62a91cb09eca7a6b1d","a",-1)
+                    .enar_occ_container(data-expanded='false')
+                      span.enar_occ_title Pays d'intervention
+                      .enar_occ_content
+                          .acc_content
+                              input(id="param2",type="hidden",value="")
+                              +mix-categ_global("5e74f5384087d8f50245cf5a","b",-1)
+                    .enar_occ_container(data-expanded='false')
+                      span.enar_occ_title Elément(s) de l’agroécologie selon la FAO
+                      .enar_occ_content
+                          .acc_content
+                              input(id="param2",type="hidden",value="")
+                              +mix-categ_global("5e670bf17af9c8e42ce7a479","b",-1)
+                    .enar_occ_container(data-expanded='false')
+                      span.enar_occ_title Objectifs développement durable
+                      .enar_occ_content
+                          .acc_content
+                              input(id="param2",type="hidden",value="")
+                              +mix-categ_global("5e670cc7ea6093d8137de073","b",-1)
+
+block append scripts
+  script.
+    var ftext = "#{fulltext}";
+    var oldid = "#{oldid}";
+  script(src="../assets/js/jquery-ias.min.js")
+  script(src='../assets/js/pages/directory_sidebar.js')
+  script(src='../assets/js/pages/directory_global.js')
+

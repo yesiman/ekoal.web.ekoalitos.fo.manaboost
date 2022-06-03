@@ -1,0 +1,33 @@
+include mixins/pages/details/mix_comment_childs.pug
+for com in comments
+  if !com.parent
+    li(id="post-"+ com._id)
+      .avatar
+        img(src="../assets/images/logo-def.png" alt="")
+      .comment
+        span.uppercase.author= com.owner+ ", " + com.p5c332d9907c805cd14cf2b18  
+        if loged
+          a.btn.btn-sm(href="javascript:void(0);" onclick="VV_detail.blog.addReplyForm('post-" + com._id + "')")= trads.t5c616f233754fb0004955650
+        p= com.p5c332e5e07c805cd14cf3b71
+      +mix_comment_childs(com._id,0)
+      
+    //.margin-top-30(id="post-"+ com._id)
+      .comment-left
+        img(src="../assets/images/logo-def.png" alt="")
+        if loged
+          a.reply-link(href="javascript:void(0);" onclick="VV_detail.blog.addReplyForm('post-" + com._id + "')")
+            i.fa.fa-reply
+              | &nbsp;
+            = "                                      " + trads.t5c616f233754fb0004955650
+        else 
+          a.reply-link(href="javascript:void(0);",style="min-height:50px;")
+            i 
+              | &nbsp;
+            | &nbsp;
+      .comment-right
+        .comment-author=com.owner
+        .comment-date=com.p5c332d9907c805cd14cf2b18
+        .comment-text=com.p5c332e5e07c805cd14cf3b71
+      .clearfix
+    //+mix_comment_childs(com._id,0)
+    

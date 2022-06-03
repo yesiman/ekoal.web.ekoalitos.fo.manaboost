@@ -1,0 +1,57 @@
+.col-xs-12(id="results-"+oldprotouid)
+  input#ebowlCounters(type="hidden",value=bowlCounts)
+  if bowl
+    ul.products_filter.clearfix    
+      for bh in bowl.hits
+        li
+          .add2cart_slide
+            .add2cart_image
+              - var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
+              a.cart_toltip_icon(href='javascript:void("0");' onclick="VV_dir_global.bowl.addCart('"+bh._id+"')" data-text='Ajouter au panier')
+                i.ico-heart2
+              a.add2cart_img(target="_blank",href=pathDoc)
+                span.add2cart_zoom
+                  i.ico-plus3
+                img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail alt='Orange Tshirt')
+            .add2cart_details
+              .con_cont
+                a.add2cart_prod_name(href=pathDoc,target="_blank")= (bh._source.meta.title?bh._source.meta.title:"N/A")
+                span.meta
+                  span.meta-part
+                    a(href="#")
+                      i.ico-users
+                      span= (bh._source.meta.author?bh._source.meta.author:"N/A")
+                  span.meta-part
+                    a(href="#")
+                      i.ico-flag
+                      span= (bh._source.meta.language?bh._source.meta.language:"N/A")
+                  span.meta-part
+                    a(href="#")
+                      i.ico-file
+                      span= (bh._source.file.extension?bh._source.file.extension:"N/A")
+                  span.meta-part
+                    a(href="#")
+                      i.ico-note
+                      - iint = parseInt(bh._score)
+                      span= "Score:" + iint
+                .v-card__text.highlightsfalse!= (bh.highlight?bh.highlight.content:"")
+                span.v-btn__content
+                  i.ico-chevron-down(aria-hidden="true")
+              .add2cart_buttons.clearfix
+                a.pro_add2cart_add(href='javascript:void(0)' onclick="VV_dir_global.bowl.addCart('"+bh._id+"')")
+                  i.ico-cart
+                  | Panier
+                a.pro_add2cart_details(href=pathDoc)
+                  i.ico-angle-right
+                  | Voir
+.navigation(id="navigation-"+oldprotouid)
+  .next-page(id="next-page-"+oldprotouid)
+    a(href="/"+lang+"/directoryres/"+nextpage+"/" + protouid + "/" + oldprotouid + "?fulltext=" + fulltext + "&param1="+param1+"&param2="+param2+"&param3="+param3+"&param4="+param4+"&param5="+param5+"&param6="+param6+"&param7="+param7+"&param8="+param8+"&param9="+param9+"&scrollid="+scrollid+"&mode="+mode)
+      button.btn.btn-primary.btn-inversed.btn-block= trads.t5c5d28fc75254800049b2237
+block append scripts
+  script.
+    var rescount = "#{count}";
+    var scrollid = "#{scrollid}";
+    
+  
+    

@@ -1,0 +1,30 @@
+mixin mix-categ(categs,parent, categid)
+    ul(class=(parent == -1?"opened":""))
+        each cat in categs
+            if (!cat.parent && (parent == -1))
+                li(id="categ" + cat._id)
+                    a(href="javascript:void(0)",onclick="VV_dir_sb.categs.add('"+categid+"','" + cat._id + "')")
+                        i.ico-circle-o
+                        = " " + cat.p5b5ea8fd0311784a87b6dc0a
+                    - var hasChilds = false
+                    each cat2 in categs
+                        if (cat._id == cat2.parent)
+                            - hasChilds = true
+                    if hasChilds == true     
+                        a(href="javascript:void(0)",onclick="VV_dir_sb.categs.open('"+categid+"','" + cat._id + "')")
+                            i.ico-circle-plus
+                        +mix-categ(categs,cat._id,categid)
+            else
+                if (cat.parent == parent)
+                    li(id="categ" + cat._id)
+                        a(href="javascript:void(0)",onclick="VV_dir_sb.categs.add('"+categid+"','" + cat._id + "')")
+                            i.ico-circle-o
+                            = " " + cat.p5b5ea8fd0311784a87b6dc0a
+                        - var hasChilds = false
+                        each cat2 in categs
+                            if (cat._id == cat2.parent)
+                                - hasChilds = true
+                        if hasChilds == true
+                            a(href="javascript:void(0)",onclick="VV_dir_sb.categs.open('"+categid+"','" + cat._id + "')")
+                                i.ico-circle-plus
+                            +mix-categ(categs,cat._id,categid)

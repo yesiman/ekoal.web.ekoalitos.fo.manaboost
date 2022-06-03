@@ -1,0 +1,14 @@
+mixin mix_comment_childs(puid,level)
+    ul
+        for com in comments
+            if com.parent
+                if com.parent == puid
+                    li(id="post-"+ com._id)
+                        .avatar
+                            img(src="../assets/images/logo-def.png" alt="")
+                        .comment
+                            span.uppercase.author= com.owner + ", " + com.p5c332d9907c805cd14cf2b18
+                            if loged
+                            a.btn.btn-sm(href="javascript:void(0);" onclick="VV_detail.blog.addReplyForm('post-" + com._id + "')")= trads.t5c616f233754fb0004955650
+                            p= com.p5c332e5e07c805cd14cf3b71
+                        +mix_comment_childs(com._id,0)

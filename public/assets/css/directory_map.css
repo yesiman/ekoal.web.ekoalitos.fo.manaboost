@@ -1,0 +1,48 @@
+.circlemap b {
+    color:#000 !important;
+}
+
+.leaflet-popup-content
+{
+    margin:0;
+}
+
+    .circlemap.c10 {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-image: url('/assets/images/markers/c10.png');
+    }
+
+    .circlemap.c50 {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-image: url('/assets/images/markers/c50.png');
+    }
+
+    .circlemap.c100 {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-image: url('/assets/images/markers/c100.png');
+    }
+
+    .circlemap.cmor {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background-image: url('/assets/images/markers/cmor.png');
+    }
+
+    .map-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+         

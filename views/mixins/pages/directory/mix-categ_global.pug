@@ -1,0 +1,33 @@
+mixin mix-categ_global(categuid,categlib,parent,paramuid)
+    ul(class=(parent == -1?"opened":""))
+        each cat in categsAll
+            if cat.proto[0] == categuid
+                if (!cat.parent && (parent == -1))
+                    li(id="categ" + cat.objectid)
+                        a(href="javascript:void(0)",onclick="VV_dir_sb.categs.add('"+paramuid+"','" + cat.objectid + "')")
+                            i.ico-circle-o
+                            = " " + cat.p5b5ea8fd0311784a87b6dc0a
+                        - var hasChilds = false
+                        each cat2 in categsAll
+                            if (cat.objectid == cat2.parent)
+                                - hasChilds = true
+                                - break
+                        if hasChilds == true     
+                            a(href="javascript:void(0)",onclick="VV_dir_sb.categs.open('"+paramuid+"','" + cat.objectid + "')")
+                                i.ico-circle-plus
+                            +mix-categ_global(categuid,categlib,cat.objectid,paramuid)
+                else
+                    if (cat.parent == parent)
+                        li(id="categ" + cat.objectid)
+                            a(href="javascript:void(0)",onclick="VV_dir_sb.categs.add('"+paramuid+"','" + cat.objectid + "')")
+                                i.ico-circle-o
+                                = " " + cat.p5b5ea8fd0311784a87b6dc0a
+                            - var hasChilds = false
+                            each cat2 in categsAll
+                                if (cat.objectid == cat2.parent)
+                                    - hasChilds = true
+                                    - break
+                            if hasChilds == true
+                                a(href="javascript:void(0)",onclick="VV_dir_sb.categs.open('"+paramuid+"','" + cat.objectid + "')")
+                                    i.ico-circle-plus
+                                +mix-categ_global(categuid,categlib,cat.objectid,paramuid)

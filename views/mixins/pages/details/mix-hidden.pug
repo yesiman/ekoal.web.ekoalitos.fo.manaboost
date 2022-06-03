@@ -1,0 +1,19 @@
+mixin mix-hidden
+  input#numero_entite(type="hidden", name="numero_entite", value=object._id)
+  - var oldId = -1;
+  case object.proto[0]
+    when "5c2c4dea07c805cd14b33488"
+      - oldid = "113" //PROJETS
+    when "5c2c4de807c805cd14b3345c"
+      - oldid = "108" //PLAYERS
+    when "5c2c4de807c805cd14b33449"
+      - oldid = "102" //DOCS
+    when "5c2c4dea07c805cd14b3349f"
+      - oldid = "114" //INNOVATIONS
+    when "5c2c4de907c805cd14b33478"
+      - oldid = "110" //ACTUS
+    when "5c2c4deb07c805cd14b334b4"
+      - oldid = "115" //EVENTS
+    when "5e99ce5d1b088f21c5f20aa0"
+      - oldid = "116" //VIDEOS
+  input#numero_profil(type="hidden", name="numero_profil", value=oldid)

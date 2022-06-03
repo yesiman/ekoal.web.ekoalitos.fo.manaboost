@@ -1,0 +1,116 @@
+mixin mix-comments
+    //if (object.version.p5c332d0f07c805cd14cf1f4f == true) || (object.version.p5c332d0f07c805cd14cf1f4f == "true")
+    //.comments-area#comments
+      .small_title
+        span.small_title_con
+          span.s_icon
+            i.ico-comment-o
+          span.s_text= trads.t5c61739f54be830004747f18
+      ol.comments_list.clearfix.commentsels
+        li.comment.single_comment
+          // Comment
+          .comment-container.comment-box
+            .trees_number 1
+            a.avatar(href='#')
+              img(width='75', height='75', src='images/user2.jpg', alt='John Doe')
+            .comment_content
+              h4.author_name
+                a(href='#') John Doe
+              span.comment_meta
+                a(href='#')
+                  time(datetime='2015-10-01T19:56:36+00:00') October 1, 2015 at 7:56 pm
+              .comment_said_text
+                p
+                  | There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised.
+              a.comment-reply-link(href='#commentform') Reply
+          // End Comment
+          ol.children
+            li.comment.single_comment
+              // Comment
+              .comment-container.comment-box
+                .trees_number 1.1
+                a.avatar(href='#')
+                  img(width='75', height='75', src='images/user1.jpg', alt='Jane Smith')
+                .comment_content
+                  h4.author_name
+                    a(href='#') Jane Smith
+                  span.comment_meta
+                    a(href='#')
+                      time(datetime='2015-10-01T19:56:36+00:00') October 1, 2015 at 7:56 pm
+                  .comment_said_text
+                    p
+                      | There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised.
+                  a.comment-reply-link(href='#commentform') Reply
+              // End Comment
+              ol.children
+                li.comment.single_comment
+                  // Comment
+                  .comment-container.comment-box
+                    .trees_number 1.1.1
+                    a.avatar(href='#')
+                      img(width='75', height='75', src='images/user3.jpg', alt='Tommy Horton')
+                    .comment_content
+                      h4.author_name
+                        a(href='#') Tommy Horton
+                      span.comment_meta
+                        a(href='#')
+                          time(datetime='2015-10-01T19:56:36+00:00') October 1, 2015 at 7:56 pm
+                      .comment_said_text
+                        p
+                          | There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised.
+                      a.comment-reply-link(href='#commentform') Reply
+                  // End Comment
+                  ol.children
+                    li.comment.single_comment
+                      // Comment
+                      .comment-container.comment-box
+                        .trees_number 1.1.1.1
+                        a.avatar(href='#')
+                          img(width='75', height='75', src='images/user4.jpg', alt='Alan Snow')
+                        .comment_content
+                          h4.author_name
+                            a(href='#') Alan Snow
+                          span.comment_meta
+                            a(href='#')
+                              time(datetime='2015-10-01T19:56:36+00:00') October 1, 2015 at 7:56 pm
+                          .comment_said_text
+                            p
+                              | There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form by injected humour or randomised.
+                          a.comment-reply-link(href='#commentform') Reply
+                      // End Comment
+
+
+      section
+        .container
+          hr
+          .comments
+            h5.uppercase
+              span#nbComments= trads.t5c61739f54be830004747f18
+
+            .title-separator-primary
+            ul.commentsels.comments-list
+              .spinner.m-t-10(style='margin:auto;')
+                  .bounce1
+                  .bounce2
+                  .bounce3
+            if loged
+              .comment-form-cont
+                h4.title-negative-margin=  trads.t5c616f233754fb0004955650
+                  span.special-color .
+                p= trads.t5c616f4d54be830004747e9b
+                  a(href='javascript:void(0);')= " " + (user.surname?user.surname:(user.surn?user.surn:"")) + " " + (user.name?user.name:"")
+                    | .
+                form(name='comment-from', action='#')
+                  textarea#message.input-full.agent-textarea.main-input(name='message', maxlength='800',placeholder= trads.t5c5db61843fef3000484f625)
+                  .form-submit-cont
+                    a#sendComment.btn.btn-sm.pull-right(href='javascript:void(0);')
+                      span=   trads.t5c5d28ce75254800049b2213
+                      .button-triangle
+                      .button-triangle2
+                      .button-icon
+                        i.fa.fa-pencil
+                    .clearfix
+                .spinner.spinnerComment(style='margin:auto;display:none;')
+                  .bounce1
+                  .bounce2
+                  .bounce3

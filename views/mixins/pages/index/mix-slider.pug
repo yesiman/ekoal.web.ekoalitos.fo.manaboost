@@ -1,0 +1,26 @@
+mixin mix-slider
+    // Flex Slider
+    if (slides.length > 0)
+        section.flex_slider_container.flex_style1
+            #flex_carousel.flexslider.has_ovellay
+                a.flex_previous(href='#')
+                    span.flex_previous_arrow
+                        span
+                a.flex_next(href='#')
+                    span.flex_next_arrow
+                        span
+                ul.slides
+                    each slide,index in slides
+                        li
+                            .flex_in_flex.flexslider
+                                ul.flex_in_slides
+                                    li
+                                    .flex_in
+                                        span.flex_in1 Bienvenue !
+                                        span.flex_in2.upper.oswald_font
+                                            span.flex_in_color1 BOOST
+                                        span.flex_in3.upper.light.oswald_font
+                                            | Innovation, Knowledge and Networks of Agriculture in the context of Climate Change
+                                        a.bordered_btn_white.upper(href='/' + lang + '/7_24/5e916cd910e2df7f3464cf71/plateforme.html') Lire plus
+                            img(src=s3 + slide.p5c332d1907c805cd14cf2042, alt='Image Title')
+        // End Flex Slider

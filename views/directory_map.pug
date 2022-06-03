@@ -1,0 +1,34 @@
+extends layout.pug
+include mixins/pages/directory/mix-sidebar.pug
+block append styles
+    link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
+    link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
+    link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.Default.css')
+    link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
+    link(href="../assets/css/directory_map.css" rel="stylesheet")
+block content
+    //section.content_section.page_title
+    //.content.clearfix
+        h1= "map"
+        .breadcrumbs
+            a(href='#') Home
+            span.crumbs-spacer
+                i.ico-angle-right
+            a(href='#')= 'Map'
+    
+        // end of container
+    section.content_section
+        //span.section_icon
+            i.ico-picture
+        .content(style="max-width:100%;width:100%;")
+            .map-wrapper
+                +mix-sidebar
+                #map(style='width:100%;height:100%;')
+            //.row
+    
+
+block append scripts
+    script(src='https://unpkg.com/leaflet@1.2.0/dist/leaflet.js', integrity='sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==', crossorigin='')
+    script(src='https://unpkg.com/leaflet.markercluster@1.2.0/dist/leaflet.markercluster.js')
+    script(src='../assets/js/pages/directory_sidebar.js')
+    script(src='../assets/js/pages/directory_map.js')

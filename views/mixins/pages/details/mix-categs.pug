@@ -1,0 +1,27 @@
+mixin mix-categs(title,categui)
+    if allCategs
+        for ar in allCategs
+            - if (ar.proto.includes(categui))
+                - itExists = true
+        if itExists = true
+            .widget_block
+                h6.widget_title= title
+                .tagcloud.style2.clearfix
+                    for ac in allCategs   
+                        - if (ac.proto.includes(categui))
+                            - var uri = encodeURIComponent(ac.p5b5ea8fd0311784a87b6dc0a)
+                            a(href='/'+lang+'/2/108/global.html?fulltext='+uri)
+                                span.bhover.tag= ac.p5b5ea8fd0311784a87b6dc0a 
+        //- var itExists = false
+        //for ar in allCategs
+            //- if (ar.proto.includes('5c2c4dec07c805cd14b334d9'))
+                - itExists = true
+        //if itExists = true
+            .widget_block
+                h6.widget_title= trads.t5c5d26eb75254800049b2115
+                .tagcloud.style2.clearfix
+                    each ar in allRelats
+                        - if (ar.proto.includes('5c2c4dec07c805cd14b334d9'))
+                            - var uri = encodeURIComponent(ar.p5c332d2707c805cd14cf217d)
+                            a(href='/'+lang+'/2/108/global.html?fulltext='+uri)
+                                span.tag= ar.p5c332d2707c805cd14cf217d

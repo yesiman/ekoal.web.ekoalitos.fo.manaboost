@@ -1,0 +1,181 @@
+include ../../mixins/globals/widgets/mix-search-bar.pug
+include ../../mixins/layout/mix-menu.pug
+mixin mix_topbar()
+  header#site_header
+    .topbar
+      // class ( topbar_colored  )
+      .content.clearfix
+        .top_details.clearfix.f_left
+          if !loged
+            span.top_login
+              i.icon.ico-key
+              a.popup-with-move-anim(href='#login-popup')= trads.t5c5d3d1ff52f110004a93ca6
+            span.top_login
+              i.icon.ico-sign-in
+              a.popup-with-move-anim(href='#register-popup')= trads.t5c5d3a8cf52f110004a93c3a
+          else
+            .languages-select.languages-drop
+              span 
+                i.ico-globe4
+                = trads.t5c5d2a6875254800049b231a
+              .languages-panel
+                ul.languages-panel-con
+                  li
+                    a(href="/"+lang+"/prototypes/"+projectUID+"/") Ekit
+                  li
+                    a(href="/"+lang+"/7_24/60096ab714b3991fe586df3b/tutorial_video.html")= trads.t600a7832dc77b9789f096576
+                  if (user.sa == true) || (user.sad == true)
+                    li
+                      a(href="/"+lang+"/users/"+projectUID+"/")= trads.t5c5d26a2f52f110004a938e9
+                  li
+                    a(href="/logout/"+lang)= trads.t5c5d2a7975254800049b2324
+            .top_details.clearfix.f_right
+          #register-popup.zoom-anim-dialog.small-dialog.mfp-hide.login_popup
+            form.login_form_colored#register-modal
+              .lfc_user_row
+                span.lfc_header= trads.t5c5d3a8cf52f110004a93c3a
+              .lfc_user_row
+                label(for='register_company_nom')
+                  i.lfc_icon.ico-asterisk
+                  input#register_company_nom.req(name='register_company_nom', type='text', value='', placeholder=trads.t5c5d3acc75254800049b2489)
+              .lfc_user_row
+                label(for='reg_company_contact_nom')
+                  i.lfc_icon.ico-asterisk
+                  input#reg_company_contact_nom.req(name='reg_company_contact_nom', type='text', value='', placeholder=trads.t5c5d3adb75254800049b2490)
+              .lfc_user_row
+                label(for='reg_company_contact_prenom')
+                  i.lfc_icon.ico-asterisk
+                  input#reg_company_contact_prenom.req(name='reg_company_contact_prenom', type='text', value='', placeholder=trads.t5c5d3ae9f52f110004a93c54)
+              .lfc_user_row
+                label(for='reg_company_contact_email')
+                  i.lfc_icon.ico-asterisk
+                  input#reg_company_contact_email.req(name='reg_company_contact_email', mytype='mail', type='text', value='', placeholder=trads.t5c5d3af8f52f110004a93c5a)
+              .lfc_user_row
+                label(for='reg_company_contact_message')
+                  i.lfc_icon.ico-asterisk
+                  textarea#reg_company_contact_message.req(style="width:100%;padding-left: 40px;font-weight: 500;font-size: 13px;",name='reg_company_contact_message', value='', placeholder=trads.t5c5d3b0a75254800049b249f)
+              .lfc_user_row
+                input#honeyRegis(type='hidden', name='honeyRegis')
+              .lfc_user_row.clearfix
+                .my_col_half
+                  #badCred(style='display:none;color:#d45151;')= trads.t5c5d3e0df52f110004a93cc7
+                .my_col_half.clearfix
+                  button#regis_btn_submit.send_button.f_right.upper(type='submit', name='login')= trads.t5c5d29c075254800049b22b4
+                  span#regisOk(style='display:none;color:#23a335;')= trads.t5db681d78aae6a8944f3c705
+                  span#badCredR(style='display:none;color:#d45151;')= trads.t5db681e40964a28010726d94
+                  span#badNetworkR(style='display:none;color:#d45151;')= trads.t5db681e913ab9454dc384587
+          #login-popup.zoom-anim-dialog.small-dialog.mfp-hide.login_popup
+            form.login_form_colored
+              .lfc_user_row
+                span.lfc_header= trads.t5c5d3d1ff52f110004a93ca6
+              .lfc_user_row
+                label(for='username')
+                  span.lfc_alert
+                  i.lfc_icon.ico-user5
+                  input#username(type='text', name='username',placeholder=trads.t5c5d3e7b75254800049b2530)
+              .lfc_user_row
+                label(for='login_password')
+                  span.lfc_alert
+                  i.lfc_icon.ico-key3
+                  input#password(type='password', name='password',placeholder=trads.t5c5db5f743fef3000484f618)
+              .lfc_user_row.clearfix
+                .my_col_half
+                  #badCred(style='display:none;color:#d45151;')= trads.t5c5d3e0df52f110004a93cc7
+                .my_col_half.clearfix
+                  button#login_btn_submit.send_button.f_right.upper(type='submit', name='login')= trads.t5c5d29c075254800049b22b4
+              a.popup-with-move-anim.lfc_forget_pass(href='#lostpass-popup')= trads.t5c5d3d4775254800049b24fd
+          #lostpass-popup.zoom-anim-dialog.small-dialog.mfp-hide.login_popup
+            form.login_form_colored
+              .lfc_user_row
+                span.lfc_header= trads.t5c5d3d4775254800049b24fd
+              .lfc_user_row
+                label(for='username')
+                  span.lfc_alert
+                  i.lfc_icon.ico-user5
+                  input#username(type='text', name='username',placeholder=trads.t5c5d3e7b75254800049b2530)
+              .lfc_user_row.clearfix
+                .my_col_half
+                  #badCred(style='display:none;color:#d45151;')= trads.t5c5d3e0df52f110004a93cc7
+                .my_col_half.clearfix
+                  button#forgot_btn_submit.send_button.f_right.upper(type='submit', name='login')= trads.t5c5d29c075254800049b22b4
+              a.popup-with-move-anim.lfc_forget_pass(href='#login-popup')= trads.t5c5d3d1ff52f110004a93ca6
+        .top_details.clearfix.f_right
+          .languages-select.languages-drop
+            - var langs = ['en','fr','es']
+            span
+              i.ico-globe4
+              each elang in langs
+                if elang == lang
+                  case elang
+                    when "fr"
+                      span= trads.t5c5d2a0675254800049b22d6
+                    when "en"
+                      span= trads.t5c5d2a0cf52f110004a93aaa
+                    when "es"
+                      | Spanish
+            .languages-panel
+              - var indexOfFirst = ourl.indexOf("/")
+              - var indexOfSecond = ourl.indexOf("/", (indexOfFirst + 1))
+              - var enduri = ourl.substring(indexOfSecond);
+              ul.languages-panel-con
+                each elang in langs
+                  if elang != lang
+                    li
+                      a(href='/'+elang+enduri)
+                        case elang
+                          when "fr"
+                            = trads.t5c5d2a0675254800049b22d6
+                          when "en"
+                            = trads.t5c5d2a0cf52f110004a93aaa
+                          when "es"
+                            | Spanish
+        .top-socials.box_socials.f_right(style="margin-right:10px;")
+          a(href='#', target='_blank')
+            span.soc_name Facebook
+            span.soc_icon_bg
+            i.ico-facebook4
+          a(href='#', target='_blank')
+            span.soc_name Twitter
+            span.soc_icon_bg
+            i.ico-twitter4
+      // End content
+      span.top_expande.not_expanded
+        i.no_exp.ico-angle-double-down
+        i.exp.ico-angle-double-up
+    // End topbar
+    #navigation_bar
+      .content
+        #logo
+          a(href='/')
+            img.logo_dark(src='../assets/images/logo_BoosT.png',width="150px", alt='BOOST Logo')
+            img.logo_light(src='../assets/images/logo_BoosT.png',width="150px", alt='BOOST Text Logo')
+        #logo2
+          a(href='/')
+            img.logo_dark(src='../assets/images/logo_texte_seul_'+lang+'.jpg', alt='Cirad Logo')
+        nav#main_nav
+          #nav_menu
+            span.mobile_menu_trigger
+              a.nav_trigger(href='#')
+                | Menu
+                span
+            ul#navy.clearfix
+              +mix-menu
+            <div id="top_cart" class="top_cart">
+              <a href="#" class="top_add_card">
+                <i class="ico-cart"></i>
+                span#cart_els_cnt= "0"
+              </a>
+              <div class="top_cart_con">
+                <div class="top_cart_header"><h3>Vos documents</h3></div>
+                <div class="top_cart_block">
+                  <ul class="top_cart_list">
+                    <li class="hm_cart_empty"><span>No products in the cart.</span></li>
+                  </ul>
+                </div>
+                <div class="top_cart_footer clearfix">
+                  //<span class="left top_cart_total">$124.95</span>
+                  <button id="exportBowlCard" class="button top_cart_btn shadow_btn f_right">Exporter</button>
+                </div>
+              </div>
+            </div>
+        .clear

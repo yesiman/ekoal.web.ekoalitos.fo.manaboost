@@ -1,0 +1,126 @@
+mixin mix-thematics
+  section.content_section.bg_gray
+    .content.row_spacer
+      .main_title.centered.upper
+        h2
+          span.line
+          | Thématiques
+      //.main_desc.half_desc.centered
+        p
+          | Our dedicated employees are happy to assist you with know-how and experience in your daily business.
+      span.spacer30
+      ul.tree_features.clearfix
+        //if thematics
+          each them,index in networks
+            li(data-bgcolor=them.p5e9738daf4383359b925a25a, style='background-color: rgb(0, 114, 165);')
+              span.leaf_icon
+                i(class=them.p5e9738f2dddbd559e098aae9)
+              .leaf_con
+                a.tree_features_t(href=them.p5bc4396c219d500400bbbfee)= them.p5c332d0b07c805cd14cf1ef5
+                span.tree_features_d= them.p5e973910dddbd559e098ab0a
+              span.tree_curv(style='background-color: rgb(0, 114, 165);')
+        li(data-bgcolor='#4D4294', style='background-color: rgb(77, 66, 148);')
+          span.leaf_icon
+            i.ico-desktop2
+          .leaf_con
+            a.tree_features_t(href='#') Couverture
+            //span.tree_features_d
+              | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+          span.tree_curv(style='background-color: rgb(77, 66, 148);')
+        li(data-bgcolor='#F36A71', style='background-color: rgb(243, 106, 113);')
+          span.leaf_icon
+            i.ico-pencil5
+          .leaf_con
+            a.tree_features_t(href='#') Gestion de l’eau
+            //span.tree_features_d
+              | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+          span.tree_curv(style='background-color: rgb(243, 106, 113);')
+        li(data-bgcolor='#B853A3', style='background-color: rgb(184, 83, 163);')
+          span.leaf_icon
+            i.ico-expand3
+          .leaf_con
+            a.tree_features_t(href='#') Biocontrôle
+            //span.tree_features_d
+              | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+          span.tree_curv(style='background-color: rgb(184, 83, 163);')
+        li(data-bgcolor='#0CAEBF', style='background-color: rgb(12, 174, 191);')
+          span.leaf_icon
+            i.ico-key4
+          .leaf_con
+            a.tree_features_t(href='#') Adaptation climatique
+            //span.tree_features_d
+              | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+          span.tree_curv(style='background-color: rgb(12, 174, 191);')
+        li(data-bgcolor='#1BBC9B', style='background-color: rgb(27, 188, 155);')
+          span.leaf_icon
+            i.ico-bargraph
+          .leaf_con
+            a.tree_features_t(href='#') Synergie cultures-élevage
+            //span.tree_features_d
+              | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+          span.tree_curv(style='background-color: rgb(27, 188, 155);')
+        li(data-bgcolor='#B853A3', style='background-color: rgb(184, 83, 163);')
+          span.leaf_icon
+            i.ico-expand3
+          .leaf_con
+            a.tree_features_t(href='#') Agriculture
+            //span.tree_features_d
+              | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+          span.tree_curv(style='background-color: rgb(184, 83, 163);')
+      .centered
+        img.tree_features_parent(src='../assets/images/icons/archive2.svg', alt='Image Title')
+
+  //section.content_section.white_section.bg_color12
+    .title_banner.upper.centered
+      .content
+        h2 Thématiques
+    .container.icons_spacer
+      .icon_boxes_con.style2.upper_title.solid_icon.clearfix
+        .col-md-4
+          .service_box
+            span.icon.circle
+              i.ico-beaker
+            .service_box_con
+              h3 Super Coding
+              span.desc
+                | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+        .col-md-4
+          .service_box
+            span.icon.circle
+              i.ico-desktop2
+            .service_box_con
+              h3 Best User Interface
+              span.desc
+                | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+        .col-md-4
+          .service_box
+            span.icon.circle
+              i.ico-picture
+            .service_box_con
+              h3 Parallax Support
+              span.desc
+                | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+        .col-md-4
+          .service_box
+            span.icon.circle
+              i.ico-streetsign
+            .service_box_con
+              h3 1111 Free Font Icons
+              span.desc
+                | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+        .col-md-4
+          .service_box
+            span.icon.circle
+              i.ico-layers2
+            .service_box_con
+              h3 Awesome Mega menu
+              span.desc
+                | There are many variations of demo text passed sages of Lorem Ipsum available the majority.
+        .col-md-4
+          .service_box
+            span.icon.circle
+              i.ico-paintbrush
+            .service_box_con
+              h3 Unlimited Color Options
+              span.desc
+                | There are many variations of demo text passed sages of Lorem Ipsum available the majority.

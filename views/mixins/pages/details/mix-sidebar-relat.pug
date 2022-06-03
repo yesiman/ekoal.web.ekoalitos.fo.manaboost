@@ -1,0 +1,45 @@
+mixin mix-sidebar-relat
+    block append styles
+        link(href='../assets/css/pages/detail_sidebar.css' rel="stylesheet")
+    #inner-histo.inner.p-10
+        .histos
+        .collapsor-histo
+            a#sidebar-bt-histo.btn.btn-success.purple.btn-icon.navbar-toggle(style='cursor:pointer;', data-target='.header-navigation', data-toggle='collapse', type='button')
+                i.ico-star
+    #inner-search.inner.p-10
+        form.form-search#search_form(name="search_form", method="post",style="padding:10px;")
+            .clearfix
+            .row
+                .col-md-12
+                    .form-check
+                        input.form-check-input(type="checkbox" value="" checked id="ch-108" onclick="VV_relat.d3.checkProfil('108',this)")
+                        label.form-check-label(for="ch-108")= trads.t5c5d278075254800049b2176
+                    .form-check
+                        input.form-check-input(type="checkbox" value="" checked id="ch-113" onclick="VV_relat.d3.checkProfil('113',this)")
+                        label.form-check-label(for="ch-113")= trads.t5c5d2793f52f110004a93966
+                    .form-check
+                        input.form-check-input(type="checkbox" value="" checked id="ch-102" onclick="VV_relat.d3.checkProfil('102',this)")
+                        label.form-check-label(for="ch-102")= trads.t5c5d272675254800049b213b
+                    .form-check
+                        input.form-check-input(type="checkbox" value="" checked id="ch-120" onclick="VV_relat.d3.checkProfil('120',this)")
+                        label.form-check-label(for="ch-120") Réseaux
+                    //.form-check(style="margin-top:10px;")
+                        label
+                            | Taille liens
+                        #sliderLength.slider
+                        label(style="margin-top:10px;")
+                            | Zoom
+                        #sliderZoom.slider
+                    .more
+                    .form-check(style="margin-top:20px;")
+                        a(href='javascript:void(0)', title='Fullscreen', onclick='VV_relat.relat.setFullScreen()')
+                            i.ico-focus
+                            |   Plein écran
+        .collapsor-filters
+            // <a id="search-bt">Fermer</a>
+            a#sidebar-bt-filters.btn.purple.btn-icon.navbar-toggle(style='cursor:pointer;', data-target='.header-navigation', data-toggle='collapse', type='button')
+                i.ico-square-check
+        .spinner-load
+            .spinner
+    block append scripts
+        script(src='../assets/js/pages/directory_sidebar.js')

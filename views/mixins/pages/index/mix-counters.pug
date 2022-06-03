@@ -1,0 +1,38 @@
+mixin mix-counters
+    section.content_section.white_section.bg_color30.fabcounters
+        .content.row_spacer
+            .main_title.centered.upper
+                h2= trads.t5fc5dfe0b293387249ff219f
+            .counter_a.clearfix
+                .col-md-3
+                    a(href='/'+lang+'/2/108/acteurs.html')
+                        .counter.animated(data-animation='fadeInDown', data-animation-delay='300')
+                            span.icon
+                                i.ico-user5
+                            .test
+                                span.value(data-speed='4000', data-from='0', data-to=playersCount)= playersCount
+                                span.title(style="display:block;")= trads.t5c5d278075254800049b2176
+                .col-md-3
+                    a(href='/'+lang+'/2/113/projets.html')
+                        .counter.animated(data-animation='fadeInDown', data-animation-delay='600')
+                            span.icon
+                                i.ico-gears2
+                            .test
+                                span.value(data-speed='4000', data-from='0', data-to=projectsCount)= projectsCount
+                                span.title= trads.t5c5d22ce75254800049b20a2
+                .col-md-3
+                    a(href='/'+lang+'/2/102/documents.html')
+                        .counter.animated(data-animation='fadeInDown', data-animation-delay='900')
+                            span.icon
+                                i.ico-file2
+                            .test
+                                span.value(data-speed='4000', data-from='0', data-to=documentsCount)= documentsCount
+                                span.title= trads.t5c5d272675254800049b213b
+                .col-md-3
+                    a(href='/'+lang+'/2/116/videos.html')
+                        .counter.animated(data-animation='fadeInDown', data-animation-delay='1200')
+                            span.icon
+                                i.ico-video3
+                            .test
+                                span.value(data-speed='4000', data-from='0', data-to=videosCount)=videosCount
+                                span.title= trads.t5fc5e0ffd744fd443ea6affd

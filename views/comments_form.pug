@@ -1,0 +1,19 @@
+.comment-form-cont
+  h4.title-negative-margin= trads.t5c616f233754fb0004955650
+    span.special-color .
+  p= trads.t5c616f4d54be830004747e9b
+    a(href='javascript:void(0);')= " " + (user.surname?user.surname:(user.surn?user.surn:"")) + " " + (user.name?user.name:"")
+  form(name="comment-from" action="#")
+    textarea#message.input-full.agent-textarea.main-input(name="message", maxlength="800", placeholder=trads.t5c5db61843fef3000484f625)
+    .form-submit-cont
+      a#sendComment.btn.btn-sm.pull-right(href="javascript:void(0);")
+        span= trads.t5c5d28ce75254800049b2213
+        .button-triangle
+        .button-triangle2
+        .button-icon
+          i.fa.fa-pencil
+      .clearfix
+    .spinner.spinnerComment(style="margin:auto;display:none;")
+      .bounce1
+      .bounce2
+      .bounce3

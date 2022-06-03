@@ -1,0 +1,40 @@
+mixin mix-news
+    section.content_section
+        .content.row_spacer.no_padding
+            .main_title.centered.upper
+                h2
+                    span.line
+                    = trads.t5c5d272df52f110004a93932
+            // Filter Content
+            .rows_container.clearfix
+                each actu,index in news
+                    - var uri = encodeURIComponent(actu.p5c332d0b07c805cd14cf1ef5)
+                    if index < 3
+                        .col-md-4.filter_item_block.animated(data-animation-delay='300', data-animation='rotateInUpLeft')
+                            .blog_grid_block
+                                .blog_grid_desc
+                                    h6.title
+                                        a(href='/'+lang+'/7_110/'+actu._id+'/'+uri+'.html')= actu.p5c332d2707c805cd14cf217d
+                                .feature_inner
+                                    .feature_inner_corners
+                                        .feature_inner_btns
+                                            a.icon_link(href='/'+lang+'/7_110/'+actu._id+'/'+uri+'.html')
+                                                i.ico-link3
+                                        a.feature_inner_ling(href='/'+lang+'/7_110/'+actu._id+'/'+uri+'.html')
+                                            img(src=s3+actu.p5c332d1907c805cd14cf2042, alt='Post Title')
+                                .blog_grid_con
+                                    a.blog_grid_format(href='/'+lang+'/7_110/'+actu._id+'/'+uri+'.html')
+                                        i
+                                            | #{moment(actu.p5c332d9907c805cd14cf2b18).format('DD/MM/YYYY')}
+                                    a(href='/'+lang+'/7_110/'+actu._id+'/'+uri+'.html')
+                                        p.desc= actu.p5c332d0b07c805cd14cf1ef5
+                                    a.lirep(href='/'+lang+'/7_110/'+actu._id+'/'+uri+'.html')
+                                        span= trads.t5fc5df36ca1df77ba2f52a31
+                .centered
+                    a.btn_c(href='/'+lang+'/2/110/news.html')
+                        span.btn_c_ic_a
+                            i.ico-keyboard-arrow-right
+                        span.btn_c_t= trads.t5c5d27daf52f110004a9398a
+                        span.btn_c_ic_b
+                            i.ico-keyboard-arrow-right
+

@@ -1,0 +1,37 @@
+mixin mix-rate
+    .widget
+        h6.title= trads.t5c98774fac2e887c82af51ea
+        hr
+        h6.side-subtit= trads.t5c98775eac2e887c82af51ec
+        #ratemoy.note-item
+            .star-rating.rating-xs
+            #noteMoy.rating(style="float: right; display: none;" readonly="" type="number" min="0" max="5" step="1" value="0" data-size="xs")
+        if loged
+            h6.side-subtit= trads.t5c98774fac2e887c82af51ea
+            form#kwForm(method='post', name='kwForm')
+                .block_notes
+                .note-item
+                    label(style='float:left;')= trads.t5c987777aa6fb41e853ade27
+                    input#note1.rating(style='float:right;', type='number', min='0', max='5', step='1', value='0', data-size='xs')
+                .note-item
+                    label(style='float:left;')= trads.t5c987786aa6fb41e853ade29
+                    input#note2.rating(style='float:right;', type='number', min='0', max='5', step='1', value='0', data-size='xs')
+                .note-item
+                    label(style='float:left;')= trads.t5c987793aa6fb41e853ade2b
+                    input#note3.rating(style='float:right;', type='number', min='0', max='5', step='1', value='0', data-size='xs')
+                .note-item
+                    label(style='float:left;')= trads.t5c9877a0aa6fb41e853ade2d
+                    input#note4.rating(style='float:right;', type='number', min='0', max='5', step='1', value='0', data-size='xs')
+                a#btAddRate.btn.btn-sm(style="width:100%;",href='javascript:void(0);')
+                    span
+                        = trads.t5c5d29c075254800049b22b4
+                    .button-triangle
+                    .button-triangle2
+                    .button-icon
+                        i.fa.fa-search
+            span#noteOk(style='display:none;color:#23a335;')
+                = trads.t5c9879042473cb434036e7d7
+            .spinner.spinnerRate(style='margin:auto;display:none;')
+                .bounce1
+                .bounce2
+                .bounce3

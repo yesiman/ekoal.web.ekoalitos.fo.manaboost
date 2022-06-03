@@ -1,0 +1,25 @@
+mixin mix-referent
+    .widget_block
+        - var itExists = true
+        - var mails = ""; 
+        //ADD OWNER
+        if collaborators
+            for collab in collaborators
+                if !collab.sa || (collab.sa == false)
+                    for collabo in object.collaborators
+                        if collabo.rules && ((collabo.rules.edit == true) || (collabo.rules.edit == "true") || (collabo.rules.del == true) || (collabo.rules.del == "true"))
+                            if collabo.uid == collab._id
+                                - mails+= collab.mail+","
+                                - itExists = true
+        input#mto(type="hidden",value=mails)
+        if itExists
+            h6.widget_title= trads.t5c6504a851e7f8000428bc62
+            ul
+                if collaborators
+                    for collab in collaborators
+                        if !collab.sa || (collab.sa == false)
+                            for collabo in object.collaborators
+                                if collabo.rules && ((collabo.rules.edit == true) || (collabo.rules.edit == "true") || (collabo.rules.del == true) || (collabo.rules.del == "true"))
+                                    if collabo.uid == collab._id
+                                        li
+                                            span= (collab.surname?collab.surname:(collab.surn?collab.surn:"")) + " " + (collab.name?collab.name:"")

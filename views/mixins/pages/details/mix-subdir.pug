@@ -1,0 +1,102 @@
+mixin mix-subdir(olpuid,protouid,oldid)
+    - var itExists = false
+    - var showMap = ((olpuid == 108) || (olpuid == 113))
+    if allRelats
+        for ar in allRelats
+            - if (ar.proto.includes(protouid))
+                - itExists = true
+                - break
+    if itExists
+        //if showMap
+            .btn-group.btn-group-justified(style='width:100%;margin:5px;')
+                button.btn.btn-me.active(id="btListMode-"+olpuid,type='button', style='width:50%;', onclick="OIP_detail.tabUnder.switch('list','"+olpuid+"');")
+                    i.fa.fa-list-ul
+                    = trads.t5c5d296175254800049b2271
+                button.btn.btn-me(id="btMapMode-"+olpuid ,type='button', style='width:50%;', onclick="OIP_detail.tabUnder.switch('map','"+olpuid+"');")
+                    i.fa.fa-globe
+                    = trads.t5c5d2968f52f110004a93a3c
+        div.hm_blog_list.clearfix(id="lst-"+olpuid)
+            input(id="tabIds-"+olpuid,type='hidden', value=',2160,,2332,')
+            if allRelats
+                for ar in allRelats
+                    - var title= (ar.p5c332d2707c805cd14cf217d?ar.p5c332d2707c805cd14cf217d:"") + (ar.p5c332d0b07c805cd14cf1ef5?ar.p5c332d0b07c805cd14cf1ef5:"")
+                    - var uri = encodeURIComponent(title)
+                    - var href ='/'+lang+'/7_'+olpuid+'/'+ar.objectid+'/'+uri+'.html'
+                    - if (ar.proto.includes(protouid))
+                        - var uri = encodeURIComponent(ar.p5c332d2707c805cd14cf217d)
+                        case olpuid
+                            when "115"
+                                - uri = encodeURIComponent(ar.p5c332d0b07c805cd14cf1ef5)
+                            when "110"
+                                - uri = encodeURIComponent(ar.p5c332d0b07c805cd14cf1ef5)
+                        .blog_grid_block.clearfix
+                            .feature_inner
+                                case oldprotouid
+                                    when "116"
+                                        .embed-container
+                                            iframe(src=ar.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+                                    when "102"
+                                        .feature_inner_corners
+                                            .feature_inner_btns
+                                                a.icon_link(href=href)
+                                                    i.ico-link3
+                                            a.feature_inner_ling(href=href)
+                                                img(src=(ar.p5c332d2907c805cd14cf21ae && (ar.p5c332d2907c805cd14cf21ae.length > 0)?s3 + ar.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name')
+                                    default
+                                        .feature_inner_corners
+                                            .feature_inner_btns
+                                                a.icon_link(href=href)
+                                                    i.ico-link3
+                                            a.feature_inner_ling(href=href)
+                                                img(src=(ar.p5c332d1907c805cd14cf2042 && (ar.p5c332d1907c805cd14cf2042.length > 0)?s3 + ar.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.png"), alt='Post Title')
+                            .blog_grid_con
+                                h6.title
+                                    a(href=href)= title
+                                //span.meta
+                                p.desc= ar.p5c332d2807c805cd14cf2194
+                                a.btn_a(href=href)
+                                    span
+                                        i.in_left.ico-angle-right
+                                        span Details
+                                        i.in_right.ico-angle-right
+
+
+                        //.list-agency(uid=ar._id, lat=(ar.p5b614f984bfe681400f79ff5?ar.p5b614f984bfe681400f79ff5[1]:'0'),lng=(ar.p5b614f984bfe681400f79ff5?ar.p5b614f984bfe681400f79ff5[0]:'0'))
+                            .list-agency-left
+                                img(style='max-width:202px;max-height:120px;', src=(ar.p5c332d1907c805cd14cf2042 && (ar.p5c332d1907c805cd14cf2042.length > 0)?s3 + ar.p5c332d1907c805cd14cf2042:"/assets/images/def-202x60.png"))
+                            a.list-agency-right(href='/'+lang+'/7_'+oldid+'/'+ar._id+'/'+uri+'.html')
+                                .list-agency-text
+                                    case olpuid
+                                        when "115"
+                                            h3.list-agency-title= ar.p5c332d0b07c805cd14cf1ef5
+                                            i.fa.fa-calendar
+                                            span.list-agency-address
+                                                span
+                                                    if ar.p5c332db407c805cd14cf2d60
+                                                        = "From " + moment(ar.p5c332db407c805cd14cf2d60).format('DD/MM/YYYY')
+                                                    if ar.p5c332db507c805cd14cf2d7b
+                                                        = " to " + moment(ar.p5c332db507c805cd14cf2d7b).format('DD/MM/YYYY')
+                                        when "110"
+                                            h3.list-agency-title= ar.p5c332d0b07c805cd14cf1ef5
+                                            i.fa.fa-calendar
+                                            span.list-agency-address
+                                                span
+                                                    if ar.p5c332d9907c805cd14cf2b18
+                                                        = moment(ar.p5c332d9907c805cd14cf2b18).format('DD/MM/YYYY')
+
+                                        default
+                                            h3.list-agency-title= ar.p5c332d2707c805cd14cf217d
+                                    .list-agency-separator
+                                    div= ar.p5c332d2807c805cd14cf2194
+                            .small-triangle
+                            .small-triangle2
+                            a.small-icon(data-toggle='tooltip', data-placement='top', title='Learn more', href='/'+lang+'/7_'+olpuid+'/'+ar._id+'/'+uri+'.html')
+                                i.fa.fa-plus
+                            if olpuid == 102
+                                a.small-icon(data-toggle='tooltip',style="right:50px;", target="_blank",data-placement='top', title='Display on fullscreen', href=s3+ar.p5c332d2907c805cd14cf21ae, data-original-title='Display on fullscreen"')
+                                    i.fa.fa-file-pdf-o
+        if showMap
+            .subTabMap(id="map-"+olpuid,style='display:none;')
+    else
+        h5
+            i= trads.t5c5d28bef52f110004a939e3

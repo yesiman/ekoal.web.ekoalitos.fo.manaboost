@@ -1,0 +1,155 @@
+.col-xs-12(id="results-"+oldprotouid)
+  if bowl
+    for bh in bowl.hits
+      - var title= bh._source.meta.title
+      - var uri = encodeURIComponent(title)
+      - var href ="" //'/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
+      - var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
+      .blog_grid_block.clearfix
+        //
+          <a href="#" class="blog_list_format">
+          <i class="ico-image4"></i>
+          </a>
+        case oldprotouid
+          when "116"
+            .feature_inner
+              .embed-container
+                //iframe(src=item.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+          when "102"
+                a.docprev(href=href,onmousemove="moveImage(event,'i"+"item.objectid"+"')")
+                  img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name',style="width:20%;float: left;")
+                img(id="ie"+"item.objectid",style="position: absolute;z-index: 1;",src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+          default
+            .feature_inner
+              .feature_inner_corners
+                .feature_inner_btns
+                  a.icon_link(href=href)
+                    i.ico-link3
+                a.feature_inner_ling(href=href)
+                  img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Post Title')
+        //if oldprotouid == 102
+        .blog_grid_con(style="width:80%;")
+          h6.title
+            a(href=href)= title
+          span.meta
+            span.meta-part
+              a(href="#")
+                i.ico-users
+                span= (bh._source.meta.author?bh._source.meta.author:"N/A")
+            span.meta-part
+              a(href="#")
+                i.ico-flag
+                span= (bh._source.meta.language?bh._source.meta.language:"N/A")
+            span.meta-part
+              a(href="#")
+                i.ico-file
+                span= (bh._source.file.extension?bh._source.file.extension:"N/A")
+            span.meta-part
+              a(href="#")
+                i.ico-note
+                - iint = parseInt(bh._score)
+                span= "Score:" + iint
+          p.desc.v-card__text!= (bh.highlight?bh.highlight.content:"")
+          a.btn_a(href='javascript:void(0)' onclick="VV_dir_global.bowl.addCart('"+bh._id+"')")
+            span
+              i.in_left.ico-angle-right
+              span= "Panier"
+              i.in_right.ico-angle-right
+          a.btn_a(href=pathDoc)
+            span
+              i.in_left.ico-angle-right
+              span= trads.t5c5d286275254800049b21d9
+              i.in_right.ico-angle-right
+          
+        //else
+          .blog_grid_con
+            h6.title
+              a(href=href)= title
+            p.desc= item.p5c332d2807c805cd14cf2194
+            a.btn_a(href=href)
+              span
+                i.in_left.ico-angle-right
+                span= trads.t5c5d286275254800049b21d9
+                i.in_right.ico-angle-right
+
+
+
+      //.document-card(style="display:inline-block;")
+        .document-img
+          img.white--text.align-end.card-img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail)
+          span.badge.badge-pill.badge-light.language
+            = bh._source.meta.language
+            img(src="img/icons/chat.svg" width="16" height="16" class="icon-top" )
+        - console.log(bh);
+        .v-card__title= bh._source.meta.title
+        .v-card__subtitle
+          i.ico-angle-right
+          = bh._source.meta.author
+        .v-card__text!= bh.highlight.content
+        .v-card__actions.document-bottom
+        
+          span.badge.badge-pill.badge-light.language
+            = bh._source.meta.language
+            img(src="img/icons/chat.svg" width="16" height="16" class="add-basket-icon" )
+          span.badge.badge-pill.badge-light.badge.extension
+            = bh._source.meta.language
+            img(src="img/icons/chat.svg" width="16" height="16" class="icon" )
+            //<v-card-title v-text="card.title" @click="card.highlight_show = false" />
+            //</v-card-title>
+            //<v-card-subtitle class="pb-0">✍&nbsp; {{card.author}}</v-card-subtitle>
+            //<v-card-text  class="pb-0"><img src="img/icons/shuffle.svg" width="12" height="12" > &nbsp;{{card.source}}</v-card-text>
+  if items
+    for item in items
+      - var title= (item.p5c332d2707c805cd14cf217d?item.p5c332d2707c805cd14cf217d:"") + (item.p5c332d0b07c805cd14cf1ef5?item.p5c332d0b07c805cd14cf1ef5:"")
+      - var uri = encodeURIComponent(title)
+      - var href ='/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
+      .blog_grid_block.clearfix
+        //
+          <a href="#" class="blog_list_format">
+          <i class="ico-image4"></i>
+          </a>
+        case oldprotouid
+          when "116"
+            .feature_inner
+              .embed-container
+                iframe(src=item.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+          when "102"
+                a.docprev(href=href,onmousemove="moveImage(event,'i"+item.objectid+"')")
+                  img(src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name',style="width:20%;float: left;")
+                img(id="i"+item.objectid,style="position: absolute;z-index: 1;",src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name')
+          default
+            .feature_inner
+              .feature_inner_corners
+                .feature_inner_btns
+                  a.icon_link(href=href)
+                    i.ico-link3
+                a.feature_inner_ling(href=href)
+                  img(src=(item.p5c332d1907c805cd14cf2042 && (item.p5c332d1907c805cd14cf2042.length > 0)?s3 + item.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.png"), alt='Post Title')
+        if oldprotouid == 102
+          .blog_grid_con(style="width:80%;")
+            h6.title
+              a(href=href)= title
+            p.desc= item.p5c332d2807c805cd14cf2194
+            a.btn_a(href=href)
+              span
+                i.in_left.ico-angle-right
+                span= trads.t5c5d286275254800049b21d9
+                i.in_right.ico-angle-right
+        else
+          .blog_grid_con
+            h6.title
+              a(href=href)= title
+            p.desc= item.p5c332d2807c805cd14cf2194
+            a.btn_a(href=href)
+              span
+                i.in_left.ico-angle-right
+                span= trads.t5c5d286275254800049b21d9
+                i.in_right.ico-angle-right
+.navigation(id="navigation-"+oldprotouid)
+  .next-page(id="next-page-"+oldprotouid)
+    a(href="/"+lang+"/directoryres/"+nextpage+"/" + protouid + "/" + oldprotouid + "?fulltext=" + fulltext + "&param1="+param1+"&param2="+param2+"&param3="+param3+"&param4="+param4+"&param5="+param5+"&param6="+param6+"&param7="+param7+"&param8="+param8+"&param9="+param9+"&scrollid="+scrollid+"&mode="+mode)
+      button.btn.btn-primary.btn-inversed.btn-block= trads.t5c5d28fc75254800049b2237
+block append scripts
+  script.
+    
+    var rescount = "#{count}";

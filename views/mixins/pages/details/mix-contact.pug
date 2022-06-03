@@ -1,0 +1,109 @@
+mixin mix-contact
+    - var itExists = false
+    - var collabName = ""
+    if collaborators                
+        for collab in collaborators
+            if !collab.sa || (collab.sa == false)
+                if collab._id == object.owner
+                    - itExists = true
+                    - collabName = (collab.surname?collab.surname:(collab.surn?collab.surn:"")) + " " + (collab.name?collab.name:"")
+        if !itExists    
+            for collab in collaborators
+                if !collab.sa || (collab.sa == false)
+                    for collabo in object.collaborators
+                        if collabo.rules && ((collabo.rules.edit == true) || (collabo.rules.edit == "true") || (collabo.rules.del == true) || (collabo.rules.del == "true"))
+                            if collabo.uid == collab._id
+                                - itExists = true
+                                - collabName = (collab.surname?collab.surname:(collab.surn?collab.surn:"")) + " " + (collab.name?collab.name:"")
+    if itExists
+        // Contact Us
+        section.content_section
+            .content.row_spacer.no_padding
+                .rows_container.clearfix
+                    h2.title1.upper
+                        i.ico-envelope3
+                        = trads.t5c5d28c7f52f110004a939e9 + " " + collabName
+                    form.hm_contact_form(method='post')
+                        .form_row.clearfix
+                            label
+                                span.hm_field_name Nom
+                                span.hm_requires_star *
+                            input#name.hm_input_text(type='text', name='name')
+                        .form_row.clearfix
+                            label
+                                span.hm_field_name Email
+                                span.hm_requires_star *
+                            input#mail.hm_input_text(type='text', name='mail')
+                        .form_row.clearfix
+                            label
+                                span.hm_field_name Téléhpone
+                            input.phone.hm_input_text(type='text', name='subject')
+                        .form_row.clearfix
+                            label
+                                span.hm_field_name Message
+                            textarea#message.hm_textarea(name='message')
+                        .form_row.clearfix
+                            button#sendContact.send_button.full_button(type='submit', name='send')
+                                i.ico-check3
+                                span= trads.t5c5d28ce75254800049b2213
+                            span#contactOk(style='display:none;color:#23a335;')= trads.t5c5d2a1af52f110004a93abb
+
+                    
+                // Grid
+    // End Contact Us
+
+
+
+    //if collaborators                
+        for collab in collaborators
+            if !collab.sa || (collab.sa == false)
+                if collab._id == object.owner
+                    - itExists = true
+                    - collabName = (collab.surname?collab.surname:(collab.surn?collab.surn:"")) + " " + (collab.name?collab.name:"")
+        if !itExists    
+            for collab in collaborators
+                if !collab.sa || (collab.sa == false)
+                    for collabo in object.collaborators
+                        if collabo.rules && ((collabo.rules.edit == true) || (collabo.rules.edit == "true") || (collabo.rules.del == true) || (collabo.rules.del == "true"))
+                            if collabo.uid == collab._id
+                                - itExists = true
+                                - collabName = (collab.surname?collab.surname:(collab.surn?collab.surn:"")) + " " + (collab.name?collab.name:"")
+    //if itExists
+        section.bg-secondary
+            .container
+                .row
+                    .col-sm-6.col-md-5
+                        h4.uppercase= trads.t5c5d28c7f52f110004a939e9 + " " + collabName
+                        //p
+                            | At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+                        //hr
+                        p
+                            = (object.version.p5c332d4f07c805cd14cf24e3?object.version.p5c332d4f07c805cd14cf24e3 + " ":"")
+                            br
+                            = (object.version.p5c332d5007c805cd14cf2503?object.version.p5c332d5007c805cd14cf2503 + " ":"")
+                            br
+                            = (object.version.p5c332d5107c805cd14cf251c?object.version.p5c332d5107c805cd14cf251c + " ":"")
+                        hr
+                        //p
+                            strong E:
+                            = mails
+                            br
+                            //strong P:
+                            //|  +0123456789
+                            br
+                        if object.version.p5b614f984bfe681400f79ff5
+                            iframe(src='https://www.google.com/maps?q='+object.version.p5b614f984bfe681400f79ff5[1]+','+object.version.p5b614f984bfe681400f79ff5[0]+'&hl=en&z=5&amp&output=embed', width="100%", height='250', frameborder='0', style='border:0', allowfullscreen='')
+                    .col-sm-6.col-md-5.col-md-offset-1
+                        form#contact_form(name='contact_form', action='#')
+                            input#honeyContact(name='honeyContact', type='hidden')
+                            div
+                                input#name.validate-required.req(type="text" name="name" placeholder=trads.t5c5d290af52f110004a93a1c)
+                            div
+                                input#phone.validate-required(type="text" name="phone" placeholder=trads.t5c5d2913f52f110004a93a20)
+                            div
+                                input#mail.validate-required.validate-email.req(type="text" name="email" placeholder=trads.t5c5d294bf52f110004a93a2e)
+                            div
+                                textarea#message.validate-required.req(name="message" rows="4" placeholder=trads.t5c5d295975254800049b2269)
+                            button#sendContact(type="submit")= trads.t5c5d28ce75254800049b2213
+                            span#contactOk(style='display:none;color:#23a335;')= trads.t5c5d2a1af52f110004a93abb
+                            .spinner(style='margin:auto;display:none;')

@@ -1,0 +1,42 @@
+mixin mix-news
+    .widget
+        h6.title= trads.t5c5d272df52f110004a93932
+            |                                 
+            hr
+            | 
+            ul.link-list.recent-posts
+                if allRelats
+                    each r in allRelats
+                        - var addIn = false
+                        - var dates = r.proto[0]
+                        case r.proto[0]
+                            when r.proto[0] = "5c2c4de907c805cd14b33478"
+                                - addIn = true;
+                                if r.p5c332d9907c805cd14cf2b18
+                                    - dates = moment(r.p5c332d9907c805cd14cf2b18).format('DD/MM/YYYY')
+                            when r.proto[0] = "5c2c4deb07c805cd14b334b4"
+                                - addIn = true;
+                                if r.p5c332db407c805cd14cf2d60
+                                    - dates = "From " + moment(r.p5c332db407c805cd14cf2d60).format('DD/MM/YYYY')
+                                if r.p5c332db507c805cd14cf2d7b
+                                    - dates = " to " + moment(r.p5c332db507c805cd14cf2d7b).format('DD/MM/YYYY')
+                        if addIn == true
+                            li
+                                - var loldId = -1;
+                                case r.proto[0]
+                                    when "5c2c4dea07c805cd14b33488"
+                                        - loldId = "113" //PROJETS
+                                    when "5c2c4de807c805cd14b3345c"
+                                        - loldId = "108" //PLAYERS
+                                    when "5c2c4de807c805cd14b33449"
+                                        - loldId = "102" //DOCS
+                                    when "5c2c4dea07c805cd14b3349f"
+                                        - loldId = "114" //INNOVATIONS
+                                    when "5c2c4de907c805cd14b33478"
+                                        - loldId = "110" //ACTUS
+                                    when "5c2c4deb07c805cd14b334b4"
+                                        - loldId = "115" //EVENTS
+                                - var uri = encodeURIComponent(r.p5c332d0b07c805cd14cf1ef5)
+                                a(href='/'+lang+'/7_'+loldId+'/'+r._id+'/'+uri+'.html')= r.p5c332d0b07c805cd14cf1ef5
+                                |                                         
+                                span.date= dates

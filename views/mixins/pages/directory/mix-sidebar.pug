@@ -1,0 +1,108 @@
+include mix-categ.pug
+mixin mix-sidebar
+    block append styles
+        link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
+    #inner-histo.inner.p-10
+        ul.accordion.accordion-1
+            li.active
+                .title1.purplebg
+                    span= trads.t5c5d28da75254800049b221c
+                .content
+                    .criterias    
+                        ul.tags.tagcloud.news-tags   
+        .histos
+        .collapsor-histo
+            // <a id="search-bt">Fermer</a>
+            a#sidebar-bt-histo.btn.btn-success.purple.btn-icon.navbar-toggle(style='cursor:pointer;', data-target='.header-navigation', data-toggle='collapse', type='button')
+                i.ico-history
+    #inner-search.inner
+        //.filters
+        //div
+            h4.sidebar-title= trads.t5c5d28d4f52f110004a939f7
+                span.special-color .
+            .title-separator-primary
+        form.form-search#search_form(name="search_form", method="post",style="padding:10px;height:100%;")
+            //.row
+              //  .col-md-3
+            if pageId != "2_3"
+                .input-group.mb-20(style="margin-bottom:10px;")
+                    //input#fulltextdir.simple-search-input.form-control(type='text', name='fulltextdir',placeholder=trads.t5c5d27a175254800049b2190,value=fulltext)
+                    .newsletter_con
+                        input#fulltextdir(type='text', name='fulltextdir',placeholder=trads.t5c5d27a175254800049b2190,value=fulltext)
+                        button#bt-search.newsletter_button(type='submit', name='submit')
+                            i.ico-search                
+                .form-check
+                    input.form-check-input(type="checkbox" value="" checked id="chgroup")
+                    label.form-check-label(for="ch-108")   
+                        = " " + trads.t602a39e968a64b1aa6e46dd4
+
+            .clearfix
+            // Tabs Container
+            .hm-tabs.tabs1(style="overflow:hidden;overflow-y:scroll;")
+                nav
+                    ul.tabs-navi(style="padding:0px;")
+                        li
+                            a.selected(data-content='prjs', href="#")
+                                span= trads.t5c5d2793f52f110004a93966
+                        li
+                            a(data-content='acts', href="#")
+                                span= trads.t5c5d278075254800049b2176
+                // tabs-navi
+                ul.tabs-body(style="background:transparent;border:none;padding:0px;")
+                    li.selected(data-content='prjs', id="prjs")
+                        .enar_accordion.plus_minus(data-type='accordion')
+                            .enar_occ_container(data-expanded='true')
+                                span.enar_occ_title= trads.t6009b3313b189b1ff26283d6
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param2",type="hidden",value="")
+                                        +mix-categ(thematiques,"-1","1")
+                            .enar_occ_container(data-expanded='false')
+                                span.enar_occ_title= trads.t6009b3413b189b1ff26283e5
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param1",type="hidden",value="")
+                                        +mix-categ(faos,"-1","2")
+                            .enar_occ_container(data-expanded='false')
+                                span.enar_occ_title= trads.t6009b33c14b3991fe586edaf
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param3",type="hidden",value="")
+                                        +mix-categ(odds,"-1","3")
+                            .enar_occ_container(data-expanded='false')
+                                span.enar_occ_title= trads.t5fc5e389d744fd443ea6b034
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param7",type="hidden",value="")
+                                        +mix-categ(api,"-1","7") 
+                    li(data-content='acts', id="acts")
+                        .enar_accordion.plus_minus(data-type='accordion')
+                            .enar_occ_container(data-expanded='true')
+                                span.enar_occ_title= trads.t5fc5e37aca1df77ba2f52a74
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param4",type="hidden",value="")
+                                        +mix-categ(atp,"-1","4")
+                            .enar_occ_container(data-expanded='false')
+                                span.enar_occ_title= trads.t5fc5e383b4b8eb1f1e4358b1
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param5",type="hidden",value="")
+                                        +mix-categ(ats,"-1","5")
+                            .enar_occ_container(data-expanded='false')
+                                span.enar_occ_title= trads.t5fc5e389d744fd443ea6b034
+                                .enar_occ_content
+                                    .acc_content
+                                        input(id="param6",type="hidden",value="")
+                                        +mix-categ(api,"-1","6")                       
+            .more
+                h5 
+        .collapsor-filters
+            // <a id="search-bt">Fermer</a>
+            a#sidebar-bt-filters.btn.purple.btn-icon.navbar-toggle(style='cursor:pointer;', data-target='.header-navigation', data-toggle='collapse', type='button')
+                i.ico-square-check
+        .spinner-load
+            .spinner
+                //.col-md-3
+    block append scripts
+        script(src='../assets/js/pages/directory_sidebar.js')

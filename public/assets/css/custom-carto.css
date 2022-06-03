@@ -1,0 +1,118 @@
+.link {
+    stroke: #000;
+    stroke-width: 1.5px;
+    }
+
+
+
+
+    .node {
+    fill: #000; /* this is over-ridden by node.a (etc) below */
+    stroke: #fff;
+    stroke-width: 1.5px;
+    }
+    
+    #relatContainer{
+        height:500px;
+        padding:0;
+        margin-top:30px;
+        margin-bottom:20px;
+        border:1px solid #e1e1e1;
+    }
+
+      #relat {
+          background-color:#fff;
+      }
+      rect div.main {
+          width: 100%;
+          height: 100%;
+          background-color: transparent;
+      }
+      foreignObject .circle.bi-maman,.main#maman{
+        display:none;
+      }
+      .link.maman{
+        display:none;
+      }
+foreignObject .circle {
+  /*position: relative;*/
+  left: 0;
+  background-size: auto 20px;
+  background-repeat: no-repeat;
+  /*opacity: 0.9;*/
+  background-position: center center;
+  border-radius: 50%;
+  width: 51px;
+  height: 51px;
+  border: 5px solid;
+}
+
+    foreignObject .circle.bi-102{
+    background-image:url('/assets/images/profils/102.png');
+    border-color:#E30613;
+    }
+    foreignObject .circle.bi-108{
+    background-image:url('/assets/images/profils/108.png');
+    border-color:#0B8E36;
+    }
+    foreignObject .circle.bi-113{
+    background-image:url('/assets/images/profils/113.png');
+    border-color:#EF70B7;
+    }
+    foreignObject .circle.bi-120{
+      background-image:url('/assets/images/profils/113.png');
+      border-color: #3d98b7;
+      }
+    foreignObject .circle.bi-114{
+    background-image:url('/assets/images/profils/114.png');
+    border-color:#12A19A;
+    }
+
+    foreignObject .node-text {
+    position: initial;
+    line-height: 11px;
+    background: #fff;
+    border-radius: 25%;
+    color: #000;
+    width: 60px;
+    padding: 3px;
+    /*left: -25px;*/
+    text-align:center;
+    font-size:10px;
+    max-height:28px;
+    overflow:hidden;
+    }
+
+foreignObject .node-close {
+  position: absolute;
+  font-size: 10px;
+  top: 0px;
+  right: 5px;
+  color: red;
+  display: none;
+}
+
+foreignObject .node-expand {
+  position: absolute;
+  font-size: 10px;
+  top: 40px;
+  right: 5px;
+  color: green;
+  display: none;
+}
+    foreignObject .selected .node-close,
+    foreignObject .selected .node-expand {
+    display:block;
+    }
+    foreignObject .selected .node-text {
+    top:-10px;
+    }
+    foreignObject .selected .node-close:hover,
+    foreignObject .selected .node-expand:hover {
+      cursor:pointer;
+    }
+    #relat.fullscreen{
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+    }
+
+    .overlay {fill: none; height="500";  width="1200"; pointer-events: all;}
