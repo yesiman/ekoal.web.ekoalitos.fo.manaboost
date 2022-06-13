@@ -29,7 +29,7 @@ var VV_dir_map = {};
             return false;
         },
         init:function(el) {
-            myllmap[el] = L.map(el,{zoomControl:false}).setView([0.398846, 24.5165376], 4);
+            myllmap[el] = L.map(el,{zoomControl:false}).setView([-20.015868078867616, 45.59518748437497], 3);
             L.control.zoom({
                 position:'bottomright'
            }).addTo(myllmap[el]);
