@@ -3139,7 +3139,10 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	background: #303939;
 }
 .bg_color2{
-	background: #39354c;
+	background: #5e810d;
+}
+.bg-color-21 {
+    background:#d9e7b7
 }
 .bg-color20 {
     background:#eee9e5;
@@ -3181,7 +3184,7 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	background: #279c38;
 }
 .bg_color30{
-	background: #d80169;
+	background: #dca437;
 }
 
 /*------*/
@@ -8888,14 +8891,14 @@ Main Components
 #footer{
 	position: relative;
 	width: 100%;
-	background: #875a3d; /*#2F2F2F*/ /*#242A2F*/
+	background: #82a62c; /*#2F2F2F*/ /*#242A2F*/
 	overflow: hidden;
 	color: #989898;
 	font-size: 13px;
 }
 #footer .footer_copyright{
 	padding: 32px 0px;
-	background: rgba(0, 0, 0, 0.25); /*#272727*/
+	background: #87b125; /*#272727*/
 	position: relative;
 }
 #footer:after {
