@@ -8893,7 +8893,7 @@ Main Components
 	width: 100%;
 	background: #82a62c; /*#2F2F2F*/ /*#242A2F*/
 	overflow: hidden;
-	color: #989898;
+	color: #333;
 	font-size: 13px;
 }
 #footer .footer_copyright{
@@ -9284,7 +9284,7 @@ Main Components
     padding-right: 0px;
 }
 .footer_menu > li a {
-    color: #989898;
+    color: #333;
     font-size: 12px;
 }
 .footer_menu > li a:hover {
