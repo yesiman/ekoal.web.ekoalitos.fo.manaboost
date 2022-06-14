@@ -188,7 +188,7 @@ var VV_dir_map = {};
                 if ((bounds.length > 0) && ($("#page").val() != 1))
                 {
                      myllmap[el].fitBounds(bounds);
-                     myllmap[el].setZoom(5);
+                     myllmap[el].setZoom(6);
                 }
             
                 
