@@ -680,13 +680,14 @@ exports.directoryRes = function (req, res) {
     datas.lang = req.params.lang;
     datas.nextpage = Number(req.params.page) + 1;
     
-    if (req.params.protouid == "5c2c4de807c805cd14b33449")
+    if (req.params.protouid == "-5c2c4de807c805cd14b33449")
     {
         if (query.mode == "1") {
             pugpg = "directory_res_v2";
         }
         //Mode affichage
         datas.mode =query.mode;
+        
         //console.log(req.params.page,new Date());
         //TEST BOWL
         const params = new URLSearchParams()
@@ -884,7 +885,7 @@ exports.directoryResv2 = function (req, res) {
     }
 
     //EVENTS
-    if (req.params.protouid == "5c2c4deb07c805cd14b334b4")
+    if (req.params.protouid == "-5c2c4deb07c805cd14b334b4")
     {
         orders = {
             p5c332db407c805cd14cf2d60:-1
@@ -922,7 +923,7 @@ exports.directoryResv2 = function (req, res) {
     datas.fulltext = query.fulltext;
     datas.lang = req.params.lang;
     datas.nextpage = Number(req.params.page) + 1;
-    if (req.params.protouid == "5c2c4de807c805cd14b33449")
+    if (req.params.protouid == "-5c2c4de807c805cd14b33449")
     {
         
         //TEST BOWL

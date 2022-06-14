@@ -163,13 +163,22 @@ block content
                       +mix-loader
                   li(data-content='pc102',class=(oldid=="102" ? "selected" : ""))
                     .row.criterias(style="width:auto;")
-                      .col-md-10
+                      .col-md-12
                         div( style="display: inline-block;")
                           a(style="float:left;font-size:10px;",href="javascript:void(0)",onclick="VV_dir_sb.categs.removeAll(102)") 
                             i.ico-remove
                             = " " + trads.t6062f4a2d243f43a9d03e6d1
                         .news-tags.tagcloud.style2  
-                      .col-md-2
+                    .row
+                      .col-md-3
+                        .enar_accordion.plus_minus(data-type='accordion')
+                          .enar_occ_container(data-expanded='false')
+                            span.enar_occ_title= trads.t6009b32b3b189b1ff26283cc
+                            .enar_occ_content
+                                .acc_content
+                                    input(id="param4",type="hidden",value="")
+                                    +mix-categ_global("5c2ce9c307c805cd14b5fc5a","a",-1,4)
+                      //.col-md-2
                         .btn-toolbar#tbmode.justify-content-between(style="float:right;" role='toolbar' aria-label='Toolbar with button groups')
                           .btn-group(role='group' aria-label='First group')
                             button#linem.small_btn.btn.btn-primary.active(type='button')
@@ -179,7 +188,7 @@ block content
                         button#menu-toggle.small_btn.btn.btn-primary.active(type='button',style="float:right;margin-right:5px;")
                           i.ico-filter-vintage
                           | Filtres
-                    .row
+                    //.row
                       nav#sidebar-wrapper
                         h6.title1 Filtres avancés
                         .enar_accordion.plus_minus(data-type='accordion')

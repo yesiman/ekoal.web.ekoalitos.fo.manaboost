@@ -228,19 +228,19 @@ function moveImage(e,img)
             urll+=VV_dir_global.datas.getParamaVar("1");
             urll+=VV_dir_global.datas.getParamaVar("2");
             urll+=VV_dir_global.datas.getParamaVar("3");
-            
+            urll+=VV_dir_global.datas.getParamaVar("4");
             urll+=VV_dir_global.datas.getParamaVar("5");
             urll+=VV_dir_global.datas.getParamaVar("6");
             urll+=VV_dir_global.datas.getParamaVar("7");
             urll+=VV_dir_global.datas.getParamaVar("8");
 
 
-            urll+=VV_dir_global.datas.getParamaVar("20");
+            /*urll+=VV_dir_global.datas.getParamaVar("20");
             urll+=VV_dir_global.datas.getParamaVar("21");
             urll+=VV_dir_global.datas.getParamaVar("22");
             urll+=VV_dir_global.datas.getParamaVar("23");
             urll+=VV_dir_global.datas.getParamaVar("24");
-            urll+=VV_dir_global.datas.getParamaVar("25");
+            urll+=VV_dir_global.datas.getParamaVar("25");*/
 
 
 
