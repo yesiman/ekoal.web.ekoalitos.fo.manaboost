@@ -76,6 +76,11 @@ block content
                   a(data-content='prof102', href='#')
                     span
                     = trads.t5c5d272675254800049b213b
+                if object.version.p630c954d41385619c492ccc1
+                  li
+                    a(data-content='regions', href='#')
+                      span
+                      = 'Régions'
             ul.tabs-body(style='height: auto;')
               li.selected(data-content='inbox', style='')
                 +mix-present
@@ -90,6 +95,10 @@ block content
                 +mix-subdir("108","5c2c4de807c805cd14b3345c","108")
               li(data-content='prof102', style='')
                 +mix-subdir("102","5c2c4de807c805cd14b33449","102")
+              if object.version.p630c954d41385619c492ccc1
+                li(data-content='regions', style='')
+                  iframe(src="http://ns3192284.ip-5-39-73.eu/gsdm/boost/projet/carto/Boost-"+object.version.p630c954d41385619c492ccc1, style="min-height:700px;width:100%;height:100%;",frameborder="0",allowfullscreen)
+                
   +mix-relats
   +mix-contact
 
