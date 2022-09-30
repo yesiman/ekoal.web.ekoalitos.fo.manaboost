@@ -29,7 +29,7 @@ var VV_dir_map = {};
             return false;
         },
         init:function(el) {
-            myllmap[el] = L.map(el,{zoomControl:false}).setView([-20.015868078867616, 45.59518748437497], 3);
+            myllmap[el] = L.map(el,{zoomControl:false, zoom: 6}).setView([-20.015868078867616, 45.59518748437497], 3);
             L.control.zoom({
                 position:'bottomright'
            }).addTo(myllmap[el]);
@@ -187,8 +187,10 @@ var VV_dir_map = {};
             
                 if ((bounds.length > 0) && ($("#page").val() != 1))
                 {
-                     myllmap[el].fitBounds(bounds);
+                     /*myllmap[el].fitBounds(bounds);*/
                      myllmap[el].setZoom(6);
+
+                     /*alert("klm");*/
                 }
             
                 
