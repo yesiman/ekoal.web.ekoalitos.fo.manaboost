@@ -353,7 +353,7 @@ exports.directory_global = function (req, res) {
         filters.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
     }
 
-    var promBSources  = new Promise((resolve, reject) => {
+    /*var promBSources  = new Promise((resolve, reject) => {
         const params = new URLSearchParams()
         const config = {
         headers: {
@@ -448,7 +448,7 @@ exports.directory_global = function (req, res) {
         .catch((err) => {
             reject("nok");
         })
-    });
+    });*/
 
     
     var prom_projectsCount = new Promise((resolve, reject) => {
@@ -498,6 +498,7 @@ exports.directory_global = function (req, res) {
             resolve(JSON.parse(value));
         });
     });
+    //promBSources,promBCountries,promBExtensions,promBKeywords,promBLanguages,promBProvinces
     Promise.all([
         prom_projectsCount, 
         prom_innosCount,
@@ -506,8 +507,7 @@ exports.directory_global = function (req, res) {
         prom_newsCount,
         prom_eventsCount,
         prom_videosCount,
-        prom_categs,
-        promBSources,promBCountries,promBExtensions,promBKeywords,promBLanguages,promBProvinces
+        prom_categs
         ]
     ).then(function(values) {
         //GET RANDOMS
@@ -519,12 +519,6 @@ exports.directory_global = function (req, res) {
         datas.eventsCount = values[5];
         datas.videosCount = values[6];
         datas.categsAll = values[7];
-        datas.bowlSources = getSource(values[8],"_id");
-        datas.bowlCountries = getSource(values[9],"iso");
-        datas.bowlExtensions = getSource(values[10],"value");
-        datas.bowlKeywords = getSource(values[11],"name");
-        datas.bowlLanguages = getSource(values[12],"iso");
-        datas.bowlProvinces = getSource(values[13],"name");
         res.render(
             "directory_global",
             datas
