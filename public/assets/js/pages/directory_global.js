@@ -271,7 +271,7 @@ function moveImage(e,img)
                     switch (idP)
                     {
                         case "102":
-                            iass_item = "li"
+                            //iass_item = "li"
                             break;
                     }
                     var ias = jQuery.ias({
