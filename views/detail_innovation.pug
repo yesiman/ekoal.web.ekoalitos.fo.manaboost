@@ -7,6 +7,7 @@ include mixins/pages/details/mix-news.pug
 include mixins/pages/details/mix-referent.pug
 include mixins/pages/details/mix-contact.pug
 include mixins/pages/details/mix-hidden.pug
+include mixins/pages/details/mix-edit.pug
 block append styles
     link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
     link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
@@ -35,6 +36,7 @@ block content
           +mix-search
           +mix-news
           +mix-referent  
+          +mix-edit(object.proto[0],object.version.objectid)
   +mix-contact
 
 block append scripts

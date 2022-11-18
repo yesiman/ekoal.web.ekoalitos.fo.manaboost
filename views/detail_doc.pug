@@ -12,6 +12,7 @@ include mixins/pages/details/mix-doc.pug
 include mixins/pages/details/mix-rate.pug
 include mixins/pages/details/mix-hidden.pug
 include mixins/pages/details/mix-auteurs.pug
+include mixins/pages/details/mix-edit.pug
 block append styles
   link(href="../assets/js/star-rating/star-rating.min.css" rel="stylesheet")
 block content
@@ -33,6 +34,7 @@ block content
           +mix-keywords
           +mix-referent
           +mix-auteurs
+          +mix-edit(object.proto[0],object.version.objectid)
         // End grid 6
         // grid 6
         .col-md-9

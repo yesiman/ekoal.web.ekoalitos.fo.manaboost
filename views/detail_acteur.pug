@@ -12,7 +12,7 @@ include mixins/pages/details/mix-contact.pug
 include mixins/pages/details/mix-div.pug
 include mixins/pages/details/mix-adress.pug
 include mixins/pages/details/mix-hidden.pug
-
+include mixins/pages/details/mix-edit.pug
 block append styles
     link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
     link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
@@ -43,7 +43,7 @@ block content
           +mix-categs(trads.t5fc5e389d744fd443ea6b034,"5e74f5384087d8f50245cf5a")
           +mix-keywords
           +mix-referent
-          //+mix-adress
+          +mix-edit(object.proto[0],object.version.objectid)
         .col-md-9
           //h2.title1.upper Project Description
           .hm-tabs.tabs2.fill_active.is-ended

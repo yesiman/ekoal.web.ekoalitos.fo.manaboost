@@ -9,7 +9,7 @@ include mixins/pages/details/mix-logo.pug
 include mixins/pages/details/mix-div.pug
 include mixins/pages/details/mix-contact.pug
 include mixins/pages/details/mix-hidden.pug
-
+include mixins/pages/details/mix-edit.pug
 block append styles
   link(rel='stylesheet', href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css', integrity='sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==', crossorigin='')
   link(rel='stylesheet', href='https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css')
@@ -36,6 +36,7 @@ block content
             h6.widget_title= "Publié le"
             span= moment(object.version.p5c332d9907c805cd14cf2b18).format('DD/MM/YYYY') + " "
           +mix-referent
+          +mix-edit(object.proto[0],object.version.objectid)
         // End grid 6
         // grid 6
         .col-md-9
