@@ -8082,6 +8082,9 @@ table.check_out_table {
     display: block;
     overflow: hidden;
 }
+.feature_inner_ling img {
+    max-height: 150px;
+}
 .feature_inner_ling:after {
     background: #279c38;
     width: 100%;
