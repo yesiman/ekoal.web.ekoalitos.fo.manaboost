@@ -1464,26 +1464,11 @@ exports.profile = function (req, res) {
         var rdata = JSON.parse(data.data);
         datas.userProfile = rdata;
         res.render(
-            "ekit_user-profile",
+            "user_profile",
             datas);
     } 
 
-    ekit.objects.getAll2(req.params.lang,{
-        project:"5b693ec2c60bb31400d7ad3c",
-        proto:"5c4e8f86d947cf00040725b0",
-        text:""},null,{
-            p5b5ea8fd0311784a87b6dc0a:1,
-            p5b5ea9200311784a87b6dc52:1,
-            p5b5ea9200311784a87b6dc54:1,
-            p5b694ca4c60bb31400d7ad6b:1,
-            p5c4e94bfd947cf000407262a:1
-        },1,1000,req.session.token).then((data) => {
-            datas.projects = JSON.parse(data.data).items;
-            ekit.collaborators.get(req.params.lang,req.params.uid,req.session.token,onProfile);
-        })
-        .catch(err => {
-            
-        });
+    ekit.collaborators.get(req.params.lang,req.params.uid,req.session.token,onProfile);
 }
 
 exports.detailCartoHisto = function (req, res) {

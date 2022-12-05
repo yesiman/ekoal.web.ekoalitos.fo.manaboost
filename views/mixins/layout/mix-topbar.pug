@@ -21,7 +21,9 @@ mixin mix_topbar()
               .languages-panel
                 ul.languages-panel-con
                   li
-                    a(href="/"+lang+"/prototypes/"+projectUID+"/") Ekit
+                    a(href="/"+lang+"/prototypes/"+projectUID+"/") Gestion du contenu
+                  li
+                      a(href="/"+lang+"/profile/" + user._id)= trads.t5c5db7f043fef3000484f67b
                   li
                     a(href="/"+lang+"/7_24/60096ab714b3991fe586df3b/tutorial_video.html")= trads.t600a7832dc77b9789f096576
                   if (user.sa == true) || (user.sad == true)

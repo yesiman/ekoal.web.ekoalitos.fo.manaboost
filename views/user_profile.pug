@@ -1,0 +1,240 @@
+extends layout.pug
+
+block append styles
+  link(href="../assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet")
+  link(href="../assets/node_modules/select2/dist/css/select2.min.css", rel="stylesheet")
+  link(href="../assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet")
+  link(href="../assets/node_modules/sweetalert/sweetalert.css", rel="stylesheet")
+  link(href="../assets/css/pages/repos.css" rel="stylesheet")
+  link(href="/ekit/ekit.css" rel="stylesheet")
+
+block content 
+  .content.page-wrapper.connected.boxed
+    // ==============================================================
+    // Container fluid
+    // ==============================================================
+    .container-fluid
+      // ==============================================================
+      // Bread crumb and right sidebar toggle
+      // ==============================================================
+      .row.page-titles
+        .col-md-5.align-self-center
+          h4.text-themecolor= trads.t5c5db7f043fef3000484f67b
+        .col-md-7.align-self-center.text-right
+          .d-flex.justify-content-end.align-items-center
+            //+mix-breadcrumbs(trads.t5c5db7f043fef3000484f67b)
+      // ==============================================================
+      // End Bread crumb and right sidebar toggle
+      // ==============================================================
+      // ==============================================================
+      // Start Page Content
+      // ==============================================================
+      // Row
+      .row
+        // Column
+        //.col-lg-4.col-xlg-3.col-md-5
+          .card
+            .card-body
+              center.m-t-30
+                input#profilImg(type='file', style="display:none;")
+                div.profil-image-container
+                  if userProfile.avatarext
+                    - var avatarurl = (userProfile.avatarext?s3 + userProfile._id + userProfile.avatarext + "?cach=" + Date.now():"/assets/images/avatardef.JPG")
+                    img.img-circle(src=avatarurl, alt='user', width="125")
+                  else 
+                    img.img-circle(src="/assets/images/avatardef.JPG", alt='user', width="125")
+                  
+                  .middle
+                    #profilImgLoader(style="width:100%;text-align:center;display:none;")
+                      .lds-ellipsis
+                        div
+                        div
+                        div
+                        div
+                    .text
+                      i.icon-note
+                //if user.avatarext
+                  - var avatarurl = (userProfile.avatarext?s3 + userProfile._id + userProfile.avatarext + "?cach=" + Date.now():"/assets/images/avatardef.JPG")
+                  img.img-circle(src=avatarurl, alt='user', style="width:200px;")
+                //else 
+                  img.img-circle(src="/assets/images/avatardef.jpg", alt='user', style="width:200px;")
+                  
+                //- var avatarurl = "/assets/images/logo-def.png"
+                //img.img-circle(src=avatarurl, alt='user', style="width:200px;")
+                h4.card-title.m-t-10= (userProfile.name?userProfile.name:"") + " " + (userProfile.surn?userProfile.surn:"")
+                //h6.card-subtitle=userProfile.job
+                .row.text-center.justify-content-md-center
+                  //.col-8
+                    a.link(href='javascript:void(0)')
+                      i.icon-people
+                      font.font-medium= (userProfile.network?userProfile.network.length:0)
+                  .col-8
+                    a.link(href='javascript:void(0)')
+                      i.icon-eye
+                      font.font-medium= (userProfile.views?userProfile.views:0)
+            div
+              hr
+            .card-body
+              if userProfile.tags
+                .tags-default.m-b-10
+                  - var splitted = userProfile.tags.split(',')
+                  each val in splitted
+                    span.badge.badge-pill.badge-secondary.m-r-5
+                      a(href="/directory?fulltext=" + val)= val
+                //input#profilTags(type='text', value=user.tags, data-role='tagsinput', placeholder='add tags')
+              if userProfile.pres
+                small.text-muted= trads.t5c5db74f43fef3000484f667
+                  h6= userProfile.pres
+              if userProfile.mail
+                small.text-muted= trads.t5c5d3af8f52f110004a93c5a
+                  a(href="mailto:" + userProfile.mail)
+                    h6= userProfile.mail
+              //small.text-muted.p-t-30.db Address
+              //h6 71 Pilgrim Avenue Chevy Chase, MD 20815
+              //.map-box
+                iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470029.1604841957!2d72.29955005258641!3d23.019996818380896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C+Gujarat!5e0!3m2!1sen!2sin!4v1493204785508', width='100%', height='150', frameborder='0', style='border:0', allowfullscreen='')
+              small.text-muted.p-t-30.db= trads.t5c5db5babab1b80004065730
+              br
+              if userProfile.facebook
+                a(href=userProfile.facebook, target="_blank")
+                  button.btn.btn-circle.btn-secondary
+                    i.fa.fa-facebook
+              if userProfile.twitter
+                a(href=userProfile.twitter, target="_blank")
+                  button.btn.btn-circle.btn-secondary
+                    i.fa.fa-twitter
+              if userProfile.linkedin
+                a(href=userProfile.linkedin, target="_blank")
+                  button.btn.btn-circle.btn-secondary
+                    i.fa.fa-linkedin
+        // Column
+        // Column
+        .col-lg-12.col-xlg-12.col-md-12
+          .card
+            // Nav tabs
+            //ul.nav.nav-tabs.profile-tab(role='tablist')
+              li.nav-item.active
+                a.nav-link.active(data-toggle='tab', href='#projects', role='tab') Projects
+              if user._id == userProfile._id
+                li.nav-item
+                  a.nav-link(data-toggle='tab', href='#profile', role='tab') Profile
+            // Tab panes
+            // second tab
+            if user._id == userProfile._id
+            
+              .card.m-b-0
+                .card-body.p-b-0
+                  .alert.alert-info
+                    button.close(type='button', data-dismiss='alert', aria-label='Close')
+                      span(aria-hidden='true') ×
+                    h3.text-info
+                      i.fa.fa-exclamation-circle
+                      = trads.t60d9751dc2c2286a07917e9c
+                    |  
+                  form
+                    .form-group.row
+                      label.col-2.col-form-label= trads.t5c5d3adb75254800049b2490
+                      .col-md-10
+                        input.form-control.form-control-line#profName(type='text', required="true",placeholder='Name',value=(userProfile.name?userProfile.name:""))
+                    .form-group.row
+                      label.col-2.col-form-label= trads.t5c5d3ae9f52f110004a93c54
+                      .col-md-10
+                        input.form-control.form-control-line#profSurn(type='text', placeholder='Surname',value=(userProfile.surn?userProfile.surn:""))
+                    //.form-group.row
+                      label.col-2.col-form-label= trads.t5c5db5d5bab1b8000406573d
+                      .col-md-10
+                        input.form-control.form-control-line#profJob(type='text', placeholder='Job',value=(userProfile.job?userProfile.job:""))
+                    //.form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t60d9750aebfe4f3a46c3028d
+                      .col-md-10
+                        select#s2job.select2.form-control.custom-select( style="width: 100%")
+                          option(value='-1')= trads.t5c79933716c7fe705f64aaa3
+                          each j in jobs
+                            option(value=j.objectid,selected=(value=j.objectid == userProfile.job))= j.p5b5ea8fd0311784a87b6dc0a
+                    .form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t5c5d3af8f52f110004a93c5a
+                      .col-md-10
+                        input#profMail.form-control.form-control-line(type='email',required="true", placeholder='mail@mail.mail', name='example-email',value=(userProfile.mail?userProfile.mail:""))
+                    .form-group.row
+                      label.col-2.col-form-label= trads.t5c5db5f743fef3000484f618
+                      .col-md-10
+                        .input-group
+                          input.form-control.form-control-line#profPass(type='password',required="true",value=(userProfile.credentials.pass?userProfile.credentials.pass:""))
+                          .input-group-append
+                            span.input-group-text#showPass
+                              i.fa.fa-eye
+                    .form-group.row
+                      label.col-2.col-form-label= trads.t5c5db61843fef3000484f625
+                      .col-md-10
+                        textarea.form-control.form-control-line#profMessage(rows='5',maxlength="1000")
+                          =(userProfile.pres?userProfile.pres:"")
+                    .form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t5c5db62743fef3000484f62b
+                      .col-md-10
+                        .input-group
+                          .input-group-prepend
+                              span.input-group-text#basic-addon3
+                                i.fa.fa-link
+                          input.form-control#profFbk(type='text',value=(userProfile.facebook?userProfile.facebook:""))
+                    .form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t5c5db63443fef3000484f636
+                      .col-md-10
+                        .input-group
+                          .input-group-prepend
+                              span.input-group-text#basic-addon3
+                                i.fa.fa-link
+                          input.form-control#profLinkedin(type='text',value=(userProfile.linkedin?userProfile.linkedin:""))
+                    .form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t5c5db64143fef3000484f63c
+                      .col-md-10
+                        .input-group
+                          .input-group-prepend
+                              span.input-group-text#basic-addon3
+                                i.fa.fa-link
+                          input.form-control#profTwitter(type='text',value=(userProfile.twitter?userProfile.twitter:""))
+                    //.form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t60d9752d6197517ca2b95856
+                      .col-md-10
+                        .checkbox-option(class=(userProfile.publicProfile=="true"?"checked":""))
+                          .inner
+                            input#ch-ppublic(type="checkbox", checked, name="ch-ppublic")
+                    //.form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t60d97539ebfe4f3a46c3029c
+                      .col-md-10
+                        select#s2actors.select2-multiple.form-control.custom-select( style="width: 100%", multiple="multiple",value=userProfile.p60defca3b6cc42586e64b5c3)
+                    //.form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t60d9754107bb7d3a61c62794
+                      .col-md-10
+                        select#s2projects.select2-multiple.form-control.custom-select( style="width: 100%", multiple="multiple",value=userProfile.p60defca3b6cc42586e64b5c3)
+                    //.form-group.row
+                      label.col-2.col-form-label(for='example-email')= trads.t60d9754ec2c2286a07917eae
+                      .col-md-10
+                        select#s2docs.select2-multiple.form-control.custom-select( style="width: 100%", multiple="multiple",value=userProfile.p60defca3b6cc42586e64b5c3)
+                .card-footer
+                  //button.m-l-5.pull-right#btClear(class='btn btn-danger') Clear
+                  button.bb#btSubProfile(type='submit' class='btn btn-info')= trads.t5c5d29c075254800049b22b4
+                  button.bb#btUnregisProfile(type='submit',style="background: #d85959;border: #d85959;", class='btn btn-warning')= trads.t61359a4de2f649724d4852bd
+                  
+                  #profileloader(style="width:100%;text-align:center;display:none;")
+                    .lds-ellipsis
+                      div
+                      div
+                      div
+                      div
+            
+block append scripts
+  script.
+    var userid = "#{userProfile._id}";
+    var puid = "#{projectUID}";
+    var trads = {
+      verifyMsg:"#{trads['t621f10859497e92856aa3a6d']}",
+      yes:"#{trads['t5fa0f485b0bdad6c06e80524']}",
+      no:"#{trads['t5fa0f48ac4a2e56bba5e2b17']}" 
+    }
+  script(src="../assets/node_modules/moment/moment.js")
+  script(src='../assets/node_modules/select2/dist/js/select2.full.min.js' type='text/javascript')
+  script(src="../assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.js")
+  script(src="../assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js")
+  script(src='https://unpkg.com/sweetalert/dist/sweetalert.min.js')
+  script(src='/ekit/ekit_helper.js')
+  script(src='../assets/js/pages/user_profile.js')
