@@ -356,7 +356,7 @@ function redraw() {
                     });*/
 
                     if (!loaded) {
-                        VV_relat.d3.hideProfil(102);
+                        //VV_relat.d3.hideProfil(102);
                         //VV_relat.d3.hideProfil(114);
                         loaded = true;
                     }

@@ -678,7 +678,7 @@ app.post('/:lang/cartolevel', function (req, res) {
             );
             //ret.push(ores);
         }
-        ekit.objects.getAll2(req.params.lang,{ids:ret},null,{
+        ekit.objects.getAll2(req.params.lang,{ids:ret,project:process.env.EKITSRV_PROJECTUID},null,{
             header:0,
             "header.proto":1,
             p5c332d4d07c805cd14cf24b7:1,

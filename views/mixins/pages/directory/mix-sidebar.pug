@@ -3,7 +3,7 @@ mixin mix-sidebar
     block append styles
         link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
     #inner-histo.inner.p-10
-        ul.accordion.accordion-1
+        ul.accordion.accordion-1(style="display:none;")
             li.active
                 .title1.purplebg
                     span= trads.t5c5d28da75254800049b221c
@@ -52,7 +52,7 @@ mixin mix-sidebar
                 ul.tabs-body(style="background:transparent;border:none;padding:0px;")
                     li.selected(data-content='prjs', id="prjs")
                         .enar_accordion.plus_minus(data-type='accordion')
-                            .enar_occ_container(data-expanded='true')
+                            .enar_occ_container(data-expanded='false')
                                 span.enar_occ_title= trads.t6009b3313b189b1ff26283d6
                                 .enar_occ_content
                                     .acc_content
@@ -78,7 +78,7 @@ mixin mix-sidebar
                                         +mix-categ(api,"-1","7") 
                     li(data-content='acts', id="acts")
                         .enar_accordion.plus_minus(data-type='accordion')
-                            .enar_occ_container(data-expanded='true')
+                            .enar_occ_container(data-expanded='false')
                                 span.enar_occ_title= trads.t5fc5e37aca1df77ba2f52a74
                                 .enar_occ_content
                                     .acc_content
