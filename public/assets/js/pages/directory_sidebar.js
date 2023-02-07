@@ -93,17 +93,16 @@ var VV_dir_sb = {};
                 }
             },
             add: function (pid, cid) {
-                
-                var isJsMode = ($("#page").val() == "2_2") || ($("#page").val() == "2_3") || ($("#page").val() == "2");
+                var isJsMode = ($("#page").val() == "2_2") || ($("#page").val() == "2_3") || ($("#page").val() == "2" || ($("#page").val() == "2_6")) ;
                 var obj = document.getElementById("param" + pid);
                 var str = $(obj).val();
                 var toAdd = false;
-                if(!($("#page").val() == "2") && !VV_dir_map.map.initCateg)
+                if(!($("#page").val() == "2") && !($("#page").val() == "2_6") && !VV_dir_map.map.initCateg)
                 {
                     toAdd = true;   
                 }
                 else {
-                    var cidB = cid.replace(/__/g,' ')
+                    var cidB = cid.replace(/_1/g,' ').replace(/_2/g,'/').replace(/_3/g,'(').replace(/_4/g,')').replace(/_5/g,',')
                     if (str.indexOf("|" + cidB) >= 0) {
                         var toRemove = "|" + cidB;
                         $(obj).val(str.replace(toRemove, ''));
@@ -187,29 +186,36 @@ var VV_dir_sb = {};
                         VV_dir_map.map.loadMarkers("map");
                     }
                     else {
-                        switch(pid)
+                        if ($("#page").val()=="2_6")
                         {
-                            case "1":
-                            case "2":
-                            case "3":
-                                VV_dir_global.datas.load("#prof108");
-                                break;
-                            case "20":
-                            case "21":
-                            case "22":
-                            case "23":
-                            case "24":
-                            case "25":
-                                scrollid = null;
-                                VV_dir_global.datas.load("#prof102");
-                                break;
-                            case "5":
-                            case "6":
-                            case "7":
-                            case "8":
-                                VV_dir_global.datas.load("#prof113");
-                                break;
+                            VV_dir_global.datas.load();
                         }
+                        else {
+                            switch(pid)
+                            {
+                                case "1":
+                                case "2":
+                                case "3":
+                                    VV_dir_global.datas.load("#prof108");
+                                    break;
+                                case "20":
+                                case "21":
+                                case "22":
+                                case "23":
+                                case "24":
+                                case "25":
+                                    scrollid = null;
+                                    VV_dir_global.datas.load("#prof102");
+                                    break;
+                                case "5":
+                                case "6":
+                                case "7":
+                                case "8":
+                                    VV_dir_global.datas.load("#prof113");
+                                    break;
+                            }
+                        }
+                        
                     }
                 }
                 else {
@@ -319,6 +325,12 @@ var VV_dir_sb = {};
                 //}
                 
             });
+            //SI BOWL ALORS PR2SELECTION PLATEFORME EN COURS
+            if ($("#page").val()=="2_6")
+            {
+
+                VV_dir_sb.categs.add("1","gLIjIYYBKS0kfUe_ijGL");
+            }
         }
     };
     //window on load

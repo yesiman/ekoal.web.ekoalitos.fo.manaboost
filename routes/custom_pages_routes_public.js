@@ -8,6 +8,7 @@ module.exports = function(app){
     app.get('/:lang/directorymappop/:objuid', custom_pages.directoryMapPop);
     app.get('/:lang/directoryres/:page/:protouid/:oldprotouid', custom_pages.directoryRes);
     app.get('/:lang/directoryresv2/:page/:protouid/:oldprotouid', custom_pages.directoryResv2);
+    app.get('/:lang/2_6/:libsso.html', custom_pages.directory_bowl);
     app.get('/:lang/2_2/:libsso.html', custom_pages.directorymap);
     app.get('/:lang/2_3/:libsso.html', custom_pages.directoryrelat);
     app.get('/:lang/2_5/:libsso.html', custom_pages.directoryrelatLight);

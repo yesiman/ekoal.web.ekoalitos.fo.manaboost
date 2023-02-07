@@ -543,7 +543,6 @@ function getSource(data,idfield)
 exports.directoryRes = function (req, res) {
     var datas = req.middle;
     
-
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     
@@ -564,6 +563,336 @@ exports.directoryRes = function (req, res) {
     switch (req.params.protouid)
     {
         case "5c2c4de807c805cd14b3345c"://PLAYERS
+            if (query.param1 && (query.param1.length>0)  && (query.param1 != "999") && (query.param1 != "undefined"))
+            {
+                filters.subs.p5e7b915724f95cf8839db554 = {$in:query.param1.split('|')}
+            }
+            if (query.param2 && (query.param2.length>0) && (query.param2 != "999") && (query.param2 != "undefined"))
+            {
+                filters.subs.p5e74f5155b338f7cc60d53a1 = {$in:query.param2.split('|')}
+            }
+            if (query.param3 && (query.param3.length>0) && (query.param3 != "999") && (query.param3 != "undefined"))
+            {
+                filters.subs.p5e74f51e307be808ecc68c12 = {$in:query.param3.split('|')}
+            }
+            if (query.param9 && (query.param9.length>0)  && (query.param9 != "999") && (query.param9 != "undefined"))
+            {
+                filters.subs.p5e74f5409d74e6e63d7962b7 = {$in:query.param9.split('|')}
+            }
+            break;
+        case "5c2c4de807c805cd14b33449"://DOCS
+            if (query.param4 && (query.param4.length>0)  && (query.param4 != "999") && (query.param4 != "undefined"))
+            {
+                filters.subs.p5c332d2507c805cd14cf214f = query.param4;
+            }
+            break;
+        case "5c2c4dea07c805cd14b33488"://PROJETS
+            
+            if (query.param5 && (query.param5.length>0)  && (query.param5 != "999") && (query.param5 != "undefined"))
+            {
+                filters.subs.p5e668433a53e3da3a7395f5d = {$in:query.param5.split('|')}
+            }
+            if (query.param6 && (query.param6.length>0)  && (query.param6 != "999") && (query.param6 != "undefined"))
+            {
+                filters.subs.p5e74f5409d74e6e63d7962b7 = {$in:query.param6.split('|')}
+            }
+            if (query.param7 && (query.param7.length>0)  && (query.param7 != "999") && (query.param7 != "undefined"))
+            {
+                filters.subs.p5e670ccfa7e821c229af055f = {$in:query.param7.split('|')}
+            }
+            if (query.param8 && (query.param8.length>0)  && (query.param8 != "999") && (query.param8 != "undefined"))
+            {
+                filters.subs.p5e670bfed149703857daab43 = {$in:query.param8.split('|')}
+            }
+            break;
+    }
+
+    var orders = {
+    };
+    if (filters.text=="")
+    {
+        orders.p5c332d2707c805cd14cf217d=1;
+    }
+    //ACTUS
+    if (req.params.protouid == "5c2c4de907c805cd14b33478")
+    {
+        orders = {
+            p5c332d9907c805cd14cf2b18:-1
+        };
+        filters.subs = {
+            $or:
+                [
+                    {p5c332d9507c805cd14cf2aab:"-1"},
+                    {p5c332d9507c805cd14cf2aab:"1"},
+                    {p5c332d9507c805cd14cf2aab:true},
+                    {p5c332d9507c805cd14cf2aab:"true"}
+                ],
+            p5c332d9907c805cd14cf2b18:{$lte:new Date()}
+        }
+    }
+    else {
+        orders = {
+            "header.dateModif":-1
+        };
+        
+    }
+
+    //EVENTS
+    if (req.params.protouid == "5c2c4deb07c805cd14b334b4")
+    {
+        orders = {
+            p5c332db407c805cd14cf2d60:-1
+        };
+    }
+    //AGRITROP
+    if (req.params.protouid == "63886809fa24617a5dc55c41")
+    {
+        orders = {
+            p63886ad9c4add17a7fb9e915:-1
+        };
+    }
+    
+    /*
+    subs:{
+                $or:
+                    [
+                        {p5c332d9507c805cd14cf2aab:"-1"},
+                        {p5c332d9507c805cd14cf2aab:"1"},
+                        {p5c332d9507c805cd14cf2aab:true},
+                        {p5c332d9507c805cd14cf2aab:"true"}
+                    ],
+                p5c332d9907c805cd14cf2b18:{$lte:new Date()}
+            },
+    */
+
+    //TEST
+    //console.log("/^" + ((query.fulltext!="undefined")?query.fulltext:"") + "$/");
+    /*if (query.fulltext && (query.fulltext!="undefined")){
+
+        filters.subs["$or"] = [
+            {p5c332d2707c805cd14cf217d:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
+            {p5c332d4d07c805cd14cf24b7:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
+            {p5c332d0e07c805cd14cf1f39:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
+            {p5c332d2807c805cd14cf2194:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
+            {p5c332d0d07c805cd14cf1f23:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}}
+        ]
+        orders = {norders:true};
+   
+    }*/
+    datas.protouid = req.params.protouid;
+    datas.oldprotouid = req.params.oldprotouid;
+    datas.fulltext = query.fulltext;
+    datas.lang = req.params.lang;
+    datas.nextpage = Number(req.params.page) + 1;
+    if (req.params.protouid == "5c2c4de807c805cd14b33449")
+    {
+        if (query.mode == "1") {
+            pugpg = "directory_res_v2";
+        }
+        //
+        pugpg = "directory_res_bowl";
+        //Mode affichage
+        datas.mode =query.mode;
+        //console.log(req.params.page,new Date());
+        //TEST BOWL
+        const params = new URLSearchParams()
+        var paramsJSON = {
+            from:req.params.page-1,
+            size:10,
+            query:((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"*"):"*")
+        };
+
+        var urltmp = process.env.BOWL_API_URL + "/api/v1/search";
+        if (query.scrollid) {
+            paramsJSON.id = query.scrollid;
+            urltmp =process.env.BOWL_API_URL + "/api/v1/scroll";
+        }
+        
+        if (query.param1 && (query.param1.length>0)  && (query.param1 != "999") && (query.param1 != "undefined"))
+        {
+            paramsJSON.sources = query.param1.split("|");
+        }
+        if (query.param2 && (query.param2.length>0)  && (query.param2 != "999") && (query.param2 != "undefined"))
+        {
+            paramsJSON.languages = query.param2.split("|");
+        }
+        if (query.param3 && (query.param3.length>0)  && (query.param3 != "999") && (query.param3 != "undefined"))
+        {
+            paramsJSON.countries = query.param3.split("|");
+        }
+        if (query.param4 && (query.param4.length>0)  && (query.param4 != "999") && (query.param4 != "undefined"))
+        {
+            paramsJSON.extensions = query.param4.split("|");
+        }
+        if (query.param5 && (query.param5.length>0)  && (query.param5 != "999") && (query.param5 != "undefined"))
+        {
+            paramsJSON.provinces = query.param5.split("|");
+        }
+        if (query.param6 && (query.param6.length>0)  && (query.param6 != "999") && (query.param6 != "undefined"))
+        {
+            paramsJSON.keywords = query.param6.split("|");
+        }
+        if (query.pub) {
+            paramsJSON.publishers = query.pub.split("|");
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+        
+        axios.post(urltmp, qs.stringify(paramsJSON), config)
+        .then((result) => {
+            datas.bowl = result.data.hits;
+            datas.bowlCounts = JSON.stringify(result.data.counts);
+            datas.bcount = datas.bowl.total.value;
+            datas.scrollid = result.data._scroll_id;
+            datas.param1 = query.param1;
+            datas.param2 = query.param2;
+            datas.param3 = query.param3;
+            datas.param4 = query.param4;
+            datas.param5 = query.param5;
+            datas.param6 = query.param6;
+            cache.get("5e536d86112f073429f1f23f.bsources." + req.session.lang, function (err, value) {
+                var bsources = JSON.parse(value);
+                for (var reli = 0;reli <= datas.bowl.hits.length;reli++) {
+                    if (datas.bowl.hits[reli]) {
+                        for (var reliSources = 0;reliSources <= bsources.length;reliSources++) {
+                            if (bsources[reliSources]._id == datas.bowl.hits[reli]._source.external.origin) {
+                                datas.bowl.hits[reli].custom = {
+                                    origin:bsources[reliSources].lib
+                                }
+                                break;
+                            }
+                        }
+
+                        //console.log(datas.bowl.hits[reli]._source.external.origin);
+                    }
+                    
+                }
+                res.render(
+                    pugpg,
+                    datas);
+            });
+            
+        })
+        .catch((err) => {
+            console.log("err bowl api",err);
+        })
+    
+    }
+    else {
+        var filtersCounts = {
+            project:process.env.EKITSRV_PROJECTUID,
+            subs:{lang:req.params.lang}
+    
+        }
+        if (datas.fulltext && (datas.fulltext.length > 0))
+        {
+            filtersCounts.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
+        }
+        var prom_projectsCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4dea07c805cd14b33488";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+        var prom_playersCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4de807c805cd14b3345c";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+        var prom_newsCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4de907c805cd14b33478";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+        var prom_videosCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5e99ce5d1b088f21c5f20aa0";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+
+        var prom_results = new Promise((resolve, reject) => {
+            ekit.objects.getAll2(req.params.lang,filters,orders,{
+                p5c332d2707c805cd14cf217d:1,
+                p5c332d2807c805cd14cf2194:1,
+                p5c332d1907c805cd14cf2042:1,
+                p5c332d2907c805cd14cf21ae:1,
+                p5c332d0b07c805cd14cf1ef5:1,
+                p5c332d0e07c805cd14cf1f39:1,
+                p5c332d4d07c805cd14cf24b7:1,
+                p5c332d9907c805cd14cf2b18:1,
+                p5c332db407c805cd14cf2d60:1,
+                p5bc4396c219d500400bbbfee:1,
+                p63886854fa24617a5dc55c43:1,
+                p63886b3ad2adb27a5f903236:1,
+                p6388686dfa24617a5dc55c4a:1, //Lien Agritrop
+                p6388693cfa24617a5dc55c51:1, //Lien ressource
+                p63886961d2adb27a5f90321a:1, //AUTEURS AGRITROP
+                p63886ad9c4add17a7fb9e915:1, //ANNEE AGRITROP
+                p6388696dd2adb27a5f903221:1, //PUBLICHER AGRITROP
+                p63886c61fa24617a5dc55c61:1,
+                header:0
+            },req.params.page,10,null,'front').then((data) => {
+                resolve(JSON.parse(data.data));
+            })
+            .catch(err => {
+                
+            });
+        });
+        Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results]).then(function(values) {
+            datas.count = values[4].count;
+            datas.items = values[4].items;
+
+            datas.countActs = values[1];
+            datas.countPrjs = values[0];
+            datas.countNews = values[2];
+            datas.countVideos = values[3];
+
+            datas.param1 = query.param1;
+            datas.param2 = query.param2;
+            datas.param3 = query.param3;
+            datas.param4 = query.param4;
+            datas.param5 = query.param5;
+            datas.param6 = query.param6;
+            datas.param7 = query.param7;
+            datas.param8 = query.param8;
+            datas.param9 = query.param9;
+
+            res.render(
+                pugpg,
+                datas);
+        }) 
+        
+    }
+    
+ 
+}
+exports.directoryResv2 = function (req, res) {
+    var datas = req.middle;
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    
+    //TEST
+    var filters = {subs:{},proto:req.params.protouid,
+        project:process.env.EKITSRV_PROJECTUID,
+        text:(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"")};
+    /*var filters = {
+        proto:req.params.protouid,mongodb://heroku:mArINdAImplaNatItURIdERSEcTOngUADSTOrdoMAJesiGlI@portal-ssl3066-4.ekitos-oip.2552187503.composedb.com:32050,portal-ssl835-36.ekitos-oip.2552187503.composedb.com:32050/koala?ssl=true
+        project:"5b5ea8ed0311784a87b6dbd6",
+        subs:{
+        }
+    };*/
+    //
+    
+    switch (req.params.protouid)
+    {
+        case "5c2c4de807c805cd14b3345c"://PLAYERS
             if (query.param1 && (query.param1.length>0)  && (query.param1 != "999"))
             {
                 filters.subs.p5e7b915724f95cf8839db554 = {$in:query.param1.split('|')}
@@ -575,6 +904,10 @@ exports.directoryRes = function (req, res) {
             if (query.param3 && (query.param3.length>0) && (query.param3 != "999"))
             {
                 filters.subs.p5e74f51e307be808ecc68c12 = {$in:query.param3.split('|')}
+            }
+            if (query.param9 && (query.param9.length>0)  && (query.param9 != "999"))
+            {
+                filters.subs.p5e74f5409d74e6e63d7962b7 = {$in:query.param6.split('|')}
             }
             break;
         case "5c2c4de807c805cd14b33449"://DOCS
@@ -673,256 +1006,11 @@ exports.directoryRes = function (req, res) {
     datas.fulltext = query.fulltext;
     datas.lang = req.params.lang;
     datas.nextpage = Number(req.params.page) + 1;
-    
-    if (req.params.protouid == "-5c2c4de807c805cd14b33449")
+    if (req.params.protouid == "5c2c4de807c805cd14b33449")
     {
-        if (query.mode == "1") {
-            pugpg = "directory_res_v2";
-        }
-        //Mode affichage
-        datas.mode =query.mode;
-        
-        //console.log(req.params.page,new Date());
         //TEST BOWL
         const params = new URLSearchParams()
-        var paramsJSON = {
-            from:req.params.page-1,
-            size:10,
-            query:((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:""):"")
-        };
-
-        var urltmp = process.env.BOWL_API_URL + "/api/v1/search";
-        if (query.scrollid) {
-            paramsJSON.id = query.scrollid;
-            urltmp =process.env.BOWL_API_URL + "/api/v1/scroll";
-        }
-        if (query.param20 && (query.param20.length>0)  && (query.param20 != "999"))
-        {
-            paramsJSON.sources = query.param20.split("|");
-        }
-        if (query.param21 && (query.param21.length>0)  && (query.param21 != "999"))
-        {
-            paramsJSON.languages = query.param21.split("|");
-        }
-        if (query.param22 && (query.param22.length>0)  && (query.param22 != "999"))
-        {
-            paramsJSON.countries = query.param22.split("|");
-        }
-        if (query.param23 && (query.param23.length>0)  && (query.param23 != "999"))
-        {
-            paramsJSON.extensions = query.param23.split("|");
-        }
-        if (query.param24 && (query.param24.length>0)  && (query.param24 != "999"))
-        {
-            paramsJSON.provinces = query.param24.split("|");
-        }
-        if (query.param25 && (query.param25.length>0)  && (query.param25 != "999"))
-        {
-            paramsJSON.keywords = query.param25.split("|");
-        }
-        if (query.pub) {
-            paramsJSON.publishers = query.pub.split("|");
-        }
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }
-        
-        axios.post(urltmp, qs.stringify(paramsJSON), config)
-        .then((result) => {
-            datas.bowl = result.data.hits;
-            datas.bowlCounts = JSON.stringify(result.data.counts);
-            datas.count = datas.bowl.total.value;
-            datas.scrollid = result.data._scroll_id;
-            res.render(
-                pugpg,
-                datas);
-        
-            
-        })
-        .catch((err) => {
-            console.log("err bowl api");
-        })
-    
-    }
-    else {
-        ekit.objects.getAll2(req.params.lang,filters,orders,{
-            p5c332d2707c805cd14cf217d:1,
-            p5c332d2807c805cd14cf2194:1,
-            p5c332d1907c805cd14cf2042:1,
-            p5c332d2907c805cd14cf21ae:1,
-            p5c332d0b07c805cd14cf1ef5:1,
-            p5c332d0e07c805cd14cf1f39:1,
-            p5c332d4d07c805cd14cf24b7:1,
-            p5c332d9907c805cd14cf2b18:1,
-            p5c332db407c805cd14cf2d60:1,
-            p5bc4396c219d500400bbbfee:1,
-            header:0
-        },req.params.page,10,null,'front').then((data) => {
-            var rdata = JSON.parse(data.data);
-
-            
-            datas.count = rdata.count;
-            datas.items = rdata.items;
-            datas.param1 = query.param1;
-            datas.param2 = query.param2;
-            datas.param3 = query.param3;
-            datas.param4 = query.param4;
-            datas.param5 = query.param5;
-            datas.param6 = query.param6;
-            datas.param7 = query.param7;
-            datas.param8 = query.param8;
-            datas.param9 = query.param9;
-            res.render(
-                pugpg,
-                datas);
-        })
-        .catch(err => {
-            
-        });;
-    }
-    
- 
-}
-exports.directoryResv2 = function (req, res) {
-    var datas = req.middle;
-
-
-    var url_parts = url.parse(req.url, true);
-    var query = url_parts.query;
-    
-    //TEST
-    var filters = {subs:{},proto:req.params.protouid,
-        project:process.env.EKITSRV_PROJECTUID,
-        text:(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"")};
-    /*var filters = {
-        proto:req.params.protouid,mongodb://heroku:mArINdAImplaNatItURIdERSEcTOngUADSTOrdoMAJesiGlI@portal-ssl3066-4.ekitos-oip.2552187503.composedb.com:32050,portal-ssl835-36.ekitos-oip.2552187503.composedb.com:32050/koala?ssl=true
-        project:"5b5ea8ed0311784a87b6dbd6",
-        subs:{
-        }
-    };*/
-    //
-    
-    switch (req.params.protouid)
-    {
-        case "5c2c4de807c805cd14b3345c"://PLAYERS
-            if (query.param1 && (query.param1.length>0)  && (query.param1 != "999"))
-            {
-                filters.subs.p5e7b915724f95cf8839db554 = {$in:query.param1.split('|')}
-            }
-            if (query.param2 && (query.param2.length>0) && (query.param2 != "999"))
-            {
-                filters.subs.p5e74f5155b338f7cc60d53a1 = {$in:query.param2.split('|')}
-            }
-            if (query.param3 && (query.param3.length>0) && (query.param3 != "999"))
-            {
-                filters.subs.p5e74f51e307be808ecc68c12 = {$in:query.param3.split('|')}
-            }
-            break;
-        case "5c2c4de807c805cd14b33449"://DOCS
-            if (query.param4 && (query.param4.length>0)  && (query.param4 != "999"))
-            {
-                filters.subs.p5c332d2507c805cd14cf214f = query.param4;
-            }
-            break;
-        case "5c2c4dea07c805cd14b33488"://PROJETS
-            
-            if (query.param5 && (query.param5.length>0)  && (query.param5 != "999"))
-            {
-                filters.subs.p5e668433a53e3da3a7395f5d = {$in:query.param5.split('|')}
-            }
-            if (query.param6 && (query.param6.length>0)  && (query.param6 != "999"))
-            {
-                filters.subs.p5e74f5409d74e6e63d7962b7 = {$in:query.param6.split('|')}
-            }
-            if (query.param7 && (query.param7.length>0)  && (query.param7 != "999"))
-            {
-                filters.subs.p5e670ccfa7e821c229af055f = {$in:query.param7.split('|')}
-            }
-            if (query.param8 && (query.param8.length>0)  && (query.param8 != "999"))
-            {
-                filters.subs.p5e670bfed149703857daab43 = {$in:query.param8.split('|')}
-            }
-            break;
-    }
-
-    var orders = {
-    };
-    if (filters.text=="")
-    {
-        orders.p5c332d2707c805cd14cf217d=1;
-    }
-    //ACTUS
-    if (req.params.protouid == "5c2c4de907c805cd14b33478")
-    {
-        orders = {
-            p5c332d9907c805cd14cf2b18:-1
-        };
-        filters.subs = {
-            $or:
-                [
-                    {p5c332d9507c805cd14cf2aab:"-1"},
-                    {p5c332d9507c805cd14cf2aab:"1"},
-                    {p5c332d9507c805cd14cf2aab:true},
-                    {p5c332d9507c805cd14cf2aab:"true"}
-                ],
-            p5c332d9907c805cd14cf2b18:{$lte:new Date()}
-        }
-    }
-    else {
-        orders = {
-            "header.dateModif":-1
-        };
-        
-    }
-
-    //EVENTS
-    if (req.params.protouid == "-5c2c4deb07c805cd14b334b4")
-    {
-        orders = {
-            p5c332db407c805cd14cf2d60:-1
-        };
-    }
-    /*
-    subs:{
-                $or:
-                    [
-                        {p5c332d9507c805cd14cf2aab:"-1"},
-                        {p5c332d9507c805cd14cf2aab:"1"},
-                        {p5c332d9507c805cd14cf2aab:true},
-                        {p5c332d9507c805cd14cf2aab:"true"}
-                    ],
-                p5c332d9907c805cd14cf2b18:{$lte:new Date()}
-            },
-    */
-
-    //TEST
-    //console.log("/^" + ((query.fulltext!="undefined")?query.fulltext:"") + "$/");
-    /*if (query.fulltext && (query.fulltext!="undefined")){
-
-        filters.subs["$or"] = [
-            {p5c332d2707c805cd14cf217d:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
-            {p5c332d4d07c805cd14cf24b7:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
-            {p5c332d0e07c805cd14cf1f39:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
-            {p5c332d2807c805cd14cf2194:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}},
-            {p5c332d0d07c805cd14cf1f23:{$regex:"\\b"+((query.fulltext!="undefined")?query.fulltext:"") +"\\b",$options:"i"}}
-        ]
-        orders = {norders:true};
-   
-    }*/
-    datas.protouid = req.params.protouid;
-    datas.oldprotouid = req.params.oldprotouid;
-    datas.fulltext = query.fulltext;
-    datas.lang = req.params.lang;
-    datas.nextpage = Number(req.params.page) + 1;
-    if (req.params.protouid == "-5c2c4de807c805cd14b33449")
-    {
-        
-        //TEST BOWL
-        const params = new URLSearchParams()
-        params.append('query', ((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:""):""))
+        params.append('query', ((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"*"):"*"))
         params.append('from', 0)
         params.append('size', 10)
 
@@ -936,7 +1024,11 @@ exports.directoryResv2 = function (req, res) {
         .then((result) => {
             // Do somthing
             datas.bowl = result.data.hits;
+            datas.bowlCounts = JSON.stringify(result.data.counts);
             datas.count = datas.bowl.total.value;
+
+            
+
             res.render(
                 "directory_res_v2",
                 datas);
@@ -978,10 +1070,69 @@ exports.directoryResv2 = function (req, res) {
         })
         .catch(err => {
             
-        });;
+        });
     }
     
  
+}
+
+exports.directory_bowl = function (req, res) {
+    var datas = req.middle;
+    datas.pageId = "2_6";
+    datas.title = "directory_bowl";
+    datas.message = "directory_bowl";
+
+    datas.BOWL_MEDIA_URL = process.env.BOWL_MEDIA_URL;
+
+    var promBSources  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bsources." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBExtensions  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bext." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBCountries  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bcountries." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBLanguages  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.blangs." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBKeywords  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bkeywords." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBProvinces  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bprovinces." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+
+    Promise.all([
+        promBSources,promBCountries,promBExtensions,promBKeywords,promBLanguages,promBProvinces
+        ]
+    ).then(function(values) {
+        //GET RANDOMS
+        datas.bowlSources = values[0];
+        datas.bowlCountries = values[1];
+        datas.bowlExtensions = values[2];
+        datas.bowlKeywords =values[3];
+        datas.bowlLanguages = values[4];
+        datas.bowlProvinces = values[5];
+        
+        res.render(
+            "directory_bowl",
+            datas)
+    });
+
+    
 }
 exports.forgot = function (req, res) {
     var datas = req.middle;

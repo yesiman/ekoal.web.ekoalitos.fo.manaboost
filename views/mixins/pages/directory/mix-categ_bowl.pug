@@ -1,12 +1,14 @@
-mixin mix-categ_bowl(categs,title,paramid)
-    span.enar_occ_title= title
-    .enar_occ_content
-        .acc_content
-            input(id="param"+paramid,type="hidden",value="")
-            ul
-                for sc, idx in categs
-                    li(id="categ"+sc._id.replace(/\s/g,'__'))
-                        label.chk= sc.lib
-                            input(type="checkbox" onclick="VV_dir_sb.categs.add('"+paramid+"','"+sc._id+"')")
-                            span.checkmark
-                            .badge(id="b"+sc._id.replace(/\s/g,'__'))= sc.count
+mixin mix-categ_bowl(categs,title,categid)
+    input(id="param"+categid,type="hidden",value="")
+    .enar_occ_container(data-expanded='true')
+        span.enar_occ_title= title
+        .enar_occ_content
+            .acc_content
+                ul.cat_list_widget
+                    each c in categs
+                        li(id="categ"+c._id.replace(/\s/g,'_1').replace(/\//g,'_2').replace(/\(/g,'_3').replace(/\)/g,'_4').replace(/\,/g,'_5'))
+                            a(href="javascript:void(0)",onclick="VV_dir_sb.categs.add('"+categid+"','" + (c._id?c._id.replace(/\s/g,'_1').replace(/\//g,'_2').replace(/\(/g,'_3').replace(/\)/g,'_4').replace(/\,/g,'_5'):c.lib.replace(/\s/g,'_1').replace(/\//g,'_2').replace(/\(/g,'_3').replace(/\)/g,'_4').replace(/\,/g,'_5')) + "')")
+                                i.ico-circle-o
+                                span
+                                    = " " + c.lib
+                            .num_posts(id="b"+c._id.replace(/\s/g,'_1').replace(/\//g,'_2').replace(/\(/g,'_3').replace(/\)/g,'_4').replace(/\,/g,'_5'))= c.count

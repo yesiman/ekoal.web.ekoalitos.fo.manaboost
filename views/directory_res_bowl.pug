@@ -1,0 +1,63 @@
+.col-xs-12(id="results-"+oldprotouid)
+  if bowl
+    input#ebowlCounters(type="hidden",value=bowlCounts)
+    for bh in bowl.hits
+      - var title= bh._source.meta.title
+      - var uri = encodeURIComponent(title)
+      - var href ="" //'/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
+      //AJOUT LIEN VERS DOC EXTERNE
+      //- var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
+      - var pathDoc = bh._source.external.url
+      .blog_grid_block.clearfix
+        //if oldprotouid == 102
+        .blog_grid_con
+          a.docprev(style="padding:10px;display:inline;float:left;" href=pathDoc,target="_blank",onmousemove="moveImage(event,'i"+"item.objectid"+"')")
+            div(style="height:100px;width:100px;background-repeat: no-repeat;background-size: contain;background-image:url('"+BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail+"');")
+              //img(src=, alt='Project Name')
+          img(id="ie"+"item.objectid",style="left:100px;position: absolute;z-index: 1;",src=BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+          h6.title(style="display:inline;")
+            a(href=pathDoc,target="_blank")= title
+          span.meta(style="display:block;margin-top:10px;")
+            span.meta-part
+              a(href="javascript:void(0)")
+                i.ico-users
+                span= (bh._source.meta.author?bh._source.meta.author:"Inconnu")
+            span.meta-part
+              a(href="javascript:void(0)")
+                i.ico-flag
+                span= (bh._source.meta.language?bh._source.meta.language:"Inconnu")
+            if bh._source.external.keywords
+              span.meta-part
+                a(href="javascript:void(0)")
+                  i.ico-key
+                  span
+                    each k in bh._source.external.keywords
+                      = k
+            span.meta-part
+              a(href="javascript:void(0)")
+                i.ico-file
+                span= (bh._source.file.extension?bh._source.file.extension:"Inconnu")
+            span.meta-part
+              a(href="javascript:void(0)")
+                i.ico-note
+                //- iint = document.getElementById(bh._source.external.origin)
+                span= bh.custom.origin
+          p.desc.v-card__text!= (bh.highlight?bh.highlight.content:"")
+          a.btn_a(href='javascript:void(0)' onclick="VV_dir_global.bowl.addCart('"+bh._id+"')")
+            span
+              i.in_left.ico-angle-right
+              span= "Panier"
+              i.in_right.ico-angle-right
+          a.btn_a(href=pathDoc)
+            span
+              i.in_left.ico-angle-right
+              span= trads.t5c5d286275254800049b21d9
+              i.in_right.ico-angle-right
+.navigation(id="navigation-"+oldprotouid)
+  .next-page(id="next-page-"+oldprotouid)
+    a(href="/"+lang+"/directoryres/"+nextpage+"/" + protouid + "/" + oldprotouid + "?fulltext=" + fulltext + "&param1="+param1+"&param2="+param2+"&param3="+param3+"&param4="+param4+"&param5="+param5+"&param6="+param6+"&param7="+param7+"&param8="+param8+"&param9="+param9+"&scrollid="+scrollid+"&mode="+mode)
+      button.btn.btn-primary.btn-inversed.btn-block= trads.t5c5d28fc75254800049b2237
+block append scripts
+  script.
+    var rescount = "#{count}";
+    var bcount = "#{bcount}";

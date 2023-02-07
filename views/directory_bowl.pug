@@ -1,0 +1,111 @@
+extends layout.pug
+include mixins/globals/widgets/mix-compteurs.pug
+include mixins/globals/widgets/mix-search-bar.pug
+include mixins/globals/widgets/mix-loader.pug
+include mixins/pages/directory/mix-categ_bowl.pug
+block append styles
+  link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
+  link(href="../assets/css/pages/directory_global.css" rel="stylesheet")
+  link(href="../assets/css/pages/bowl.css" rel="stylesheet")
+block content
+  // Page Title
+  //section.content_section.page_title
+    .content.clearfix
+      h1= trads.t5fb63c2af36bca70aaf83219
+      .breadcrumbs
+        a(href='/')= trads.t5fc5e2a6b4b8eb1f1e4358a1
+        span.crumbs-spacer
+          i.ico-angle-right
+        span= trads.t5fb63c2af36bca70aaf83219
+  // End Page Title
+  
+  // Our Blog Grids
+  section.content_section(style="min-height:500px;")
+    .content
+      .content_spacer.clearfix
+        
+        aside#sidebar.col-md-3.right_sidebar
+          // Products Slider
+          .widget_block
+            //h6.widget_title Search
+            .search_block
+              form.widget_search(action='' method='get')
+                input#s.serch_input.bsearch_inp(type='search' placeholder=trads.t5c5d270075254800049b2122 name='s')
+                button#searchsubmit.search_btn.bsearch_btn(type='submit')
+                  i.ico-search2
+                .clear
+          .widget_block
+            h6.widget_title Categories
+            // My Accordion
+            .enar_accordion.plus_minus(data-type='toggle')
+              // accordion - toggle
+              +mix-categ_bowl(bowlSources,"Sources",1)
+              +mix-categ_bowl(bowlLanguages,"Languages",2)
+              +mix-categ_bowl(bowlCountries,"Pays",3)
+              +mix-categ_bowl(bowlExtensions,"Formats",4)
+              //+mix-categ_bowl(bowlProvinces,"Provinces",5)
+              +mix-categ_bowl(bowlKeywords,"Mots-clés",6)
+          //.widget_block
+            h6.widget_title Tag Cloud
+            .tagcloud.style2.clearfix
+              a(href='#')
+                span.tag Responnsive
+                span.num 12
+              a(href='#')
+                span.tag Creative
+                span.num 24
+              a(href='#')
+                span.tag CSS3
+                span.num 8
+              a(href='#')
+                span.tag Design
+                span.num 12
+              a(href='#')
+                span.tag Graphic
+                span.num 4
+              a(href='#')
+                span.tag HTML5
+                span.num 56
+        //RESULTS
+        .content_block.col-md-9.f_right
+          // Filter Content
+          
+          .hm_filter_wrapper.masonry_posts.two_blocks.colored_masonry
+            h4(style="margin-bottom:2px;") BOWL, the search engine for Boost-AE platform.
+            span#nbRes
+            //ul#results.hm_filter_wrapper_con(style='position: relative; height: 3847.296875px;')
+            ul.products_filter(style="margin-top: 20px;").clearfix
+              
+              // Item
+              // End Filter Content
+            //.content
+              // Pagination
+              #pagination.pagination
+                ul.clearfix
+                  li.prev_pagination
+                    a(href='#')
+                      i.ico-arrow-left4
+                  li.active
+                    a(href='#') 1
+                  li
+                    a(href='#') 2
+                  li
+                    a(href='#') 3
+                  li.next_pagination
+                    a(href='#')
+                      i.ico-arrow-right4
+              // End Pagination
+              // End Content Block
+              // sidebar
+        
+
+
+block append scripts
+  script.
+    var ftext = "#{fulltext}";
+    var oldid = "#{oldid}";
+    var BOWL_MEDIA_URL = "#{BOWL_MEDIA_URL}";
+  script(src="../assets/js/jquery-ias.min.js")
+  script(src='../assets/js/pages/directory_sidebar.js')
+  script(src='../assets/js/pages/directory_global_v2.js')
+

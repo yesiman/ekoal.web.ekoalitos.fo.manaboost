@@ -94,7 +94,7 @@ block content
                         = trads.t5c5d278075254800049b2176
                         | 
                         .badge= playersCount
-                    li#prof102
+                    //li#prof102
                       a(class=(oldid=="102"?"selected":""), href='#',data-content='pc102')
                         = trads.t5c5d272675254800049b213b
                         | 
@@ -114,6 +114,10 @@ block content
                         = trads.t5c5d272df52f110004a93932
                         | 
                         .badge= newsCount
+                    
+                    //li
+                      a(href="#",onclick="window.location.href = '/"+lang+"/2_7/agritrop.html'")
+                        = "Agritrop"
                     //li#prof115
                       a(class=(oldid=="115"?"selected":""), href='#',data-content='pc115')
                         = trads.t5c5d273375254800049b214c
@@ -124,6 +128,9 @@ block content
                         = "videos"
                         | 
                         .badge= videosCount
+                    li
+                      a(href="#",onclick="window.location.href = '/"+lang+"/2_6/documents.html'")
+                        = "Documents"
                 ul.tabs-body(style="min-height:500px;")
                   li(data-content='pc108',class=(oldid=="108" ? "selected" : ""))
                     .row.criterias(style="width:auto;")
