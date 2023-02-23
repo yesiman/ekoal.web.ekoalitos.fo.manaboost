@@ -326,10 +326,15 @@ var VV_dir_sb = {};
                 
             });
             //SI BOWL ALORS PR2SELECTION PLATEFORME EN COURS
+
             if ($("#page").val()=="2_6")
             {
-
-                VV_dir_sb.categs.add("1","gLIjIYYBKS0kfUe_ijGL");
+                if (olUid) {
+                    VV_dir_sb.categs.add("1",olUid);
+                }
+                else {
+                    VV_dir_sb.categs.add("1","pU5xeoYBKS0kfUe_b0Zf");
+                }
             }
         }
     };

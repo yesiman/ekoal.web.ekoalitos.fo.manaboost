@@ -45,7 +45,7 @@ function moveImage(e,img)
             var spin = '<div class="custloader"><div class="dot1"></div><div class="dot2"></div></div>';
             $('ul.products_filter.clearfix').html(spin);
             jQuery.ias().destroy();
-            var idP = "102";
+            var idP = "200";
             if ($("#page").val() == "2_7") {
                 //AGRITROP
                 idP = "117";
@@ -55,7 +55,6 @@ function moveImage(e,img)
             //if (VV_dir_global.datas.tabloaded[idP]) {return;}
             //VV_dir_global.datas.tabloaded[idP] = true;
             var idPreal = "";
-            
             idPreal = VV_global.helper.getNewProfId(idP);
             var urll = $("#lang").val()+'/directoryres/1/' + idPreal + "/" + idP + "?fulltext="+$("#s.serch_input").val().trim();
             urll+=VV_dir_global.datas.getParamaVar("1");

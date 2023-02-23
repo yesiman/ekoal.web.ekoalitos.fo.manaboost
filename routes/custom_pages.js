@@ -684,7 +684,7 @@ exports.directoryRes = function (req, res) {
     datas.fulltext = query.fulltext;
     datas.lang = req.params.lang;
     datas.nextpage = Number(req.params.page) + 1;
-    if (req.params.protouid == "5c2c4de807c805cd14b33449")
+    if (req.params.oldprotouid == "200")
     {
         if (query.mode == "1") {
             pugpg = "directory_res_v2";
@@ -816,7 +816,12 @@ exports.directoryRes = function (req, res) {
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
-
+        var prom_docsCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4de807c805cd14b33449";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
         var prom_results = new Promise((resolve, reject) => {
             ekit.objects.getAll2(req.params.lang,filters,orders,{
                 p5c332d2707c805cd14cf217d:1,
@@ -845,7 +850,7 @@ exports.directoryRes = function (req, res) {
                 
             });
         });
-        Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results]).then(function(values) {
+        Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_docsCount]).then(function(values) {
             datas.count = values[4].count;
             datas.items = values[4].items;
 
@@ -853,7 +858,7 @@ exports.directoryRes = function (req, res) {
             datas.countPrjs = values[0];
             datas.countNews = values[2];
             datas.countVideos = values[3];
-
+            datas.countDocs = values[5];
             datas.param1 = query.param1;
             datas.param2 = query.param2;
             datas.param3 = query.param3;
@@ -1081,6 +1086,9 @@ exports.directory_bowl = function (req, res) {
     datas.pageId = "2_6";
     datas.title = "directory_bowl";
     datas.message = "directory_bowl";
+    var url_parts = url.parse(req.url, true);
+    datas.fulltext = url_parts.query.fulltext;
+    datas.olUid = url_parts.query.uid;
 
     datas.BOWL_MEDIA_URL = process.env.BOWL_MEDIA_URL;
 

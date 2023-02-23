@@ -425,6 +425,62 @@ function redraw() {
                 this.hideProfil(idp);
             }
         },
+        fixedNodes: function (ch) {
+            var fixed = $(ch).is(":checked");
+            svg.selectAll(".node").each(function(d){
+                d.fixed=fixed;//thsi will fix the node.
+            });
+            VV_relat.d3.update();
+        },
+        saveSvgAsPng() {
+            /*alert("go");
+            var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+            var source = (new XMLSerializer()).serializeToString(d3.select('svg').node());
+            var blob = new Blob([ doctype + source], { type: 'image/svg+xml;charset=utf-8' });
+            var url = window.URL.createObjectURL(blob);
+            var img = d3.select('body').append('img')
+                .attr('width', 100)
+                .attr('height', 100)
+                .node();
+                
+
+            img.onload = function(){
+                // Now that the image has loaded, put the image into a canvas element.
+                var canvas = d3.select('body').append('canvas').node();
+                canvas.width = 100;
+                canvas.height = 100;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                
+                var canvasUrl = canvas.toDataURL("image/png");
+                var img2 = d3.select('body').append('img')
+                    .attr('width', 100)
+                    .attr('height', 100)
+                    .node();
+                // this is now the base64 encoded version of our PNG! you could optionally 
+                // redirect the user to download the PNG by sending them to the url with 
+                // `window.location.href= canvasUrl`.
+                img2.src = canvasUrl; 
+                alert(canvasUrl);
+            }
+            // start loading the image.
+            img.crossOrigin = 'Anonymous';
+            img.src = url;*/
+            d3.selectAll('.foreignObject, .node, .node-text, .circle, .main').each(function() {
+                var element = this;
+                var computedStyle = getComputedStyle(element, null);
+                for (var i = 0; i < computedStyle.length; i++) {
+                  var property = computedStyle.item(i);
+                  var value = computedStyle.getPropertyValue(property);
+                  element.style[property] = value;
+                }
+                $(".nbutton").each(function () {
+                    console.log(this);
+                    $(this).css("display","none");
+                }); 
+            });
+            saveSvgAsPng(document.getElementsByTagName("svg")[0], "relations.png", {backgroundColor: `#fff`});
+        },
         updateDataSet:function(datas)
         {
             var ids = [];

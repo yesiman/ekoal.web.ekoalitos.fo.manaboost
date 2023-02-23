@@ -16,9 +16,12 @@ block content
                 //.row
 
 block append scripts
+    script.
+        var olUid = -1;
     script(type='text/javascript', src='https://d3js.org/d3.v5.min.js')
     script(type='text/javascript', src='../assets/js/cola/cola.js')
     script(type='text/javascript', src='../assets/js/pages/custom_relat.js')
+    script(type="text/javascript" src="../assets/js/save-svg-as-png/lib/saveSvgAsPng.js")
     script(type="text/javascript" src="../assets/js/star-rating/star-rating.min.js")
     script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.js")
     script(src='../assets/js/pages/directory_map.js')

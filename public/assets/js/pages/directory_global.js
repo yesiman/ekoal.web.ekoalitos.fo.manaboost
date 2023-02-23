@@ -215,6 +215,7 @@ function moveImage(e,img)
             return ret;
         },
         load: function (target) {
+            
             jQuery.ias().destroy();
             var idP = target.replace("#prof", "");
             var spin = '<div class="custloader"><div class="dot1"></div><div class="dot2"></div></div>';
@@ -224,7 +225,9 @@ function moveImage(e,img)
             VV_dir_global.datas.tabloaded[idP] = true;
             var idPreal = "";
             idPreal = VV_global.helper.getNewProfId(idP);
+
             var urll = "/" + $("#lang").val()+'/directoryres/1/' + idPreal + "/" + idP + "?fulltext="+$("#s.serch_input").val().trim();
+            
             urll+=VV_dir_global.datas.getParamaVar("1");
             urll+=VV_dir_global.datas.getParamaVar("2");
             urll+=VV_dir_global.datas.getParamaVar("3");
@@ -252,7 +255,11 @@ function moveImage(e,img)
                 method: "GET",  
                 success: function(data) {
                     $('#is-container-' + idP).html(data);
-                    $("#prof"+idP + " .badge").html(rescount);
+                    $("#prof108" + " .badge").html(countActs);
+                    $("#prof113" + " .badge").html(countPrjs);
+                    $("#prof110" + " .badge").html(countNews);
+                    $("#prof102" + " .badge").html(countDocs);
+                    $("#prof116" + " .badge").html(countVideos);
                     var ebci = $("#ebowlCounters").val();
                     if (ebci)
                     {

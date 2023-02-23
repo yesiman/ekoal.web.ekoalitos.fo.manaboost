@@ -94,7 +94,7 @@ block content
                         = trads.t5c5d278075254800049b2176
                         | 
                         .badge= playersCount
-                    //li#prof102
+                    li#prof102
                       a(class=(oldid=="102"?"selected":""), href='#',data-content='pc102')
                         = trads.t5c5d272675254800049b213b
                         | 
@@ -130,7 +130,7 @@ block content
                         .badge= videosCount
                     li
                       a(href="#",onclick="window.location.href = '/"+lang+"/2_6/documents.html'")
-                        = "Documents"
+                        = "Autres sources documentaires"
                 ul.tabs-body(style="min-height:500px;")
                   li(data-content='pc108',class=(oldid=="108" ? "selected" : ""))
                     .row.criterias(style="width:auto;")
@@ -321,11 +321,11 @@ block content
                           .acc_content
                               input(id="param2",type="hidden",value="")
                               +mix-categ_global("5e670cc7ea6093d8137de073","b",-1)
-
 block append scripts
   script.
     var ftext = "#{fulltext}";
     var oldid = "#{oldid}";
+    var olUid = -1;
   script(src="../assets/js/jquery-ias.min.js")
   script(src='../assets/js/pages/directory_sidebar.js')
   script(src='../assets/js/pages/directory_global.js')
