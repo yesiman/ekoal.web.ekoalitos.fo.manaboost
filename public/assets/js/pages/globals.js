@@ -128,13 +128,14 @@ var VV_global = {};
                         {
                             for (var reli = 0;reli < data.items.hits.length;reli++)
                             {
+                                
                                 $(".top_cart_con ul.top_cart_list").append(
                                     `
                                     <li>
                                     <a target="_blank" href="`+data.items.hits[reli]._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")+`">
                                         <img src="https://boost-search.cirad.fr/node/thumbnails/`+data.items.hits[reli]._source.external.origin+`/`+data.items.hits[reli]._source.external.thumbnail+`" alt="Product Name">
                                         <span class="cart_top_details">
-                                        <span class="top_cart_title">`+(data.items.hits[reli]._source.meta.title?data.items.hits[reli]._source.meta.title:"N/A")+`</span>
+                                        <span class="top_cart_title">`+(data.items.hits[reli]._source.meta.title?data.items.hits[reli]._source.meta.title:"Inconnu")+`</span>
                                         </span>
                                     </a>
                                     <span class="top_catt_remove" onclick="VV_global.card.remCart('`+data.items.hits[reli]._id+`')"></span>

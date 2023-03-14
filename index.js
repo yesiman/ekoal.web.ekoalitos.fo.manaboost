@@ -97,7 +97,8 @@ app.use('/:lang', function (req, res, next) {
                     s3:s3,
                     BOWL_MEDIA_URL:BOWL_MEDIA_URL,
                     BOWL_API_URL:BOWL_API_URL,
-                    forceTinyCss:(process.env.FORCE_TINY_CSS?process.env.FORCE_TINY_CSS:"")
+                    forceTinyCss:(process.env.FORCE_TINY_CSS?process.env.FORCE_TINY_CSS:""),
+                    googleTrads:(process.env.GOOGLE_TRADS?process.env.GOOGLE_TRADS:"false")
                 }; 
                 
             }

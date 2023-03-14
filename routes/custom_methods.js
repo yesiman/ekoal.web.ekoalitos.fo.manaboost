@@ -142,37 +142,26 @@ exports.bowlCardItemsExport  = function(req, res) {
         }
     }
     paramsJSON.ids = query.ids.split(';');
-    
     paramsJSON.ids.splice(paramsJSON.ids.length-1,1);
     axios.post(process.env.BOWL_API_URL + "/api/v1/documents", qs.stringify(paramsJSON), config)
     .then((result) => {
-        var arFin = [];
-        var fields = ['author','title','lang','content','link','_id'];
-        const opts = { fields:fields,delimiter: ';',quote:'' };
+        res.writeHead(200, {
+            'Content-Type': 'application/zip',
+            'Content-disposition': 'attachment; filename=bowl_exp.zip'  
+        });
+        const archive = archiver('zip')
+        archive.pipe(res);
         for (var reli = 0;reli < result.data.hits.hits.length;reli++)
         {
             var obj = result.data.hits.hits[reli]; 
-            var objOk = {
-                author:obj._source.meta.author,
-                title:obj._source.meta.title,
-                lang:obj._source.meta.language,
-                content:(obj.highlight?obj.highlight.content:""),
-                link:obj._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/"),
-                id:obj._id
-            };
-            arFin.push(objOk);
+            var f = fs.createReadStream("/var/www/elastic-test/data/node/documents/" + obj._source.external.origin + "/" + obj._source.file.filename);
+            archive.append(f,{ name: obj._source.file.filename })
         }
-        try {
-            const csv = parse(arFin, opts);
-            res.header('Content-Type', 'text/csv');
-            res.attachment('boost_bowl_'+'_'+ Date.now()+'.csv');
-            res.send(csv);
-        } catch (err) {
-        console.error(err);
-        }
+        archive.finalize();
+        
     })
     .catch((err) => {
-        
+        console.error("err",err);
         res.send({"ok":false});
     })
     

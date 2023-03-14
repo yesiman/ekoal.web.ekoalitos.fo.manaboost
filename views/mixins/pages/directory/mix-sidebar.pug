@@ -48,6 +48,9 @@ mixin mix-sidebar
                         li
                             a(data-content='acts', href="#")
                                 span= trads.t5c5d278075254800049b2176
+                        li
+                            a(data-content='sig', href="#")
+                                span= "Communes"
                 // tabs-navi
                 ul.tabs-body(style="background:transparent;border:none;padding:0px;")
                     li.selected(data-content='prjs', id="prjs")
@@ -95,7 +98,8 @@ mixin mix-sidebar
                                 .enar_occ_content
                                     .acc_content
                                         input(id="param6",type="hidden",value="")
-                                        +mix-categ(api,"-1","6")                       
+                                        +mix-categ(api,"-1","6")       
+                    li.selected(data-content='sig', id="sigFrame")                
             .more
                 h5 
         .collapsor-filters

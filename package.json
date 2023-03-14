@@ -14,10 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^5.3.1",
     "axios": "^0.24.0",
     "body-parser": "~1.0.0",
     "client-sessions": "^0.8.0",
     "compression": "^1.7.3",
+    "d3-svg-to-png": "^0.3.1",
     "dotenv": "^6.2.0",
     "ejs": "^2.5.6",
     "ekoal.nodroutes.ekoalitos": "file:../ekoal.nodroutes.ekoalitos",
@@ -37,6 +39,8 @@
     "pug": "^2.0.4",
     "qs": "^6.10.3",
     "redis": "^2.8.0",
+    "save-svg-as-png": "^1.4.17",
+    "xml-js": "^1.6.11",
     "xmlhttprequest": "^1.8.0"
   }
 }

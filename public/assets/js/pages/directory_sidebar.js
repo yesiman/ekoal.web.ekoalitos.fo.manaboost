@@ -102,7 +102,12 @@ var VV_dir_sb = {};
                     toAdd = true;   
                 }
                 else {
-                    var cidB = cid.replace(/_1/g,' ').replace(/_2/g,'/').replace(/_3/g,'(').replace(/_4/g,')').replace(/_5/g,',')
+                    if (($("#page").val() == "2_6") && (pid == "1")) {
+                        var cidB = cid;
+                    }
+                    else {
+                        var cidB = cid.replace(/_1/g,' ').replace(/_2/g,'/').replace(/_3/g,'(').replace(/_4/g,')').replace(/_5/g,',');
+                    }
                     if (str.indexOf("|" + cidB) >= 0) {
                         var toRemove = "|" + cidB;
                         $(obj).val(str.replace(toRemove, ''));

@@ -65,6 +65,7 @@ var VV_dir_map = {};
                 var aWidth = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth);
                 var accHeight = aHeight - $(".accordion").offset().top;
                 $("#map").css('height', aHeight);
+                $("#sig").css('height', aHeight);
             }
             
         },
@@ -427,7 +428,24 @@ var VV_dir_map = {};
             VV_dir_map.map.resize();
             $('ul.tabs-navi a').click(function (el) {
                 VV_dir_map.map.curtab = $(this).attr("data-content");
-                VV_dir_map.map.loadMarkers("map");
+                if (VV_dir_map.map.curtab == "sig") {
+                    $("#map").css("display","none");
+                    $("#sig").css("display","");
+                    var $lefty = $("#inner-search");
+                    $lefty.animate({
+                        left: -320
+                    });
+                    var $lefty = $("#inner-histo");
+                    $lefty.animate({
+                        right: -320
+                    });
+                }
+                else {
+                    $("#map").css("display","");
+                    $("#sig").css("display","none");
+                    VV_dir_map.map.loadMarkers("map");
+                }
+                
             });
             $('#chgroup').click(function (el) {
                 
