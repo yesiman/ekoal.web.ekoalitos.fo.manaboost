@@ -28,6 +28,8 @@ var VV_global = {};
                     return "116";
                 case "5e99ce8215ad694904b5de92":
                     return "120";
+                case "63886809fa24617a5dc55c41":
+                    return "117";
             }
         },
         getNewProfId:function(oldid)
@@ -48,6 +50,8 @@ var VV_global = {};
                     return "5c2c4deb07c805cd14b334b4";
                 case "116":
                     return "5e99ce5d1b088f21c5f20aa0";
+                case "117":
+                    return "63886809fa24617a5dc55c41";
             }
         }
     }
@@ -131,10 +135,10 @@ var VV_global = {};
                                 $(".top_cart_con ul.top_cart_list").append(
                                     `
                                     <li>
-                                    <a target="_blank" href="`+data.items.hits[reli]._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")+`">
-                                        <img src="https://boost-search.cirad.fr/node/thumbnails/`+data.items.hits[reli]._source.external.origin+`/`+data.items.hits[reli]._source.external.thumbnail+`" alt="Product Name">
+                                    <a target="_blank" href="`+data.items.hits[reli]._source.external.url+`">
+                                        <img src="http://206.81.20.186/node/thumbnails/`+data.items.hits[reli]._source.external.origin+`/`+data.items.hits[reli]._source.external.thumbnail+`" alt="Product Name">
                                         <span class="cart_top_details">
-                                        <span class="top_cart_title">`+(data.items.hits[reli]._source.meta.title?data.items.hits[reli]._source.meta.title:"N/A")+`</span>
+                                        <span class="top_cart_title">`+(data.items.hits[reli]._source.meta.title?data.items.hits[reli]._source.meta.title:"Inconnu")+`</span>
                                         </span>
                                     </a>
                                     <span class="top_catt_remove" onclick="VV_global.card.remCart('`+data.items.hits[reli]._id+`')"></span>

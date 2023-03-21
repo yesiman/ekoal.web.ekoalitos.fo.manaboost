@@ -31,7 +31,7 @@ mixin mix-subdir(olpuid,protouid,oldid)
                                 - uri = encodeURIComponent(ar.p5c332d0b07c805cd14cf1ef5)
                         .blog_grid_block.clearfix
                             .feature_inner
-                                case oldprotouid
+                                case olpuid
                                     when "116"
                                         .embed-container
                                             iframe(src=ar.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
@@ -41,6 +41,7 @@ mixin mix-subdir(olpuid,protouid,oldid)
                                                 a.icon_link(href=href)
                                                     i.ico-link3
                                             a.feature_inner_ling(href=href)
+                                                - console.log("iuo",ar.p5c332d2907c805cd14cf21ae)
                                                 img(src=(ar.p5c332d2907c805cd14cf21ae && (ar.p5c332d2907c805cd14cf21ae.length > 0)?s3 + ar.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.jpg"), alt='Project Name')
                                     default
                                         .feature_inner_corners
