@@ -5611,7 +5611,7 @@ a.img_popup:after {
 }
 .search_block form input.serch_input {
     background: #fff;
-    border: 1px solid #e3e3e3;
+    border: 2px solid #333;
     color: #aaa;
     float: left;
     font-size: 13px;
