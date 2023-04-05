@@ -2,6 +2,8 @@ const { parse } = require('json2csv');
 var url = require('url');
 const axios = require('axios')
 var qs = require('qs');
+var archiver = require('archiver');
+var fs = require('fs');
 //AUTOCOMPLETION ANNUAIRE GLOBAL
 exports.getAutoCats  = function (req, res) {
     var search = req.params.txt;
