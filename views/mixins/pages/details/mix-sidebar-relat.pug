@@ -28,13 +28,13 @@ mixin mix-sidebar-relat
                     .form-check
                         img.m-l-5.logo_dark(style="margin-right:5px;",src='../assets/images/profils/114.png',width="15px")
                         input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-120" onclick="VV_relat.d3.checkProfil('120',this)")
-                        label.form-check-label(for="ch-120",style="color:#3d98b7;")   Réseaux
+                        label.form-check-label(for="ch-120",style="color:#3d98b7;")= "  " + trads.t6431045aedb0bd528a4990d1
                     hr
                     .more
                     hr
                     .form-check
                         input.form-check-input(style="margin-right:5px;",type="checkbox" value="" id="fixedN" onclick="VV_relat.d3.fixedNodes(this)")
-                        label.form-check-label(for="fixedN")= trads.t64301a43a13edb430f2bf9c5
+                        label.form-check-label(for="fixedN")= trads.t64303f6256c1eb52aa703d88
                     //.form-check(style="margin-top:5px;")
                         a.btn(href='javascript:void(0)', title='Exporter', onclick='VV_relat.d3.saveSvgAsPng()')
                             i.ico-download4
