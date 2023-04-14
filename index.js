@@ -42,7 +42,7 @@ app.set('views', [__dirname + '/node_modules/ekoal.pugjs.ekoalitos', __dirname +
 app.set('view engine', 'pug')
 //FORCE WWW
 app.use(function (req, res, next) {
-    if ((req.hostname.indexOf("agrisource.org") > -1) && (req.hostname.indexOf("www.") !== 0)) {
+    if ((req.hostname.indexOf("manaboost.net") > -1) && (req.hostname.indexOf("www.") !== 0)) {
       res.redirect(301, req.protocol + "://www." + req.hostname + req.originalUrl);
     } else {
       next();
