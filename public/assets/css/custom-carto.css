@@ -83,23 +83,25 @@ foreignObject .circle {
     overflow:hidden;
     }
 
-foreignObject .node-close {
-  position: absolute;
-  font-size: 10px;
-  top: 0px;
-  right: 5px;
-  color: red;
-  display: none;
-}
-
-foreignObject .node-expand {
-  position: absolute;
-  font-size: 10px;
-  top: 40px;
-  right: 5px;
-  color: green;
-  display: none;
-}
+    foreignObject .node-close {
+      position: absolute;
+      font-size: 20px;
+      top: 0px;
+      left: 0px;
+      color: red;
+      display: none;
+      }
+      
+      foreignObject .node-expand {
+      position: absolute;
+      font-size: 20px;
+      /*top: 40px;
+      right: 5px;*/
+      top: 0px;
+      right: 0px;
+      color: rgb(78, 101, 204);
+      display: none;
+      }
     foreignObject .selected .node-close,
     foreignObject .selected .node-expand {
     display:block;
