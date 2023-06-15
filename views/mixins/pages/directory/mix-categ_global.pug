@@ -1,5 +1,5 @@
 mixin mix-categ_global(categuid,categlib,parent,paramuid)
-    ul(class=(parent == -1?"opened":""))
+    ul(id="categAcor-"+paramuid,class=(parent == -1?"opened":""))
         each cat in categsAll
             if cat.proto[0] == categuid
                 if (!cat.parent && (parent == -1))

@@ -236,7 +236,7 @@ function moveImage(e,img)
             urll+=VV_dir_global.datas.getParamaVar("6");
             urll+=VV_dir_global.datas.getParamaVar("7");
             urll+=VV_dir_global.datas.getParamaVar("8");
-
+            urll+=VV_dir_global.datas.getParamaVar("9");
 
             /*urll+=VV_dir_global.datas.getParamaVar("20");
             urll+=VV_dir_global.datas.getParamaVar("21");

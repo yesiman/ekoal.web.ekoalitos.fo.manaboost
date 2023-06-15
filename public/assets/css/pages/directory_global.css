@@ -34,6 +34,10 @@
   li [data-content="pc^"] {
 
   }
+  input[type="checkbox"].checkAllEl {
+    float: right !important;
+    margin-right: 10px;
+  }
   .news-tags.tagcloud .tag {
     display: inline-block;
     margin: 3px;

@@ -822,6 +822,7 @@ exports.directoryRes = function (req, res) {
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
+        console.log("filters",filters);
         var prom_results = new Promise((resolve, reject) => {
             ekit.objects.getAll2(req.params.lang,filters,orders,{
                 p5c332d2707c805cd14cf217d:1,
@@ -910,9 +911,9 @@ exports.directoryResv2 = function (req, res) {
             {
                 filters.subs.p5e74f51e307be808ecc68c12 = {$in:query.param3.split('|')}
             }
-            if (query.param9 && (query.param9.length>0)  && (query.param9 != "999"))
+            if (query.param9 && (query.param9.length>0)  && (query.param9 != "999") && (query.param9 != "undefined"))
             {
-                filters.subs.p5e74f5409d74e6e63d7962b7 = {$in:query.param6.split('|')}
+                filters.subs.p5e74f5409d74e6e63d7962b7 = {$in:query.param9.split('|')}
             }
             break;
         case "5c2c4de807c805cd14b33449"://DOCS

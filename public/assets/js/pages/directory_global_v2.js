@@ -183,6 +183,30 @@ function moveImage(e,img)
                 };
             });
 
+            $(".checkAllEl").each(function(i) {
+                this.addEventListener('click', function(e) {
+                    var checkOrNot = $(this).is(":checked");
+                    var contain = $(this).parent().parent();
+                    var param = $(contain).prev();
+                    e.stopPropagation();
+                    var concat = "";
+                    $(contain).find("li").each(function(i) { 
+                        if (checkOrNot == true) {
+                            $(this).find("i:first").addClass("selected");
+                            concat += $(this).attr("id").replace("categ","") + "|";
+                        }
+                        else {
+                            $(this).find("i:first").removeClass("selected");
+                            concat = "x999";
+                        }
+                        
+                    });
+                    $(param).val(concat);
+                    VV_dir_global.datas.load();
+                    
+                });
+            });
+
             $('.bsearch_btn').on('click', function(e) {
 
                 //var closForm = $(this).closest("form");

@@ -52,6 +52,7 @@ var VV_dir_sb = {};
                         $("#param1").val("");
                         $("#param2").val("");
                         $("#param3").val("");
+                        $("#param9").val("");
                         break;
                     case "102":
                         $("#param4").val("");
@@ -102,6 +103,7 @@ var VV_dir_sb = {};
                     toAdd = true;   
                 }
                 else {
+					var cidB;
                     if (($("#page").val() == "2_6") && (pid == "1")) {
                         var cidB = cid;
                     }
@@ -126,7 +128,7 @@ var VV_dir_sb = {};
 
                 if ($("#page").val()=="2")
                 {
-                     comp = "#categ" + cid;
+                     comp = "#categAcor-"+pid+" #categ" + cid;
                 }
                 if ($("#page").val()=="2_2")
                 {
@@ -162,7 +164,7 @@ var VV_dir_sb = {};
                         elementHtml += "<span class='tag' id='stag"+ cid +"'>";
                         if ($("#page").val()=="2")
                         {
-                            elementHtml += " " + $(comp + " label").text();
+                            elementHtml += " " + $(comp + " a:first").text();
                         }
                         else {
                             elementHtml += " " + $(comp + " a:first").text();
@@ -201,6 +203,7 @@ var VV_dir_sb = {};
                                 case "1":
                                 case "2":
                                 case "3":
+								case "9":
                                     VV_dir_global.datas.load("#prof108");
                                     break;
                                 case "20":
