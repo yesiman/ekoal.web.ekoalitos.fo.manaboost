@@ -1,10 +1,10 @@
 mixin mix-categ_bowl(categs,title,categid)
-    input(id="param"+categid,type="hidden",value="")
+    input(id="param"+categid,type="hidden",value="",autocomplete="off")
     .enar_occ_container(data-expanded='true')
         span.enar_occ_title
             = title
             if (categid == 1)
-                input.checkAllEl(type="checkbox")
+                input.checkAllEl(type="checkbox",autocomplete="off")
         .enar_occ_content
             .acc_content
                 ul.cat_list_widget
