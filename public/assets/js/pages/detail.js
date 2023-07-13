@@ -582,8 +582,16 @@ var levels = {};
             }
             //VV_detail.blog.addReplyForm("nbComments");
             $('ul.tabs-navi a').click(function (e) {
-                if ($(e.currentTarget).attr("data-content")=="localize") {
-                    VV_dir_map.map.init('map_detail');
+                switch ($(e.currentTarget).attr("data-content")) {
+                    case "localize":
+                        VV_dir_map.map.init('map_detail');
+                        break;
+                    case "relats":
+                        VV_relat.d3.init();
+                        VV_relat.sidebar.init();
+                        $("#sidebar-bt-filters").trigger("click");
+                        $("#sidebar-bt-histo").trigger("click");
+                        break;
                 }
             })
 

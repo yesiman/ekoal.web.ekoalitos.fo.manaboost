@@ -1192,14 +1192,10 @@ function redraw() {
             //VV_relat.relat.updateMapSize();
             //VV_relat.sidebar.init();
             
-            switch ($("#numero_profil").val()) {
-                case "102":
-                case "108":
-                case "113":
-                case "114":
+            if ($("#page").val() == "2_5") 
+            {
                 VV_relat.d3.init();
                 VV_relat.sidebar.init();
-                    break;
             }
             /*var sliderLength = document.getElementById('sliderLength');
             var sliderZoom = document.getElementById('sliderZoom');

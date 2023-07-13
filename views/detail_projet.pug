@@ -83,6 +83,10 @@ block content
                     a(data-content='regions', href='#')
                       span
                       = 'Régions'
+                li
+                  a(data-content='relats', href='#')
+                    span
+                    = "Relations"
             ul.tabs-body(style='height: auto;')
               li.selected(data-content='inbox', style='')
                 +mix-present
@@ -100,8 +104,9 @@ block content
               if object.version.p630c954d41385619c492ccc1
                 li(data-content='regions', style='')
                   iframe(src="https://ewatch-carto.pro/gsdm/boost/projet/carto/Boost-"+object.version.p630c954d41385619c492ccc1, style="min-height:700px;width:100%;height:100%;",frameborder="0",allowfullscreen)
+              li(data-content='relats', style='')
+                +mix-relats 
                 
-  +mix-relats
   //+mix-contact
 
 

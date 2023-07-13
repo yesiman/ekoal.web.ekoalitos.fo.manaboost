@@ -30,7 +30,7 @@ var VV_home = {};
         })
         $('.search_btn').on('click', function(e) {
             var closForm = $(this).closest("form");
-            var input = $(closForm).children(".serch_input");
+            var input = $(".serch_input");
             if (e.preventDefault) e.preventDefault();
             location.href = '/'+$("#lang").val()+'/2/108/global.html?fulltext='+$(input).val();
             return false;
