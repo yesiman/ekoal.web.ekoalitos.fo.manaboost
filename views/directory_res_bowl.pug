@@ -7,17 +7,30 @@
       - var href ="" //'/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
       //AJOUT LIEN VERS DOC EXTERNE
       //- var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
-      - var pathDoc = bh._source.external.url.replace("http://boost.ekoal.org","https://www.boost-ae.net")
+      - var pathDoc = bh._source.external.url.replace("boost.ekoal.org","boost-ae.net")
       .blog_grid_block.clearfix
         //if oldprotouid == 102
         .blog_grid_con
-          a.docprev(style="padding:10px;display:inline;float:left;" href=pathDoc,target="_blank",onmousemove="moveImage(event,'i"+"item.objectid"+"')")
-            div(style="height:100px;width:100px;background-repeat: no-repeat;background-size: contain;background-image:url('"+BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail+"');")
+          a.docprev(style="padding-right:5px;display:inline;float:left;" href=pathDoc,target="_blank",onmousemove="moveImage(event,'i"+"item.objectid"+"')")
+            div(style="height:80px;width:80px;background-repeat: no-repeat;background-size: contain;background-image:url('"+BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail+"');")
               //img(src=, alt='Project Name')
           img(id="ie"+"item.objectid",style="left:100px;position: absolute;z-index: 1;",src=BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
           h6.title(style="display:inline;")
             a(href=pathDoc,target="_blank")= title
           span.meta(style="display:block;margin-top:10px;")
+            span.btn-info.badge
+              = bh.custom.origin
+            span.btn-primary.badge
+              = (bh._source.meta.author?bh._source.meta.author:"Inconnu")
+            span.btn-default.badge
+              = (bh._source.meta.language?bh._source.meta.language:"Inconnu")
+            span.btn-success.badge
+              = (bh._source.file.extension?bh._source.file.extension:"Inconnu")
+            if bh._source.external.keywords
+              span.btn-warning.badge
+                each k in bh._source.external.keywords
+                  = k
+          //span.meta(style="display:block;margin-top:10px;")
             span.meta-part
               a(href="javascript:void(0)")
                 i.ico-users
@@ -42,7 +55,7 @@
                 i.ico-note
                 //- iint = document.getElementById(bh._source.external.origin)
                 span= bh.custom.origin
-          p.desc.v-card__text!= (bh.highlight?bh.highlight.content:"")
+          p.v-card__text!= (bh.highlight?bh.highlight.content:"")
           a.btn_a(href='javascript:void(0)' onclick="VV_dir_global.bowl.addCart('"+bh._id+"')")
             span
               i.in_left.ico-angle-right

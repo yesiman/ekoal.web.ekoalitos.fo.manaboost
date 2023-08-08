@@ -11,29 +11,27 @@ mixin mix-sidebar-relat
             .clearfix
             .row
                 .col-md-12
-                    
                     .form-check
                         img.m-l-5.logo_dark(style="margin-right:5px;",src='../assets/images/profils/108.png',width="15px")
-                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-108" onclick="VV_relat.d3.checkProfil('108',this)")
+                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-108" onclick="VV_relat.d3.checkProfil('108',this)", autocomplete="off")
                         label.form-check-label(for="ch-108",style="color:#0B8E36;")= "  " + trads.t5c5d278075254800049b2176                        
-                        
                     .form-check
                         img.m-l-5.logo_dark(style="margin-right:5px;",src='../assets/images/profils/113.png',width="15px")
-                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-113" onclick="VV_relat.d3.checkProfil('113',this)")
+                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-113" onclick="VV_relat.d3.checkProfil('113',this)", autocomplete="off")
                         label.form-check-label(for="ch-113",style="color:#EF70B7;")= "  " + trads.t5c5d2793f52f110004a93966
                     .form-check
                         img.m-l-5.logo_dark(style="margin-right:5px;",src='../assets/images/profils/102.png',width="15px")
-                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-102" onclick="VV_relat.d3.checkProfil('102',this)")
+                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-102" onclick="VV_relat.d3.checkProfil('102',this)", autocomplete="off")
                         label.form-check-label(for="ch-102",style="color:#E30613;")= "  " +  trads.t5c5d272675254800049b213b
                     .form-check
                         img.m-l-5.logo_dark(style="margin-right:5px;",src='../assets/images/profils/114.png',width="15px")
-                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-120" onclick="VV_relat.d3.checkProfil('120',this)")
+                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" checked id="ch-120" onclick="VV_relat.d3.checkProfil('120',this)", autocomplete="off")
                         label.form-check-label(for="ch-120",style="color:#3d98b7;")= "  " + trads.t6431045aedb0bd528a4990d1
                     hr
                     .more
                     hr
                     .form-check
-                        input.form-check-input(style="margin-right:5px;",type="checkbox" value="" id="fixedN" onclick="VV_relat.d3.fixedNodes(this)")
+                        input.form-check-input(style="margin-right:5px;",type="checkbox", autocomplete="off", value="", id="fixedN", onclick="VV_relat.d3.fixedNodes(this)")
                         label.form-check-label(for="fixedN")= trads.t64303f6256c1eb52aa703d88
                     //.form-check(style="margin-top:5px;")
                         a.btn(href='javascript:void(0)', title='Exporter', onclick='VV_relat.d3.saveSvgAsPng()')
