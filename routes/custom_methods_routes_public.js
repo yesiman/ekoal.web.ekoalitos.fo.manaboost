@@ -582,8 +582,15 @@ app.post('/:lang/carto', function (req, res) {
     
 })
 app.post('/:lang/cartofull', function (req, res) {
-    var filters = { proto:["5c2c4dea07c805cd14b3349f","5c2c4de807c805cd14b3345c","5c2c4dea07c805cd14b33488","5c2c4de807c805cd14b33449"],ids:req.body.ids,project:process.env.EKITSRV_PROJECTUID }
+    
+    var filters = { proto:["5c2c4dea07c805cd14b3349f","5c2c4de807c805cd14b3345c","5c2c4dea07c805cd14b33488","5c2c4de807c805cd14b33449"],project:process.env.EKITSRV_PROJECTUID }
     //ekit.objects.get(req.params.lang,req.body.uid,null,onObj,'front');
+    if (req.body.ids) {
+        filters.ids = req.body.ids;
+    }
+    if (req.body.text) {
+        filters.text = req.body.text;
+    }
     ekit.objects.getAll2(req.params.lang,filters,null,{
         header:0,
         "header.proto":1,
@@ -629,7 +636,7 @@ app.post('/:lang/cartofull', function (req, res) {
         res.send(ret);
     })
     .catch(err => {
-        
+        console.log("err",err);
     });
     
 })

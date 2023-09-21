@@ -119,7 +119,7 @@ function redraw() {
                     //var color = d3.scaleOrdinal(d3.schemeCategory20);
                     force = cola.d3adaptor(d3)
                         //.charge(-120)
-                        .linkDistance(100)
+                        .linkDistance(300)
                         //.symmetricDiffLinkLengths(10)
                         //.gravity(0.6)
                         .handleDisconnected(true)
@@ -142,6 +142,14 @@ function redraw() {
                         .attr("height", "100%")
                         .append("g")
                             .attr("id", "bbox").attr("class", "overlay").call(zoom);
+
+
+                            var dragcontainer = d3.drag()
+                            .on("drag", function(d, i) {
+                              d3.select(this).attr("transform", "translate(" + (d.x = d3.event.x) + "," + (d.y = d3.event.y) + ")");
+                            });
+                          d3.select("g").datum({x: 0, y: 0}).call(dragcontainer)
+
                     //.attr('transform', 'translate(80,80) scale(0.7)')
                     //d
                     var defs = svg.append("svg:defs").append("svg:marker")
@@ -156,10 +164,10 @@ function redraw() {
                         .style("fill", "black");
 
                     //d3.select("#inner-search").append("h5").html("Zoom")
-                     sliderZoom = d3.select("#inner-search .more").append("p").append("input")
+                     sliderZoom = d3.select("#inner-search .more").append("p").append("input").attr("id", "lfocus")
                            .datum({})
                            .attr("type", "range")
-                           .attr("value", 0.5)
+                           .attr("value", 1)
                             .attr("min", 0.1)
                             .attr("max", 5)
                             .attr("step", 0.1)
@@ -167,18 +175,16 @@ function redraw() {
 
                     //AJOUT SLIDE TAILE DES LIENS
                     //d3.select("#inner-search .more").append("h5").html("Zoom");
-                    sliderLinks = d3.select("#inner-search .more").append("p").append("input")
+                    sliderLinks = d3.select("#inner-search .more").append("p").append("input").attr("id", "llength")
                           .datum({})
                           .attr("type", "range")
-                          .attr("value", 200)
                           .attr("min", 20)
                           .attr("max", 300)
                           .attr("step", 5)
                           .on("input", slidedLinkLength);
-                    force.linkDistance(function (link) {
-                        //TEST!
-                        return 200;//sliderLinks.property("value");
-                    });
+                    
+                        document.querySelector('#llength').value = 130;
+                    
                     
                     function dragstarted(d) {
                         d3.event.sourceEvent.stopPropagation();
@@ -193,6 +199,8 @@ function redraw() {
                         d3.select(this).classed("dragging", false);
                     }
 
+                    
+
                     function slided(d) {
                         zoom.scaleTo(svg, d3.select(this).property("value"));
                     }
@@ -204,16 +212,15 @@ function redraw() {
                         });
 
                         VV_relat.d3.updateLinks();
-
-
                     }
                     function zoomed() {
-                        
                         const currentTransform = d3.event.transform;
                         svg.attr("transform", currentTransform);
                         sliderZoom.property("value", currentTransform.k);
                     }
-                    
+
+                    //console.log("sliderZoom",sliderZoom.attr("value"));
+                    //zoom.scaleTo(svg, sliderZoom);
                         
                     if (!($("#page").val() == "2_3"))
                     {
@@ -233,9 +240,17 @@ function redraw() {
                         VV_relat.d3.updateDataSet(null); 
                        
                     }
+
+                    
                     force.linkDistance(function (link) {
                         return sliderLinks.property("value");
                     });
+
+                    $("#searchWText").on("click", function (e) {
+                        e.preventDefault();
+                        VV_relat.d3.loadDataSet();
+                     })
+                    
             
         },
         scaleAndDraw: function () {
@@ -281,6 +296,7 @@ function redraw() {
             //{
             //    eid = $("#numero_entite").val();
             //}
+            $('body').toggleClass('loading');
             var nuPid = VV_global.helper.getNewProfId(pid);
             
             //5b5ea8ed0311784a87b6dbd6
@@ -307,7 +323,7 @@ function redraw() {
                         if (!VV_relat.d3.nodeExists(sId)) {
                             //alert("klm");
                             VV_relat.d3.addNode(sId, vNumProf, title);
-                            console.log("level1",level1);
+                            //console.log("level1",level1);
                             if (($('#page').val() == "2_5") && (level1 == true)) {
                                 items.push(sId);
                             }
@@ -369,14 +385,14 @@ function redraw() {
                     VV_relat.d3.update();
                     if (($('#page').val() == "2_5") && (level1 == true)) {
                         
-                        VV_relat.d3.expandLevel(items);
+                        //VV_relat.d3.expandLevel(items);
                     }
+                    $('body').toggleClass('loading');
                 }
             });
 
         },
         expandLevel: function (ids) {
-            console.log("items",ids);
             var filters = {
                 project:projectUID,
             }
@@ -475,14 +491,106 @@ function redraw() {
                   element.style[property] = value;
                 }
                 $(".nbutton").each(function () {
-                    console.log(this);
                     $(this).css("display","none");
                 }); 
             });
             saveSvgAsPng(document.getElementsByTagName("svg")[0], "relations.png", {backgroundColor: `#fff`});
         },
+        loadDataSet:function()
+        {
+            $('body').toggleClass('loading');
+            var ids = [];
+            for (var i2 = nodes.length - 1; i2 >= 0; i2--) {
+                nodes.splice(i2, 1);
+            }
+            links = [];
+            
+            //VV_relat.d3.update();
+            var filters = {
+                project:projectUID,
+                text:$("#txtSearch").val()
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/'+$("#lang").val()+'/cartofull',
+                data: {
+                    text:$("#txtSearch").val()
+                },
+                success: function (data) {
+                    //
+                    VV_relat.d3.addNode("maman","maman","maman");
+                    for (var o in data)
+                    {
+                        
+                        var obj = data[o];
+                        var objrelats = obj.relations;
+
+                        if (!VV_relat.d3.nodeExists(obj._id))
+                        {
+                            VV_relat.d3.addNode(obj._id,VV_global.helper.getOldProfId(obj.proto[0]),(obj.p5c332d4d07c805cd14cf24b7 && (obj.p5c332d4d07c805cd14cf24b7!="")?obj.p5c332d4d07c805cd14cf24b7:obj.p5c332d2707c805cd14cf217d));
+                            VV_relat.d3.addLink("maman", obj._id);
+                        }
+
+
+                        if (objrelats.length>0)
+                        {
+                            
+                            for (var orel in objrelats)
+                            {
+                                for (var otmp in data)
+                                {
+                                    var objtmp = data[otmp];
+                                    if (objtmp._id == objrelats[orel])
+                                    {
+                                        
+                                        if (!VV_relat.d3.nodeExists(objtmp._id))
+                                        {
+                                            VV_relat.d3.addNode(objtmp._id,VV_global.helper.getOldProfId(objtmp.proto[0]),(objtmp.p5c332d4d07c805cd14cf24b7 && (objtmp.p5c332d4d07c805cd14cf24b7!="")?objtmp.p5c332d4d07c805cd14cf24b7:objtmp.p5c332d2707c805cd14cf217d));
+                                            VV_relat.d3.addLink("maman", objtmp._id);
+                                        }
+                                        if (!VV_relat.d3.linkExists(obj._id, objtmp._id)) {
+                                            
+                                            VV_relat.d3.addLink(obj._id, objtmp._id);
+                                        }     
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                   
+        
+                    if (!loaded) {
+                        //VV_relat.d3.hideProfil(102);
+                        //VV_relat.d3.hideProfil(114);
+                        loaded = true;
+                    }
+                    else {
+                        
+                    }
+                    //CHECK ORPHANS
+                    
+                    if (!$("#ch-102").is(":checked")) { VV_relat.d3.hideProfil(102); }
+                    if (!$("#ch-108").is(":checked")) { VV_relat.d3.hideProfil(108); }
+                    if (!$("#ch-114").is(":checked")) { VV_relat.d3.hideProfil(114); }
+                    if (!$("#ch-113").is(":checked")) { VV_relat.d3.hideProfil(113); }
+                    
+                    
+                    zoom.scaleTo(svg, 0.7);
+                    VV_relat.d3.update();
+                    
+                    force.linkDistance(function (link) {
+                        return 200;
+                    });
+                    VV_relat.d3.updateLinks();
+                    VV_relat.d3.scaleAndDraw();
+                    $('body').toggleClass('loading');
+                }
+            });
+        },
         updateDataSet:function(datas)
         {
+            $('body').toggleClass('loading');
             var ids = [];
             for (var i2 = nodes.length - 1; i2 >= 0; i2--) {
                 var found = false;
@@ -576,12 +684,13 @@ function redraw() {
                     });
                     VV_relat.d3.updateLinks();
                     VV_relat.d3.scaleAndDraw();
-                    $(".spinner-load").css("display","none");
+                    $('body').toggleClass('loading');
                 }
             });
         },
         updateDataSet2:function(datas)
         {
+            $('body').toggleClass('loading');
             var ids = [];
             for (var i2 = nodes.length - 1; i2 >= 0; i2--) {
                 var found = false;
@@ -653,7 +762,6 @@ function redraw() {
 
                         var title = (obj.p5c332d4d07c805cd14cf24b7 && (obj.p5c332d4d07c805cd14cf24b7!="")?obj.p5c332d4d07c805cd14cf24b7:obj.p5c332d2707c805cd14cf217d);
                         var vNumProf = VV_global.helper.getOldProfId(obj.proto[0]);
-                        console.log(vNumProf);
                         for (var or in obj.relations)
                         {
                             if (VV_relat.d3.nodeExists(obj._id) && VV_relat.d3.nodeExists(obj.relations[or])) {
@@ -720,13 +828,13 @@ function redraw() {
                     //CHECK ORPHANS
                     
                     VV_relat.d3.update();
-                    $(".spinner-load").css("display","none");
+                    $('body').toggleClass('loading');
                 }
             });
         },
         updateDataSetLevel2:function(datas)
         {
-            
+            $('body').toggleClass('loading');
             for (var o in datas)
             {
                 var obj = datas[o];
@@ -816,8 +924,7 @@ function redraw() {
                     //CHECK ORPHANS
                     
                     VV_relat.d3.update();
-                    $(".spinner-load").css("display","none");
-                
+                $('body').toggleClass('loading');
         },
         hideProfil: function (idp) {
             var curEnt = $("#numero_entite").val();
@@ -899,7 +1006,11 @@ function redraw() {
                 }
             );
             
-            
+            //FIGER LES NODES
+            /*svg.selectAll(".node").each(function(d){
+                d.fixed=true;//thsi will fix the node.
+                alert("hj");
+            });*/
 
             
 
@@ -954,8 +1065,10 @@ function redraw() {
                     .text(function (d) { return d.title; });*/
 
                 
-                ncont = node_update.enter().append("g")
-                    .append("svg:text", ".node")
+                
+                var gcont = node_update.enter().append("g").call(drag);
+
+                ncont = gcont.append("svg:text", ".node")
                     .attr("class", "node")
                     .style("fill", "white")
                     .style("width", "100")
@@ -1058,7 +1171,7 @@ function redraw() {
                         VV_relat.d3.expand(d.id, d.idProfil);
                     }, true)
                     .append("i")
-                    .attr("class", "icon ico-open")
+                    .attr("class", "icon ico-plus")
                     .attr("title", "TOTRAD");
                     
                 ncont.append('xhtml:div')
@@ -1117,7 +1230,6 @@ function redraw() {
                                 return "1px solid #12A19A";
                                 break;
                             default:
-                                console.log(d.idProfil);
                                 return "1px solid #333"
                         }
                     })
@@ -1191,7 +1303,6 @@ function redraw() {
         init: function () {
             //VV_relat.relat.updateMapSize();
             //VV_relat.sidebar.init();
-            
             if ($("#page").val() == "2_5") 
             {
                 VV_relat.d3.init();
@@ -1239,7 +1350,7 @@ function redraw() {
                 case "108":
                 case "113":
                 case "114":
-                VV_relat.relat.updateMapSize();
+                    VV_relat.relat.updateMapSize();
                     break;
             }
         }

@@ -7,6 +7,13 @@ mixin mix-sidebar-relat
             a#sidebar-bt-histo.btn.btn-success.purple.btn-icon.navbar-toggle(style='cursor:pointer;', data-target='.header-navigation', data-toggle='collapse', type='button')
                 i.ico-star
     #inner-search.inner.p-10
+        .search_block.widget_block(style="margin:5px;")
+            form.widget_search(autocomplete='off' action='' method='get' style='margin-bottom:20px;')
+                .autocomplete
+                    input#txtSearch.serch_input(type='search' placeholder='Saisissez votre recherche' name='s' value='')
+                button#searchWText.search_btn(type='submit')
+                    i.ico-search2
+                .clear
         form.form-search#search_form(name="search_form", method="post",style="padding:10px;")
             .clearfix
             .row
