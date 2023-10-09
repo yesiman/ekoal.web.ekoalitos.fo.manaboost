@@ -576,14 +576,8 @@ function redraw() {
                     if (!$("#ch-113").is(":checked")) { VV_relat.d3.hideProfil(113); }
                     
                     
-                    zoom.scaleTo(svg, 0.7);
-                    VV_relat.d3.update();
-                    
-                    force.linkDistance(function (link) {
-                        return 200;
-                    });
                     VV_relat.d3.updateLinks();
-                    VV_relat.d3.scaleAndDraw();
+                    VV_relat.d3.update();
                     $('body').toggleClass('loading');
                 }
             });
