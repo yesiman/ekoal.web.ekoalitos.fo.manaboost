@@ -8,6 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
 //
 var s3 = process.env.S3;
 var BOWL_API_URL = process.env.BOWL_API_URL;
+var MODERATION = process.env.MODERATION;
 var BOWL_MEDIA_URL = process.env.BOWL_MEDIA_URL;
 ekit = require('ekoal.npm.ekit');
 var express = require('express')
@@ -95,6 +96,7 @@ app.use('/:lang', function (req, res, next) {
                     footer:{},
                     header:{},
                     s3:s3,
+                    MODERATION:MODERATION,
                     BOWL_MEDIA_URL:BOWL_MEDIA_URL,
                     BOWL_API_URL:BOWL_API_URL,
                     forceTinyCss:(process.env.FORCE_TINY_CSS?process.env.FORCE_TINY_CSS:""),
@@ -110,6 +112,7 @@ app.use('/:lang', function (req, res, next) {
                     footer:{},
                     header:{},
                     s3:s3,
+                    MODERATION:MODERATION,
                     BOWL_MEDIA_URL:BOWL_MEDIA_URL,
                     BOWL_API_URL:BOWL_API_URL,
                 };
