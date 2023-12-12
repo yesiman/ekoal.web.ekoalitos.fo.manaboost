@@ -4,9 +4,10 @@ include mixins/globals/widgets/mix-search-bar.pug
 include mixins/globals/widgets/mix-loader.pug
 include mixins/pages/directory/mix-categ_bowl.pug
 block append styles
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
   link(href='../assets/css/pages/directory_sidebar.css' rel="stylesheet")
   link(href="../assets/css/pages/directory_global.css" rel="stylesheet")
-  link(href="../assets/css/pages/bowl.css" rel="stylesheet")
+  link(href="https://www.boost-ae.net/assets/css/pages/bowl.css" rel="stylesheet")
 block content
   // Page Title
   //section.content_section.page_title
@@ -20,6 +21,30 @@ block content
   // End Page Title
   
   // Our Blog Grids
+  .chat-popup#myChatForm(style="display:none")
+    form.form-container
+      .chat(id="popChat")
+        .chat-title
+          h1 BOOST GPT
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true" onclick="closeChat()">×</button>
+          //h1
+            div
+              input(type="radio"  id=duid+"v4" name=duid+"aiMod" value="langchain"  checked="" )
+              label(for=duid+"v4")= "langchain "
+              input(type="radio"  id=duid+"v1" name=duid+"aiMod" value="openai")
+              label(for=duid+"v1")= "openAI "
+              input(type="radio"  id=duid+"v2" name=duid+"aiMod" value="chatpdf")
+              label(for=duid+"v2")= "chatPdf "
+              input(type="radio"  id=duid+"v3" name=duid+"aiMod" value="modfusion")
+              label(for=duid+"v3")= "modelFusion "
+          figure.avatar
+            img(src='../assets/images/ChatGPT.png')
+        .messages
+          .messages-content
+            
+        .message-box
+          textarea.message-input(rows="1",type='text' placeholder='Saisissez votre message...')
+          button.message-submit() Envoyer
   section.content_section(style="min-height:500px;")
     .content
       .content_spacer.clearfix
@@ -107,6 +132,8 @@ block append scripts
     var olUid = "#{olUid}";
     var BOWL_MEDIA_URL = "#{BOWL_MEDIA_URL}";
   script(src="../assets/js/jquery-ias.min.js")
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
   script(src='../assets/js/pages/directory_sidebar.js')
   script(src='../assets/js/pages/directory_global_v2.js')
+  script(src='https://www.boost-ae.net//assets/js/pages/bowlGpt.js')
 

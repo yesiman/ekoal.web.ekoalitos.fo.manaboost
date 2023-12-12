@@ -66,6 +66,11 @@
               i.in_left.ico-angle-right
               span= trads.t5c5d286275254800049b21d9
               i.in_right.ico-angle-right
+          a.btn_a(href='javascript:void(0)' onclick="vectorize(this,'"+pathDoc+"','"+(title?title.replace('\'', '\\\''):"")+"','"+bh._id+"')")
+            span
+              i.in_left.ico-angle-right
+              span= "Tchater"
+              i.in_right.ico-angle-right
 .navigation(id="navigation-"+oldprotouid)
   .next-page(id="next-page-"+oldprotouid)
     a(href="/"+lang+"/directoryres/"+nextpage+"/" + protouid + "/" + oldprotouid + "?fulltext=" + fulltext + "&param1="+param1+"&param2="+param2+"&param3="+param3+"&param4="+param4+"&param5="+param5+"&param6="+param6+"&param7="+param7+"&param8="+param8+"&param9="+param9+"&scrollid="+scrollid+"&mode="+mode)
