@@ -87,9 +87,12 @@ function moveImage(e,img)
                         
                     }
 
+                    if ($("#page").val() == "2_6") { 
+                        $('.messages-content').mCustomScrollbar();
+                    }
+
                     if ($("#page").val() == "2_7") {
                         $(".docprev img").on("error", function(e) {
-                            console.log($(this).attr("alt"));
                             $(this).remove();
                         });
                     }
@@ -135,6 +138,9 @@ function moveImage(e,img)
                         }
                     });
                     ias.on('rendered',function(e){ 
+                        if ($("#page").val() == "2_6") { 
+                            $('.messages-content').mCustomScrollbar();
+                        }
                         if ($("#page").val() == "2_7") {
                             $(".docprev img").on("error", function(e) {
                                 $(this).remove();
