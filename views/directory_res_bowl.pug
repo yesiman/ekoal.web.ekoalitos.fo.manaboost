@@ -7,7 +7,23 @@
       - var href ="" //'/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
       //AJOUT LIEN VERS DOC EXTERNE
       //- var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
+      
       - var pathDoc = bh._source.external.url.replace("boost.ekoal.org","boost-ae.net")
+      - var inNetworks = false;
+      
+      case bh._source.external.origin
+        when "HRZJj4gBcChJ5PWKQg0D"
+          - pathDoc = "https://www.3aohub.org/"
+          - inNetworks = true
+        when "HBZJj4gBcChJ5PWKQQ3x"
+          - pathDoc = "https://www.boost-ae.net/"
+          - inNetworks = true
+        when "HhZJj4gBcChJ5PWKQg0b"
+          - pathDoc = "https://www.manaboost.net/"
+          - inNetworks = true
+      if inNetworks == true
+        - pathDoc = pathDoc + lang + "/7_102/-1/" + encodeURIComponent(title) + ".html?fname="+ bh._source.file.filename+"&baseu="+pathDoc
+
       .blog_grid_block.clearfix
         //if oldprotouid == 102
         .blog_grid_con

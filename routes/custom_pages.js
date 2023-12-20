@@ -1410,10 +1410,29 @@ function showDetail(req,res,pageProtoPath,pugPage)
 }
 exports.detail = function (req, res) {
     let pageName;
+    let redirect = false;
     switch (req.params.detailuid)
     {
         case "7_102":
             pageName = "detail_doc";
+            console.log("req.params.uid ",req.params.uid );
+            if (req.params.uid == "-1") {
+                redirect = true;
+                var url_parts = url.parse(req.url, true);
+                var query = url_parts.query;
+                ekit.objects.getAll2(req.params.lang,
+                    {
+                        proto:"5c2c4de807c805cd14b33449",
+                        subs:{
+                            p5c332d2907c805cd14cf21ae:query.fname}
+                    },null,{header:0},1,1,null,'front').then((data) => {
+                        return res.redirect(302, query.baseu + req.params.lang + '/7_102/'+JSON.parse(data.data).items[0].objectid+'/' + req.params.libsso + '.html');
+                    
+                })
+                .catch(err => {
+                    console.log("err",err);
+                });
+            }
             break;
         case "7_110":
             pageName = "detail_actu";
@@ -1437,7 +1456,9 @@ exports.detail = function (req, res) {
             pageName = "detail_video";
             break;
     }
-    showDetail(req,res,req.params.detailuid,pageName);
+    if (!redirect) {
+        showDetail(req,res,req.params.detailuid,pageName);
+    }
 }
 
 exports.directoryrelat = function (req, res) {
