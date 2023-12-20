@@ -9,6 +9,7 @@
       //- var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
       
       - var pathDoc = bh._source.external.url.replace("boost.ekoal.org","boost-ae.net")
+      - var pathDocAi = bh._source.external.url.replace("boost.ekoal.org","boost-ae.net")
       - var inNetworks = false;
       
       case bh._source.external.origin
@@ -82,7 +83,7 @@
               i.in_left.ico-angle-right
               span= trads.t5c5d286275254800049b21d9
               i.in_right.ico-angle-right
-          a.btn_a(href='javascript:void(0)' onclick="vectorize(this,'"+pathDoc+"','"+(title?title.replace('\'', '\\\''):"")+"','"+bh._id+"')")
+          a.btn_a(href='javascript:void(0)' onclick="vectorize(this,'"+pathDocAi+"','"+(title?title.replace('\'', '\\\''):"")+"','"+bh._id+"')")
             span
               i.in_left.ico-angle-right
               span= "Tchater"
