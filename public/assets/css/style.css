@@ -735,7 +735,7 @@ textarea:-moz-placeholder { color:#a9a9a9; }
     margin-right: 25px;
     position: relative;
     z-index: 4;
-    margin-top:10px;
+    margin-top:20px;
 }
 #logo > a img {
     display: block;
@@ -1808,7 +1808,7 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 }
 .top_cart {
 	position: absolute;
-	right: 250px;
+	right: 25px;
 	top: 37px;
 }
 .top_search {

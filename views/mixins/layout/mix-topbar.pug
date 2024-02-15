@@ -101,7 +101,8 @@ mixin mix_topbar()
                 .my_col_half.clearfix
                   button#forgot_btn_submit.send_button.f_right.upper(type='submit', name='login')= trads.t5c5d29c075254800049b22b4
               a.popup-with-move-anim.lfc_forget_pass(href='#login-popup')= trads.t5c5d3d1ff52f110004a93ca6
-        span(style="color:#439630;padding:12px;") Plate-forme collaborative pour la transition agroécologique
+        div(style="width: 100%;position: absolute;padding-top: 8px ")
+          span(style="color:#439630;padding:12px;") Plate-forme collaborative pour la transition agroécologique
         .top_details.clearfix.f_right
           .languages-select.languages-drop
             - var langs = ['en','fr','es']
