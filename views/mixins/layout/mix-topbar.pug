@@ -4,7 +4,7 @@ mixin mix_topbar()
   header#site_header
     .topbar
       // class ( topbar_colored  )
-      .content.clearfix
+      .content.clearfix(style="text-align: center !important;")
         .top_details.clearfix.f_left
           if !loged
             span.top_login
@@ -101,6 +101,7 @@ mixin mix_topbar()
                 .my_col_half.clearfix
                   button#forgot_btn_submit.send_button.f_right.upper(type='submit', name='login')= trads.t5c5d29c075254800049b22b4
               a.popup-with-move-anim.lfc_forget_pass(href='#login-popup')= trads.t5c5d3d1ff52f110004a93ca6
+        span(style="color:#439630;padding:12px;") Plate-forme collaborative pour la transition agroécologique
         .top_details.clearfix.f_right
           .languages-select.languages-drop
             - var langs = ['en','fr','es']
@@ -152,8 +153,8 @@ mixin mix_topbar()
             img.logo_dark(src='../assets/images/logo_manaboost.jpg',width="150px", alt='BOOST Logo')
             img.logo_light(src='../assets/images/logo_manaboost.jpg',width="150px", alt='BOOST Text Logo')
         #logo2
-          a(href='/' + lang + '/1/home.html')
-            img.logo_dark(src='../assets/images/logo_texte_seul_'+lang+'.jpg', alt='Cirad Logo')
+          //a(href='/' + lang + '/1/home.html')
+            //img.logo_dark(src='../assets/images/logo_texte_seul_'+lang+'.jpg', alt='Cirad Logo')
         nav#main_nav
           #nav_menu
             span.mobile_menu_trigger

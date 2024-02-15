@@ -753,6 +753,14 @@ app.post('/:lang/cartogeo', function (req, res) {
         if (filters.subs["p5e74f51e307be808ecc68c12"]) { subsActs["p5e74f51e307be808ecc68c12"] = filters.subs["p5e74f51e307be808ecc68c12"]; }
         if (filters.subs["p5e74f5409d74e6e63d7962b7"]) { subsActs["p5e74f5409d74e6e63d7962b7"] = filters.subs["p5e74f5409d74e6e63d7962b7"]; }   
     }
+    else {
+        filters.subs = {};
+    }
+    
+    if (!req.session || !req.session.user)
+    {
+        filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+    }
     
     switch(protoin)
     {

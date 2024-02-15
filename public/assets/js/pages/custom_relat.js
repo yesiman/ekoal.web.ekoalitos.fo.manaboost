@@ -225,7 +225,7 @@ function redraw() {
                     if (!($("#page").val() == "2_3"))
                     {
                         if (!VV_relat.d3.nodeExists($("#numero_entite").val())) {
-                            VV_relat.d3.addNode($("#numero_entite").val(), $("#numero_profil").val(), ($("#page").val().startsWith("2_")?"CIRAD":item.title));
+                            VV_relat.d3.addNode($("#numero_entite").val(), $("#numero_profil").val(), ($("#page").val().startsWith("2_")?"GSDM":item.title));
                         }
                         if (!($("#page").val() == "2_5"))
                         {

@@ -352,7 +352,11 @@ exports.directory_global = function (req, res) {
     {
         filters.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
     }
-
+    //DONNEES EXTRANET
+    if (!req.session || !req.session.user)
+    {
+        filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+    }
     /*var promBSources  = new Promise((resolve, reject) => {
         const params = new URLSearchParams()
         const config = {
@@ -559,6 +563,12 @@ exports.directoryRes = function (req, res) {
     //BOWL MODE BLOCK
     var pugpg = "directory_res";
     
+
+    //DONNEES EXTRANET
+    if (!req.session || !req.session.user)
+    {
+        filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+    }
 
     switch (req.params.protouid)
     {
@@ -787,6 +797,10 @@ exports.directoryRes = function (req, res) {
             project:process.env.EKITSRV_PROJECTUID,
             subs:{lang:req.params.lang}
     
+        }
+        if (!req.session || !req.session.user)
+        {
+            filtersCounts.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
         }
         if (datas.fulltext && (datas.fulltext.length > 0))
         {
@@ -1247,7 +1261,6 @@ function showDetail(req,res,pageProtoPath,pugPage)
                 }   
             }
             //
-            
             filters.ids = (datas.object.version["p5c332d2b07c805cd14cf21dd"]?datas.object.version["p5c332d2b07c805cd14cf21dd"]:[]).concat(
                 (datas.object.version["p5c332d2e07c805cd14cf2221"]?datas.object.version["p5c332d2e07c805cd14cf2221"]:[]),
                 (datas.object.version["p5c332d2f07c805cd14cf223a"]?datas.object.version["p5c332d2f07c805cd14cf223a"]:[]),
@@ -1278,6 +1291,15 @@ function showDetail(req,res,pageProtoPath,pugPage)
                 (datas.object.version["p5e74f51e307be808ecc68c12"]?datas.object.version["p5e74f51e307be808ecc68c12"]:[]),
                 (datas.object.version["p5e74f5409d74e6e63d7962b7"]?datas.object.version["p5e74f5409d74e6e63d7962b7"]:[]),
             );
+
+            if (!req.session || !req.session.user)
+            {
+                if (!filters.subs) { filters.subs = {}; }
+                if (!filters2.subs) { filters.subs = {}; }
+                filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+                filters2.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+            }
+
             if (filters.ids && (filters.ids.length > 0))
             {
                 promsiseIn.push(new Promise((resolve, reject) => {
@@ -1299,6 +1321,7 @@ function showDetail(req,res,pageProtoPath,pugPage)
                         header:0,
                         "header.proto":1
                     },1,1000,null,'front').then((data) => {
+                        console.log("items",JSON.parse(data.data).items);
                         resolve(JSON.parse(data.data).items);
                     })
                     .catch(err => {
