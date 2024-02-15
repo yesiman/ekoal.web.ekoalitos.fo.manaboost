@@ -1295,7 +1295,7 @@ function showDetail(req,res,pageProtoPath,pugPage)
             if (!req.session || !req.session.user)
             {
                 if (!filters.subs) { filters.subs = {}; }
-                if (!filters2.subs) { filters.subs = {}; }
+                if (!filters2.subs) { filters2.subs = {}; }
                 filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
                 filters2.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
             }
