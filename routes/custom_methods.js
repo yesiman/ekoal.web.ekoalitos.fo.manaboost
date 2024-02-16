@@ -21,11 +21,13 @@ exports.recover = function (req, res) {
     //LOAD TEMPLATE
     function onTemplate(data) {
         var rdata = JSON.parse(data.data);
+        var fromDomain = process.env.EKITCLI_DOMAIN;
         var template = rdata;
         var mail = {
             subject:template.version.p5c332e4b07c805cd14cf39a5.replace(regN,process.env.EKITCLI_NETWORK_NAME).replace(regU,process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN),
             body:template.version.p5c332d0d07c805cd14cf1f23.replace(regN,process.env.EKITCLI_NETWORK_NAME).replace(regU,process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN),
             to:req.params.mail,
+            fromDomain:fromDomain
         };
         ekit.auth.recover(mail,onRecover);
     } 
@@ -94,12 +96,14 @@ exports.register = function (req, res) {
             let mail1 = {
                 subject:template1.version.p5c332e4b07c805cd14cf39a5.replace(regN,process.env.EKITCLI_NETWORK_NAME).replace(regU,process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN),
                 body:body.replace(regN,process.env.EKITCLI_NETWORK_NAME).replace(regU,process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN),
+                from:"no_reply@"+process.env.EKITCLI_DOMAIN,
                 to:process.env.EKITCLI_NETWORK_ADMINS
             };
             let mail2 = { 
                 mail: {
                     subject:template2.version.p5c332e4b07c805cd14cf39a5.replace(regN,process.env.EKITCLI_NETWORK_NAME).replace(regU,process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN),
                     body:template2.version.p5c332d0d07c805cd14cf1f23.replace(regN,process.env.EKITCLI_NETWORK_NAME).replace(regU,process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN),
+                    from:"no_reply@"+process.env.EKITCLI_DOMAIN,
                     to:req.params.mail
                 }
             };
