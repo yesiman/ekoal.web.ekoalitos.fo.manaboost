@@ -999,7 +999,8 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	position: relative;
 }
 #main_nav {
-    float: left;
+    float: right;
+    padding-right: 80px;
 }
 #navy li {
     float: left;
@@ -2797,7 +2798,8 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	text-align: right;
 }
 .icon_boxes_con.style2.solid_icon .service_box .service_box_con {
-    padding-left: 105px;
+    padding-left: 0px;
+    padding-top: 10px;
 }
 .icon_boxes_con.style1 .service_box .ser-box-link {
     background: #fff;
@@ -2890,6 +2892,7 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 }
 .icon_boxes_con.style2 .service_box {
     margin-bottom: 60px;
+    text-align: center;
 }
 .icon_boxes_con.style2 .service_box .ser-box-link {
     display: inline-block;
@@ -9562,18 +9565,18 @@ Main Components
 /*------ hm_blog_list ------*/
 .hm_blog_list:not(.hm_blog_full_list) .feature_inner {
     float: left;
-    width: 40%;
+    width: 25%;
 }
 .hm_blog_list .blog_grid_con {
     background: none;
     border: medium none;
     float: left;
     padding: 0 0 0 30px;
-    width: 60%;
+    width: 75%;
 }
 .hm_blog_list .blog_grid_block:not(:last-child) {
     border-bottom: 1px dotted #e9e9e9;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
 }
 .hm_blog_list .blog_grid_block {
     margin-bottom: 50px;
@@ -9888,16 +9891,15 @@ Main Components
 	height: 100%; 
 }
  /*CUSTOM*/
- .service_box img {
+
+
+.service_box img {
     background: none;
-height: 84px;
-line-height: 84px;
-width: 84px;
-top: 0;
-display: block;
-position: absolute;
-text-align: center;
+    height: 134px;
+    top: 0;
+    text-align: center;
 }
+
 /* CUSTOM DEMO */
 .blog_grid_block .feature_inner .feature_inner_corners
 {
@@ -10430,9 +10432,16 @@ span.comment_meta a{
     position: relative;
     text-transform: uppercase;
 }
+
+.enar_occ_title i.infobowl { 
+    color: #333 !important;
+    padding-left: 5px;
+    padding-top: 2px;
+
+}
+
 .occ_expanded .enar_occ_title{
-	color: #fff;
-	background: #279c38;
+	color: #878787;
 	border-color: #279c38;
 }
 .hm_filter_wrapper_con .occ_expanded .enar_occ_title{

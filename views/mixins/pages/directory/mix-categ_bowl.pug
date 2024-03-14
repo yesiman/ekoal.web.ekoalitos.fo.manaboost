@@ -1,10 +1,13 @@
 mixin mix-categ_bowl(categs,title,categid)
     input(id="param"+categid,type="hidden",value="",autocomplete="off")
-    .enar_occ_container(data-expanded='true')
+    - var exp = (categid==30?"true":"false")
+    .enar_occ_container(id="categAcor-"+categid,data-expanded=exp)
         span.enar_occ_title
             = title
-            if (categid == 1)
-                input.checkAllEl(type="checkbox",autocomplete="off")
+            if (categid == 30)
+                a(href="/" + lang + "/7_24/65eaf267f8e3d365c71aad5f/bowl.html" target="_blank")
+                    i.infobowl.ico-question-circle
+                input.checkAllEl(type="checkbox" autocomplete="off")
         .enar_occ_content
             .acc_content
                 ul.cat_list_widget

@@ -351,119 +351,12 @@ exports.directory_global = function (req, res) {
     if (datas.fulltext && (datas.fulltext.length > 0))
     {
         filters.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
+        
     }
-    //DONNEES EXTRANET
-    if (!req.session || !req.session.user)
-    {
-        filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
-    }
-    /*var promBSources  = new Promise((resolve, reject) => {
-        const params = new URLSearchParams()
-        const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        }
-        axios.get(process.env.BOWL_API_URL + "/api/v1/sources", config)
-        .then((result) => {
-            // Do somthing
-            resolve(result.data.hits.hits)
-        })
-        .catch((err) => {
-            reject("nok");
-        })
-    });
-    var promBExtensions  = new Promise((resolve, reject) => {
-        const params = new URLSearchParams()
-        const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        }
-        axios.get(process.env.BOWL_API_URL + "/api/v1/extensions", config)
-        .then((result) => {
-            // Do somthing
-            resolve(result.data.hits.hits);
-        })
-        .catch((err) => {
-            reject("nok");
-        })
-    });
-    var promBCountries  = new Promise((resolve, reject) => {
-        const params = new URLSearchParams()
-        const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        }
-        axios.get(process.env.BOWL_API_URL + "/api/v1/countries", config)
-        .then((result) => {
-            // Do somthing
-            resolve(result.data.hits.hits);
-        })
-        .catch((err) => {
-            reject("nok");
-        })
-    });
-    var promBLanguages  = new Promise((resolve, reject) => {
-        const params = new URLSearchParams()
-        const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        }
-        axios.get(process.env.BOWL_API_URL + "/api/v1/languages", config)
-        .then((result) => {
-            // Do somthing
-            resolve(result.data.hits.hits);
-        })
-        .catch((err) => {
-            reject("nok");
-        })
-    });
-    var promBKeywords  = new Promise((resolve, reject) => {
-        const params = new URLSearchParams()
-        const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        }
-        axios.get(process.env.BOWL_API_URL + "/api/v1/keywords", config)
-        .then((result) => {
-            // Do somthing
-            resolve(result.data.hits.hits);
-        })
-        .catch((err) => {
-            reject("nok");
-        })
-    });
-    var promBProvinces  = new Promise((resolve, reject) => {
-        const params = new URLSearchParams()
-        const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        }
-        axios.get(process.env.BOWL_API_URL + "/api/v1/provinces", config)
-        .then((result) => {
-            // Do somthing
-            resolve(result.data.hits.hits);
-        })
-        .catch((err) => {
-            reject("nok");
-        })
-    });*/
-
     
     var prom_projectsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4dea07c805cd14b33488";
-        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
-            .catch(err => {});
-    });
-    var prom_innosCount = new Promise((resolve, reject) => {
-        var fwp = filters;
-        fwp.proto = "5c2c4dea07c805cd14b3349f";
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -485,15 +378,15 @@ exports.directory_global = function (req, res) {
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
-    var prom_eventsCount = new Promise((resolve, reject) => {
-        var fwp = filters;
-        fwp.proto = "5c2c4deb07c805cd14b334b4";
-        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
-            .catch(err => {});
-    });
     var prom_videosCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5e99ce5d1b088f21c5f20aa0";
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });
+    var prom_agritropCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "63886809fa24617a5dc55c41";
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -502,27 +395,97 @@ exports.directory_global = function (req, res) {
             resolve(JSON.parse(value));
         });
     });
-    //promBSources,promBCountries,promBExtensions,promBKeywords,promBLanguages,promBProvinces
+
+    var promBSources  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bsources." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBExtensions  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bext." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBCountries  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bcountries." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBLanguages  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.blangs." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBKeywords  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bkeywords." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBProvinces  = new Promise((resolve, reject) => {
+        cache.get("5e536d86112f073429f1f23f.bprovinces." + req.session.lang, function (err, value) {
+            resolve(JSON.parse(value));
+        });
+    });
+    var promBowlCount  = new Promise((resolve, reject) => {
+        const params = new URLSearchParams()
+        var paramsJSON = {
+            from:req.params.page-1,
+            size:1,
+            query:"*"
+        };
+
+        var urltmp = process.env.BOWL_API_URL + "/api/v1/search";
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+        axios.post(urltmp, qs.stringify(paramsJSON), config)
+        .then((result) => {
+            resolve(JSON.stringify(result.data.hits.total.value));
+        })
+        .catch((err) => {
+            console.log("err bowl api",err);
+        })
+    });
+
+    
+
     Promise.all([
         prom_projectsCount, 
-        prom_innosCount,
-        prom_documentsCount,
         prom_playersCount,
         prom_newsCount,
-        prom_eventsCount,
         prom_videosCount,
-        prom_categs
+        prom_categs,
+        prom_documentsCount,
+        promBSources,
+        promBExtensions,
+        promBCountries,
+        promBLanguages,
+        promBKeywords,
+        promBProvinces,
+        promBowlCount,
+        prom_agritropCount
         ]
     ).then(function(values) {
         //GET RANDOMS
         datas.projectsCount = values[0];
-        datas.innosCount = values[1];
-        datas.documentsCount = values[2];
-        datas.playersCount = values[3];
-        datas.newsCount = values[4];
-        datas.eventsCount = values[5];
-        datas.videosCount = values[6];
-        datas.categsAll = values[7];
+        datas.playersCount = values[1];
+        datas.newsCount = values[2];
+        datas.videosCount = values[3];
+        datas.categsAll = values[4];
+        datas.documentsCount = values[12];
+        datas.bowlSources = values[6];
+
+        console.log("datas.bowlSources",datas.bowlSources);
+
+        datas.bowlExtensions = values[7];
+        datas.bowlCountries = values[8];
+        datas.bowlLanguages =values[9];
+        datas.bowlKeywords = values[10];
+        datas.bowlProvinces = values[11];
+        datas.agritropCount = values[13];
         res.render(
             "directory_global",
             datas
@@ -546,7 +509,6 @@ function getSource(data,idfield)
 }
 exports.directoryRes = function (req, res) {
     var datas = req.middle;
-    
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     
@@ -560,16 +522,10 @@ exports.directoryRes = function (req, res) {
         subs:{
         }
     };*/
+    
     //BOWL MODE BLOCK
     var pugpg = "directory_res";
-    
-
     //DONNEES EXTRANET
-    if (!req.session || !req.session.user)
-    {
-        filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
-    }
-
     switch (req.params.protouid)
     {
         case "5c2c4de807c805cd14b3345c"://PLAYERS
@@ -591,10 +547,10 @@ exports.directoryRes = function (req, res) {
             }
             break;
         case "5c2c4de807c805cd14b33449"://DOCS
-            if (query.param4 && (query.param4.length>0)  && (query.param4 != "999") && (query.param4 != "undefined"))
+            /*if (query.param4 && (query.param4.length>0)  && (query.param4 != "999") && (query.param4 != "undefined"))
             {
                 filters.subs.p5c332d2507c805cd14cf214f = query.param4;
-            }
+            }*/
             break;
         case "5c2c4dea07c805cd14b33488"://PROJETS
             
@@ -661,7 +617,16 @@ exports.directoryRes = function (req, res) {
             p63886ad9c4add17a7fb9e915:-1
         };
     }
+    //HAL
+    if (req.params.protouid == "6425615d95f9fc51213429b9")
+    {
+        orders = {
+            p6430e2cb56c1eb52aa7044a6:-1
+        };
+    }
+
     
+
     /*
     subs:{
                 $or:
@@ -694,118 +659,18 @@ exports.directoryRes = function (req, res) {
     datas.fulltext = query.fulltext;
     datas.lang = req.params.lang;
     datas.nextpage = Number(req.params.page) + 1;
-    if (req.params.oldprotouid == "200")
-    {
-        if (query.mode == "1") {
-            pugpg = "directory_res_v2";
-        }
-        //
-        pugpg = "directory_res_bowl";
-        //Mode affichage
-        datas.mode =query.mode;
-        //console.log(req.params.page,new Date());
-        //TEST BOWL
-        const params = new URLSearchParams()
-        var paramsJSON = {
-            from:req.params.page-1,
-            size:10,
-            query:((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"*"):"*")
-        };
 
-        var urltmp = process.env.BOWL_API_URL + "/api/v1/search";
-        if (query.scrollid) {
-            paramsJSON.id = query.scrollid;
-            urltmp =process.env.BOWL_API_URL + "/api/v1/scroll";
-        }
-        
-        if (query.param1 && (query.param1.length>0)  && (query.param1 != "999") && (query.param1 != "undefined"))
-        {
-            paramsJSON.sources = query.param1.split("|");
-        }
-        if (query.param2 && (query.param2.length>0)  && (query.param2 != "999") && (query.param2 != "undefined"))
-        {
-            paramsJSON.languages = query.param2.split("|");
-        }
-        if (query.param3 && (query.param3.length>0)  && (query.param3 != "999") && (query.param3 != "undefined"))
-        {
-            paramsJSON.countries = query.param3.split("|");
-        }
-        if (query.param4 && (query.param4.length>0)  && (query.param4 != "999") && (query.param4 != "undefined"))
-        {
-            paramsJSON.extensions = query.param4.split("|");
-        }
-        if (query.param5 && (query.param5.length>0)  && (query.param5 != "999") && (query.param5 != "undefined"))
-        {
-            paramsJSON.provinces = query.param5.split("|");
-        }
-        if (query.param6 && (query.param6.length>0)  && (query.param6 != "999") && (query.param6 != "undefined"))
-        {
-            paramsJSON.keywords = query.param6.split("|");
-        }
-        if (query.pub) {
-            paramsJSON.publishers = query.pub.split("|");
-        }
+    var filtersCounts = {
+        project:process.env.EKITSRV_PROJECTUID,
+        subs:{lang:req.params.lang}
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }
-        
-        axios.post(urltmp, qs.stringify(paramsJSON), config)
-        .then((result) => {
-            datas.bowl = result.data.hits;
-            datas.bowlCounts = JSON.stringify(result.data.counts);
-            datas.bcount = datas.bowl.total.value;
-            datas.scrollid = result.data._scroll_id;
-            datas.param1 = query.param1;
-            datas.param2 = query.param2;
-            datas.param3 = query.param3;
-            datas.param4 = query.param4;
-            datas.param5 = query.param5;
-            datas.param6 = query.param6;
-            cache.get("5e536d86112f073429f1f23f.bsources." + req.session.lang, function (err, value) {
-                var bsources = JSON.parse(value);
-                for (var reli = 0;reli <= datas.bowl.hits.length;reli++) {
-                    if (datas.bowl.hits[reli]) {
-                        for (var reliSources = 0;reliSources <= bsources.length;reliSources++) {
-                            if (bsources[reliSources]._id == datas.bowl.hits[reli]._source.external.origin) {
-                                datas.bowl.hits[reli].custom = {
-                                    origin:bsources[reliSources].lib
-                                }
-                                break;
-                            }
-                        }
-
-                        //console.log(datas.bowl.hits[reli]._source.external.origin);
-                    }
-                    
-                }
-                res.render(
-                    pugpg,
-                    datas);
-            });
-            
-        })
-        .catch((err) => {
-            console.log("err bowl api",err);
-        })
-    
     }
-    else {
-        var filtersCounts = {
-            project:process.env.EKITSRV_PROJECTUID,
-            subs:{lang:req.params.lang}
-    
-        }
-        if (!req.session || !req.session.user)
-        {
-            filtersCounts.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
-        }
-        if (datas.fulltext && (datas.fulltext.length > 0))
-        {
-            filtersCounts.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
-        }
+    if (datas.fulltext && (datas.fulltext.length > 0))
+    {
+        filtersCounts.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
+    }
+
+    if (req.params.page == 1) {
         var prom_projectsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4dea07c805cd14b33488";
@@ -830,13 +695,139 @@ exports.directoryRes = function (req, res) {
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
-        var prom_docsCount = new Promise((resolve, reject) => {
+    
+        var prom_agritropCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
-            fwp.proto = "5c2c4de807c805cd14b33449";
+            fwp.proto = "63886809fa24617a5dc55c41";
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
+    
         });
-        console.log("filters",filters);
+    }
+    
+    
+
+    if (req.params.oldprotouid == "200")
+    {
+        if (query.mode == "1") {
+            pugpg = "directory_res_v2";
+        }
+        //
+        pugpg = "directory_res_bowl";
+        //Mode affichage
+        datas.mode =query.mode;
+        //console.log(req.params.page,new Date());
+        //TEST BOWL
+        const params = new URLSearchParams()
+        var paramsJSON = {
+            from:req.params.page-1,
+            size:10,
+            query:((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"*"):"*")
+        };
+
+        var urltmp = process.env.BOWL_API_URL + "/api/v1/search";
+        if (query.scrollid) {
+            paramsJSON.id = query.scrollid;
+            urltmp =process.env.BOWL_API_URL + "/api/v1/scroll";
+        }
+        
+        if (query.param30 && (query.param30.length>0)  && (query.param30 != "999") && (query.param30 != "undefined"))
+        {
+            paramsJSON.sources = query.param30.split("|");
+        }
+        if (query.param31 && (query.param31.length>0)  && (query.param31 != "999") && (query.param31 != "undefined"))
+        {
+            paramsJSON.languages = query.param31.split("|");
+        }
+        if (query.param32 && (query.param32.length>0)  && (query.param32 != "999") && (query.param32 != "undefined"))
+        {
+            paramsJSON.countries = query.param32.split("|");
+        }
+        if (query.param33 && (query.param33.length>0)  && (query.param33 != "999") && (query.param33 != "undefined"))
+        {
+            paramsJSON.extensions = query.param33.split("|");
+        }
+        if (query.param34 && (query.param34.length>0)  && (query.param34 != "999") && (query.param34 != "undefined"))
+        {
+            paramsJSON.provinces = query.param34.split("|");
+        }
+        
+        /*if (query.pub) {
+            paramsJSON.publishers = query.pub.split("|");
+        }*/
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+        axios.post(urltmp, qs.stringify(paramsJSON), config)
+        .then((result) => {
+            datas.bowl = result.data.hits;
+            datas.bowlCounts = JSON.stringify(result.data.counts);
+            datas.bcount = datas.bowl.total.value;
+            datas.scrollid = result.data._scroll_id;
+            datas.param30 = query.param30;
+            datas.param31 = query.param31;
+            datas.param32 = query.param32;
+            datas.param33 = query.param33;
+            datas.param34 = query.param34;
+            datas.param35 = query.param35;
+            cache.get("5e536d86112f073429f1f23f.bsources." + req.session.lang, function (err, value) {
+                var bsources = JSON.parse(value);
+                for (var reli = 0;reli <= datas.bowl.hits.length;reli++) {
+                    if (datas.bowl.hits[reli]) {
+                        for (var reliSources = 0;reliSources <= bsources.length;reliSources++) {
+                            if (bsources[reliSources]._id == datas.bowl.hits[reli]._source.external.origin) {
+                                datas.bowl.hits[reli].custom = {
+                                    origin:bsources[reliSources].lib
+                                }
+                                break;
+                            }
+                        }
+
+                        //console.log(datas.bowl.hits[reli]._source.external.origin);
+                    }
+                    
+                }
+        
+                if (req.params.page == 1) {    
+                    Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_agritropCount]).then(function(values) {
+                        datas.countActs = values[1];
+                        datas.countPrjs = values[0];
+                        datas.countNews = values[2];
+                        datas.countVideos = values[3];
+                        datas.countAgritrop = values[4];
+                        datas.param1 = query.param1;
+                        datas.param2 = query.param2;
+                        datas.param3 = query.param3;
+                        datas.param4 = query.param4;
+                        datas.param5 = query.param5;
+                        datas.param6 = query.param6;
+                        datas.param7 = query.param7;
+                        datas.param8 = query.param8;
+                        datas.param9 = query.param9;
+            
+                        res.render(
+                            pugpg,
+                            datas);
+                    }) 
+                }
+                else {
+                    res.render(
+                        pugpg,
+                        datas);
+                }
+            });
+            
+        })
+        .catch((err) => {
+            console.log("err bowl api",err);
+        })
+    
+    }
+    else {
+        
         var prom_results = new Promise((resolve, reject) => {
             ekit.objects.getAll2(req.params.lang,filters,orders,{
                 p5c332d2707c805cd14cf217d:1,
@@ -857,6 +848,12 @@ exports.directoryRes = function (req, res) {
                 p63886ad9c4add17a7fb9e915:1, //ANNEE AGRITROP
                 p6388696dd2adb27a5f903221:1, //PUBLICHER AGRITROP
                 p63886c61fa24617a5dc55c61:1,
+                p63fee423b8e876171a93454f:1,
+                p642561c53da84851141518c7:1, //HAL TITRE 
+                p64268ac2cbafd30225a8c9d9:1, //HAL RESUME
+                p64268ab6915e9b022c709f81:1,
+                p6430e2aef5b81f52842ebf94:1,
+                p6430e2cb56c1eb52aa7044a6:1,
                 header:0
             },req.params.page,10,null,'front').then((data) => {
                 resolve(JSON.parse(data.data));
@@ -865,15 +862,78 @@ exports.directoryRes = function (req, res) {
                 
             });
         });
-        Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_docsCount]).then(function(values) {
-            datas.count = values[4].count;
-            datas.items = values[4].items;
 
-            datas.countActs = values[1];
-            datas.countPrjs = values[0];
-            datas.countNews = values[2];
-            datas.countVideos = values[3];
-            datas.countDocs = values[5];
+        //BOWL COUNT
+        var prom_bCount = new Promise((resolve, reject) => {
+            var paramsJSON = {
+                from:0,
+                size:1,
+                query:((datas.fulltext && (datas.fulltext.length > 0))?(query.fulltext && (query.fulltext!="undefined")?query.fulltext:"*"):"*")
+            };
+    
+            var urltmp = process.env.BOWL_API_URL + "/api/v1/search";
+            
+            if (query.param30 && (query.param30.length>0)  && (query.param30 != "999") && (query.param30 != "undefined"))
+            {
+                paramsJSON.sources = query.param30.split("|");
+            }
+            if (query.param31 && (query.param31.length>0)  && (query.param31 != "999") && (query.param31 != "undefined"))
+            {
+                paramsJSON.languages = query.param31.split("|");
+            }
+            if (query.param32 && (query.param32.length>0)  && (query.param32 != "999") && (query.param32 != "undefined"))
+            {
+                paramsJSON.countries = query.param32.split("|");
+            }
+            if (query.param33 && (query.param33.length>0)  && (query.param33 != "999") && (query.param33 != "undefined"))
+            {
+                paramsJSON.extensions = query.param33.split("|");
+            }
+            if (query.param34 && (query.param34.length>0)  && (query.param34 != "999") && (query.param34 != "undefined"))
+            {
+                paramsJSON.provinces = query.param34.split("|");
+            }
+            
+            /*if (query.pub) {
+                paramsJSON.publishers = query.pub.split("|");
+            }*/
+    
+            const config = {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+            axios.post(urltmp, qs.stringify(paramsJSON), config)
+            .then((result) => {
+                resolve(result.data.hits.total.value);
+            })
+            .catch((err) => {
+                console.log("err bowl api",err);
+            })
+        });
+
+        let arr = [prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_bCount,prom_agritropCount];
+        //On ne recompte pas
+        if (req.params.page > 1) {
+            arr = [prom_results];
+        }
+        Promise.all(arr).then(function(values) {
+            if (req.params.page > 1) {
+                datas.count = values[0].count;
+                datas.items = values[0].items;
+            }
+            else {
+                datas.count = values[4].count;
+                datas.items = values[4].items;
+
+                datas.countActs = values[1];
+                datas.countPrjs = values[0];
+                datas.countNews = values[2];
+                datas.countVideos = values[3];
+                datas.bcount = values[5];
+                datas.countAgritrop = values[6];
+            }
+            
             datas.param1 = query.param1;
             datas.param2 = query.param2;
             datas.param3 = query.param3;

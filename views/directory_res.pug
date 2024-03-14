@@ -1,10 +1,12 @@
 .col-xs-12(id="results-"+oldprotouid)
-  //if bowl
+  if bowl
+    input#ebowlCounters(type="hidden",value=bowlCounts)
     for bh in bowl.hits
       - var title= bh._source.meta.title
       - var uri = encodeURIComponent(title)
       - var href ="" //'/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
-      - var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
+      //- var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
+      - var pathDoc = bh._source.external.url
       .blog_grid_block.clearfix
         //
           <a href="#" class="blog_list_format">
@@ -17,7 +19,7 @@
                 //iframe(src=item.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
           when "102"
                 a.docprev(href=href,onmousemove="moveImage(event,'i"+"item.objectid"+"')")
-                  img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name',style="width:20%;float: left;")
+                  img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
                 img(id="ie"+"item.objectid",style="position: absolute;z-index: 1;",src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
           default
             .feature_inner
@@ -35,15 +37,15 @@
             span.meta-part
               a(href="#")
                 i.ico-users
-                span= (bh._source.meta.author?bh._source.meta.author:"N/A")
+                span= (bh._source.meta.author?bh._source.meta.author:"Inconnu")
             span.meta-part
               a(href="#")
                 i.ico-flag
-                span= (bh._source.meta.language?bh._source.meta.language:"N/A")
+                span= (bh._source.meta.language?bh._source.meta.language:"Inconnu")
             span.meta-part
               a(href="#")
                 i.ico-file
-                span= (bh._source.file.extension?bh._source.file.extension:"N/A")
+                span= (bh._source.file.extension?bh._source.file.extension:"Inconnu")
             span.meta-part
               a(href="#")
                 i.ico-note
@@ -100,10 +102,12 @@
             //<v-card-text  class="pb-0"><img src="img/icons/shuffle.svg" width="12" height="12" > &nbsp;{{card.source}}</v-card-text>
   if items
     for item in items
-      - var title= (item.p5c332d2707c805cd14cf217d?item.p5c332d2707c805cd14cf217d:"") + (item.p5c332d0b07c805cd14cf1ef5?item.p5c332d0b07c805cd14cf1ef5:"")
+      - var title= (item.p5c332d2707c805cd14cf217d?item.p5c332d2707c805cd14cf217d:"") + (item.p5c332d0b07c805cd14cf1ef5?item.p5c332d0b07c805cd14cf1ef5:"") + (item.p63886854fa24617a5dc55c43?item.p63886854fa24617a5dc55c43:"")
       - var uri = encodeURIComponent(title)
       - var href ='/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
-      .blog_grid_block.clearfix
+      if oldprotouid == 117
+        - addClass = "bowl"
+      .blog_grid_block.clearfix(class=addClass)
         //
           <a href="#" class="blog_list_format">
           <i class="ico-image4"></i>
@@ -114,9 +118,13 @@
               .embed-container
                 iframe(src=item.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
           when "102"
-                a.docprev(href=href,onmousemove="moveImage(event,'i"+item.objectid+"')")
-                  img(src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.jpg"), alt='Project Name')
-                img(id="i"+item.objectid,style="position: absolute;z-index: 1;",src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.jpg"), alt='Project Name')
+            a.docprev(href=href,onmousemove="moveImage(event,'i"+item.objectid+"')")
+              img(src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name')
+            img(id="i"+item.objectid,style="position: absolute;z-index: 1;",src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name')
+          when "117"
+            = ""
+          when "118"
+            = ""
           default
             .feature_inner
               .feature_inner_corners
@@ -124,13 +132,59 @@
                   a.icon_link(href=href)
                     i.ico-link3
                 a.feature_inner_ling(href=href)
-                  img(src=(item.p5c332d1907c805cd14cf2042 && (item.p5c332d1907c805cd14cf2042.length > 0)?s3 + item.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.jpg"), alt='Post Title')
+                  img(src=(item.p5c332d1907c805cd14cf2042 && (item.p5c332d1907c805cd14cf2042.length > 0)?s3 + item.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.png"), alt='Post Title')
+        
         if oldprotouid == 102
           .blog_grid_con(style="width:80%;")
             h6.title
               a(href=href)= title
             p.desc= item.p5c332d2807c805cd14cf2194
             a.btn_a(href=href)
+              span
+                i.in_left.ico-angle-right
+                span= trads.t5c5d286275254800049b21d9
+                i.in_right.ico-angle-right
+        else if oldprotouid == 117
+          - var links = item.p6388686dfa24617a5dc55c4a.split(",")
+          - var ressources = item.p6388693cfa24617a5dc55c51.split(",")
+          .blog_grid_con
+            if (item.p63fee423b8e876171a93454f && (item.p63fee423b8e876171a93454f.indexOf("openAccess") > -1))
+              a.docprev(href=ressources[ressources.length-2] target="_blank" )
+                img(style="float:right;height:50px;" src=links[0]+"1.hassmallThumbnailVersion/preview.pdf", alt=title)
+            h6.title
+              a(href=links[0], target="_blank")= title
+            span.metas= (item.p63886961d2adb27a5f90321a?item.p63886961d2adb27a5f90321a + ", ":" ") + (item.p63886ad9c4add17a7fb9e915?item.p63886ad9c4add17a7fb9e915 + ", ":" ") + item.p6388696dd2adb27a5f903221
+            //span.meta(style="display:block;margin-top:10px;")
+              span.meta-part
+                a(href="javascript:void(0)")
+                  i.ico-users
+            p.desc= (item.p63886b3ad2adb27a5f903236?item.p63886b3ad2adb27a5f903236.substring(0,500) + (item.p63886b3ad2adb27a5f903236.length>500?"...":""):"")
+            
+            //p.desc= (item.p63886b3ad2adb27a5f903236?item.p63886b3ad2adb27a5f903236:"")
+            //a.btn_a(href=item.p6388686dfa24617a5dc55c4a, target="_blank")
+              span
+                i.in_left.ico-angle-right
+                span= trads.t5c5d286275254800049b21d9
+                i.in_right.ico-angle-right
+        else if oldprotouid == 118
+          //- var links = item.p6388686dfa24617a5dc55c4a.split(",")
+          //- var ressources = item.p6388693cfa24617a5dc55c51.split(",")
+          .blog_grid_con
+            if (item.p6430e2aef5b81f52842ebf94)
+              a.docprev(href=item.p64268ab6915e9b022c709f81 target="_blank" )
+                img(style="float:right;height:50px;" src="//thumb.ccsd.cnrs.fr/"+item.p6430e2aef5b81f52842ebf94+"/medium", alt=title)
+            h6.title
+              a(href=item.p64268ab6915e9b022c709f81, target="_blank")= item.p642561c53da84851141518c7
+            span.metas= moment(item.p6430e2cb56c1eb52aa7044a6).format('DD/MM/YYYY HH:mm')
+            //span.meta(style="display:block;margin-top:10px;")
+              span.meta-part
+                a(href="javascript:void(0)")
+                  i.ico-users
+            //p.desc= item.p64268ac2cbafd30225a8c9d9.toString()
+            p.desc= (item.p64268ac2cbafd30225a8c9d9?item.p64268ac2cbafd30225a8c9d9.toString().substring(0,500) + (item.p64268ac2cbafd30225a8c9d9.length>500?"...":""):"")
+            
+            //p.desc= (item.p63886b3ad2adb27a5f903236?item.p63886b3ad2adb27a5f903236:"")
+            //a.btn_a(href=item.p6388686dfa24617a5dc55c4a, target="_blank")
               span
                 i.in_left.ico-angle-right
                 span= trads.t5c5d286275254800049b21d9
@@ -157,4 +211,5 @@ block append scripts
     var countPrjs = "#{countPrjs}";
     var countNews = "#{countNews}";
     var countVideos = "#{countVideos}";
-    var countDocs = "#{countDocs}";
+    var bcount = "#{bcount}";
+    var countAgritrop = "#{countAgritrop}";

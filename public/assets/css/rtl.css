@@ -57,7 +57,8 @@ html {
 	direction: rtl
 }
 #main_nav {
-	float: right
+    float: right;
+    padding-right: 80px;
 }
 #navy li {
 	float: right

@@ -1,13 +1,14 @@
 .col-xs-12(id="results-"+oldprotouid)
   if bowl
     input#ebowlCounters(type="hidden",value=bowlCounts)
-    for bh in bowl.hits
+    
+    for bh,index in bowl.hits
       - var title= bh._source.meta.title
       - var uri = encodeURIComponent(title)
       - var href ="" //'/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
       //AJOUT LIEN VERS DOC EXTERNE
       //- var pathDoc = bh._source.path.virtual.replace("/usr/src/app/","https://boost-search.cirad.fr/")
-      
+
       - var pathDoc = bh._source.external.url.replace("boost.ekoal.org","boost-ae.net")
       - var pathDocAi = bh._source.external.url.replace("boost.ekoal.org","boost-ae.net")
       - var inNetworks = false;
@@ -18,6 +19,7 @@
           - inNetworks = true
         when "HBZJj4gBcChJ5PWKQQ3x"
           - pathDoc = "https://www.boost-ae.net/"
+          //- pathDoc = "http://localhost:3003/"
           - inNetworks = true
         when "HhZJj4gBcChJ5PWKQg0b"
           - pathDoc = "https://www.manaboost.net/"
@@ -25,9 +27,13 @@
       if inNetworks == true
         - pathDoc = pathDoc + lang + "/7_102/-1/" + encodeURIComponent(title) + ".html?fname="+ bh._source.file.filename+"&baseu="+pathDoc
 
-      .blog_grid_block.clearfix
+      
+
+      
+      .blog_grid_block.clearfix.bowl
         //if oldprotouid == 102
         .blog_grid_con
+          //= bh._id
           a.docprev(style="padding-right:5px;display:inline;float:left;" href=pathDoc,target="_blank",onmousemove="moveImage(event,'i"+"item.objectid"+"')")
             div(style="height:80px;width:80px;background-repeat: no-repeat;background-size: contain;background-image:url('"+BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail+"');")
               //img(src=, alt='Project Name')
@@ -73,21 +79,105 @@
                 //- iint = document.getElementById(bh._source.external.origin)
                 span= bh.custom.origin
           p.v-card__text!= (bh.highlight?bh.highlight.content:"")
+
+          //a.btn_a(href='javascript:void(0)' onclick="VV_dir_global.gpt.openChat(this,'"+bh._id+"')")
+            span
+              i.in_left.ico-angle-right
+              span=" "
+              img(src="../assets/images/ChatGPT.png", alt='GPT', height="30")
+              i.in_right.ico-angle-right
           a.btn_a(href='javascript:void(0)' onclick="VV_dir_global.bowl.addCart('"+bh._id+"')")
             span
               i.in_left.ico-angle-right
               span= "Panier"
               i.in_right.ico-angle-right
+          //
           a.btn_a(href=pathDoc)
             span
               i.in_left.ico-angle-right
               span= trads.t5c5d286275254800049b21d9
               i.in_right.ico-angle-right
+          //
           a.btn_a(href='javascript:void(0)' onclick="vectorize(this,'"+pathDocAi+"','"+(title?title.replace('\'', '\\\''):"")+"','"+bh._id+"')")
             span
               i.in_left.ico-angle-right
               span= "Chat GPT"
               i.in_right.ico-angle-right
+          //
+          //if ((bh._id == "HxjYmogBcChJ5PWKoih6") || (bh._id == "9JRr1ogBcChJ5PWKQhSI") || (bh._id == "qxcQk4gBcChJ5PWKpAzX") || (bh._id == "9r2BU4oBcChJ5PWKUtE2") || (bh._id == "ARcGlYgBcChJ5PWKglYX") || (bh._id == "SBYtkYgBcChJ5PWK-MlD")  || (bh._id == "v-Cpx4sBixRO2PROZnK6")  || (bh._id == "ueCox4sBixRO2PROsnJR") || (bh._id == "AuCox4sBixRO2PROGm9S") || (bh._id == "AeCnx4sBixRO2PROam8E") || (bh._id == "3uCmx4sBixRO2PROz2jL"))
+            - var duid = ""
+            - var aimodule = ""
+              case bh._id
+                when "3uCmx4sBixRO2PROz2jL"
+                  - duid = "68123bb7-9daf-4498-b0a7-a25704c104cd"
+                  - chatpdfUid = "JIwkmBBdjWqTMEGgY7N7C"
+                  - aimodule = "openai"
+                when "AeCnx4sBixRO2PROam8E"
+                  - duid = "7b93c201-59cf-4691-ffb6-feac6de5686d"
+                  - chatpdfUid = "EJYTkWiqsN2snnmcP8OGP"
+                  - aimodule = "openai"
+                when "AuCox4sBixRO2PROGm9S"
+                  - duid = "d5fcc7db-5355-4085-83da-dacd5639ca84"
+                  - chatpdfUid = "TTIh9UVTWyCHJtXpX7iXe"
+                  - aimodule = "openai"
+                when "ueCox4sBixRO2PROsnJR"
+                  - duid = "f51c78bf-c820-427a-bb69-f1c26690c2e9"
+                  - chatpdfUid = "olf4pM6FJ6JIP8BpFtjAH"
+                  - aimodule = "openai"
+                when "v-Cpx4sBixRO2PROZnK6"
+                  - duid = "8ec47760-da39-445a-d627-afbc1e858182"
+                  - chatpdfUid = "NQUiXVPZqCbfG2TYREUFG"
+                  - aimodule = "openai"
+                when "HxjYmogBcChJ5PWKoih6"
+                  - duid = "FAOFetL"
+                  - chatpdfUid = "HRiVxr5A54wu4d0cam5Gd"
+                  - aimodule = "openai"
+                when "qxcQk4gBcChJ5PWKpAzX"
+                  - duid = "8861502f-6b31-4fc2-95e9-2b2e42a333b9"
+                  - chatpdfUid = "HRiVxr5A54wu4d0cam5Gd"
+                  - aimodule = "openai"
+                when "9JRr1ogBcChJ5PWKQhSI"
+                  - duid = "79e6f804-59f2-4bdf-f77a-06f519a70335"
+                  - chatpdfUid = "vFbElippSourwQTZW3R4l"
+                  - aimodule = "openai"
+                when "9r2BU4oBcChJ5PWKUtE2"
+                  - duid = "7fd26b22-8b36-4ff9-e17a-e52c278ee8c8"
+                  - chatpdfUid = "90flZg6gHVVmlH4z8CyPk"
+                  - aimodule = "openai"
+                when "ARcGlYgBcChJ5PWKglYX"
+                  - duid = "556__Volume_3_Chapitre_1_final"
+                  - chatpdfUid = "dRRfa4NoDU3mZl90zH5PJ"
+                  - aimodule = "chatpdf"
+                when "SBYtkYgBcChJ5PWK-MlD"
+                  - duid = "1493264992_linking-sustainable-and-agroecological-production-with-markets"
+                  - chatpdfUid = "bQ1OAmbdGL22QVZfWnLeX"
+                  - aimodule = "chatpdf"
+            //.chat(id=duid,chatpdfUid=chatpdfUid,duid=duid)
+              .chat-title
+                h1 BOOST GPT
+                h1
+                  div
+                    input(type="radio"  id=duid+"v4" name=duid+"aiMod" value="langchain"  checked="" )
+                    label(for=duid+"v4")= "langchain "
+                    input(type="radio"  id=duid+"v1" name=duid+"aiMod" value="openai")
+                    label(for=duid+"v1")= "openAI "
+                    input(type="radio"  id=duid+"v2" name=duid+"aiMod" value="chatpdf")
+                    label(for=duid+"v2")= "chatPdf "
+                    input(type="radio"  id=duid+"v3" name=duid+"aiMod" value="modfusion")
+                    label(for=duid+"v3")= "modelFusion "
+                figure.avatar
+                  img(src='../assets/images/ChatGPT.png')
+              .messages
+                .messages-content
+                  .message.new 
+                    <figure class="avatar"><img src="../assets/images/ChatGPT.png"></figure>
+                    = "Posez moi vos questions sur le document!"
+                  //.message.message-personal.new klmkmlk
+              .message-box
+                textarea.message-input(type='text' placeholder='Saisissez votre message...' onkeypress="onPress('user','"+duid+"','"+chatpdfUid+"')")
+                button.message-submit(onclick="insertMessage('user','"+duid+"','"+aimodule+"')") Envoyer
+            .bg
+
 .navigation(id="navigation-"+oldprotouid)
   .next-page(id="next-page-"+oldprotouid)
     a(href="/"+lang+"/directoryres/"+nextpage+"/" + protouid + "/" + oldprotouid + "?fulltext=" + fulltext + "&param1="+param1+"&param2="+param2+"&param3="+param3+"&param4="+param4+"&param5="+param5+"&param6="+param6+"&param7="+param7+"&param8="+param8+"&param9="+param9+"&scrollid="+scrollid+"&mode="+mode)
@@ -96,3 +186,8 @@ block append scripts
   script.
     var rescount = "#{count}";
     var bcount = "#{bcount}";
+    var countActs = "#{countActs}";
+    var countPrjs = "#{countPrjs}";
+    var countNews = "#{countNews}";
+    var countVideos = "#{countVideos}";
+    var countAgritrop = "#{countAgritrop}";
