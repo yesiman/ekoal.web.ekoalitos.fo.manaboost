@@ -827,7 +827,6 @@ exports.directoryRes = function (req, res) {
     
     }
     else {
-        
         var prom_results = new Promise((resolve, reject) => {
             ekit.objects.getAll2(req.params.lang,filters,orders,{
                 p5c332d2707c805cd14cf217d:1,

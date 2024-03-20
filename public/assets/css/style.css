@@ -9910,7 +9910,7 @@ Main Components
 }
 .blog_grid_block .blog_grid_con
 {
-    height: 230px;
+    /*height: 230px;*/
 }
 section.content_section.projects .blog_grid_block .blog_grid_con
 {
