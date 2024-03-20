@@ -665,6 +665,13 @@ exports.directoryRes = function (req, res) {
         subs:{lang:req.params.lang}
 
     }
+
+    if (!req.session || !req.session.user)
+    {
+        filtersCounts.subs.p65af5f4f551ef6729af8daff = 
+            filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+    }
+
     if (datas.fulltext && (datas.fulltext.length > 0))
     {
         filtersCounts.text = (query.fulltext && (query.fulltext!="undefined")?query.fulltext:"");
@@ -707,7 +714,7 @@ exports.directoryRes = function (req, res) {
     
     
 
-    if (req.params.oldprotouid == "200")
+    if (req.params.oldprotouid == "102")
     {
         if (query.mode == "1") {
             pugpg = "directory_res_v2";
@@ -827,6 +834,9 @@ exports.directoryRes = function (req, res) {
     
     }
     else {
+
+        
+
         var prom_results = new Promise((resolve, reject) => {
             ekit.objects.getAll2(req.params.lang,filters,orders,{
                 p5c332d2707c805cd14cf217d:1,
