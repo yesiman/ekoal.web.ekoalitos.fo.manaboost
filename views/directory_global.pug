@@ -111,6 +111,10 @@ block content
                   button#searchsubmit.search_btn(type='submit')
                     i.ico-search2
                   .clear
+                  if loged
+                    .minae(style="display:block;margin:5px;")
+                      input(type="checkbox")
+                      = trads.t660bb62444d0f07f57e1a379
               //button#help.help_btn(style="display: inline-block;width: 50px;float: right;height: 39px;")
                 i.ico-question(style="color:#eb3030;")
                   
@@ -334,4 +338,5 @@ block append scripts
   script(src="../assets/js/jquery-ias.min.js")
   script(src='https://www.boost-ae.net//assets/js/pages/directory_sidebar.js')
   script(src='https://www.boost-ae.net//assets/js/pages/directory_global.js')
+  //script(src='../assets/js/pages/directory_global.js')
   script(src='https://www.boost-ae.net//assets/js/pages/bowlGpt.js')

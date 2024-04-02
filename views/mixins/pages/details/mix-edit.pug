@@ -1,5 +1,5 @@
 mixin mix-edit(protoUID,objectUID)
 	if (loged && user)
-		if ((user.sa == true) || (user.sad == true))
+		if (user.sa == true) || (user.sad == true) || (user.sa == "true") || (user.sad == "true") || (object.owner == user._id)
 			a(href="/" + lang +"/objects/"+projectUID + "/"+protoUID+"?aouid=" + objectUID)
 				button.btn.btn-primary= trads.t636e00be2d5c094729393f89

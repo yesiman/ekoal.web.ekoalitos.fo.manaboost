@@ -386,6 +386,7 @@ exports.directory_global = function (req, res) {
     });
     var prom_agritropCount = new Promise((resolve, reject) => {
         var fwp = filters;
+        fwp.project = "5e536d86112f073429f1f23f";
         fwp.proto = "63886809fa24617a5dc55c41";
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
@@ -613,6 +614,7 @@ exports.directoryRes = function (req, res) {
     //AGRITROP
     if (req.params.protouid == "63886809fa24617a5dc55c41")
     {
+        filters.project = "5e536d86112f073429f1f23f";
         orders = {
             p63886ad9c4add17a7fb9e915:-1
         };
@@ -666,6 +668,12 @@ exports.directoryRes = function (req, res) {
 
     }
 
+
+    if (query.minae && (query.minae!="undefined") && (query.minae == "true")){ 
+        filtersCounts.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+        filters.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+    }
+
     if (!req.session || !req.session.user)
     {
         filtersCounts.subs.p65af5f4f551ef6729af8daff = 
@@ -706,6 +714,7 @@ exports.directoryRes = function (req, res) {
         var prom_agritropCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "63886809fa24617a5dc55c41";
+            fwp.project = "5e536d86112f073429f1f23f";
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
     
@@ -814,6 +823,7 @@ exports.directoryRes = function (req, res) {
                         datas.param7 = query.param7;
                         datas.param8 = query.param8;
                         datas.param9 = query.param9;
+                        datas.minae = query.minae;
             
                         res.render(
                             pugpg,
@@ -952,7 +962,7 @@ exports.directoryRes = function (req, res) {
             datas.param7 = query.param7;
             datas.param8 = query.param8;
             datas.param9 = query.param9;
-
+            datas.minae = query.minae;
             res.render(
                 pugpg,
                 datas);

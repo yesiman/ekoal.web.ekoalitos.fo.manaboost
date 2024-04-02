@@ -13,7 +13,7 @@ function moveImage(e,img)
     VV_dir_global.$document = $(document);
     VV_dir_global.$document_body = $(document.body);
     VV_dir_global.$window = $(window);
-
+    
     VV_dir_global.bowl = {
         addCart: function (uid) {
             var exist = false;
@@ -34,6 +34,7 @@ function moveImage(e,img)
     }
 
     VV_dir_global.init = function () {
+        let init102 = false;
         VV_dir_global.datas.curoldid = oldid;
         /* */
         function autocomplete(inp, arr) {
@@ -173,7 +174,9 @@ function moveImage(e,img)
             //location.href = '/'+$("#lang").val()+'/2/'+VV_dir_global.datas.curoldid+'/global.html?fulltext='+$("#s.serch_input").val().trim();
             //return false;
         });
+
         $('.search_btn').on('click', function(e) {
+
             //var closForm = $(this).closest("form");
             //var input = $(closForm).children(".serch_input");
             if (e.preventDefault) e.preventDefault();
@@ -182,22 +185,66 @@ function moveImage(e,img)
             //location.href = '/'+$("#lang").val()+'/2/'+VV_dir_global.datas.curoldid+'/global.html?fulltext='+$("#s.serch_input").val().trim();
             //return false;
         });
+        function initalize102() {
+            if (init102 == false) {
+                $(".checkAllEl").each(function(i) {
+                    this.addEventListener('click', function(e) {
+                        var checkOrNot = $(this).is(":checked");
+                        var contain = $(this).parent().parent();
+                        var param = $(contain).prev();
+                        e.stopPropagation();
+                        var concat = "";
+
+                        $(contain).find("li").each(function(i) { 
+                            if ($(param).val().indexOf($(this).attr("id").replace("categ",""))>-1) {
+                                if (!checkOrNot) {
+                                    VV_dir_sb.categs.add("30",$(this).attr("id").replace("categ",""),false);
+                                }
+                            }
+                            else 
+                            {VV_dir_sb.categs.add("30",$(this).attr("id").replace("categ",""),false);}
+                            
+                        });
+                        VV_dir_global.datas.load("#prof102");            
+                    });
+                });
+                $(".checkAllEl").trigger("click");
+                init102 = true;
+            }
+        }
         $(".tabs-navi li").click(function (e) {
-            VV_dir_global.datas.load("#" + e.currentTarget.id);
+            if(e.currentTarget.id == "prof102") {
+                VV_dir_global.datas.curoldid = "102";
+                initalize102();
+                VV_dir_global.datas.load("#prof102");
+                
+                
+            }
+            else {
+                VV_dir_global.datas.load("#" + e.currentTarget.id);
+            }
+            
         });
-        VV_dir_global.datas.load("#prof"+VV_dir_global.datas.curoldid);
+        if (VV_dir_global.datas.curoldid=="102") {
+            initalize102();
+        }
+        else {
+            VV_dir_global.datas.load("#prof"+VV_dir_global.datas.curoldid);
+        }
+        
     }
     VV_dir_global.datas = {
         curoldid:"108",
         tabloaded:{},
         updateCatBowlCounts(data) {
             for (const key in data) {
-                $("#b"+key.replace(/\s/g,'__')).html(data[key]);
+                $("#b"+key.replace(/\s/g,'_1').replace(/\//g,'_2').replace(/\(/g,'_3').replace(/\)/g,'_4').replace(/\,/g,'_5')).html(data[key]);
             }
         },
         getParamaVar(catid) {
+            if (!$("#param"+catid).val()) {return "";}
             var ret = "&param"+catid+"=";
-            var hasParmaval = ($("#param"+catid).val().length > 3);
+            var hasParmaval = (($("#param"+catid).val().length > 0) && ($("#param"+catid).val() != "999"));
             /*
             if ($("#checkAll"+catid).is(":checked"))
             {
@@ -215,7 +262,6 @@ function moveImage(e,img)
             return ret;
         },
         load: function (target) {
-            
             jQuery.ias().destroy();
             var idP = target.replace("#prof", "");
             var spin = '<div class="custloader"><div class="dot1"></div><div class="dot2"></div></div>';
@@ -226,26 +272,39 @@ function moveImage(e,img)
             var idPreal = "";
             idPreal = VV_global.helper.getNewProfId(idP);
 
+
+            
+
             var urll = "/" + $("#lang").val()+'/directoryres/1/' + idPreal + "/" + idP + "?fulltext="+$("#s.serch_input").val().trim();
+            
+            //MANABOOST -> COCHE FILTRE MINAE
+            if ($('.minae input').length > 0) {
+                urll+="&minae="+$('.minae input').is(':checked');
+            }
+
             
             urll+=VV_dir_global.datas.getParamaVar("1");
             urll+=VV_dir_global.datas.getParamaVar("2");
             urll+=VV_dir_global.datas.getParamaVar("3");
-            urll+=VV_dir_global.datas.getParamaVar("4");
+            urll+=VV_dir_global.datas.getParamaVar("9");
+
             urll+=VV_dir_global.datas.getParamaVar("5");
             urll+=VV_dir_global.datas.getParamaVar("6");
             urll+=VV_dir_global.datas.getParamaVar("7");
             urll+=VV_dir_global.datas.getParamaVar("8");
-            urll+=VV_dir_global.datas.getParamaVar("9");
 
-            /*urll+=VV_dir_global.datas.getParamaVar("20");
+            urll+=VV_dir_global.datas.getParamaVar("20");
             urll+=VV_dir_global.datas.getParamaVar("21");
             urll+=VV_dir_global.datas.getParamaVar("22");
             urll+=VV_dir_global.datas.getParamaVar("23");
             urll+=VV_dir_global.datas.getParamaVar("24");
-            urll+=VV_dir_global.datas.getParamaVar("25");*/
-
-
+            urll+=VV_dir_global.datas.getParamaVar("25");
+            //BOWL
+            urll+=VV_dir_global.datas.getParamaVar("30");
+            urll+=VV_dir_global.datas.getParamaVar("31");
+            urll+=VV_dir_global.datas.getParamaVar("32");
+            urll+=VV_dir_global.datas.getParamaVar("33");
+            urll+=VV_dir_global.datas.getParamaVar("34");
 
             urll+=("&mode="+($("#linem").hasClass("active")?"1":"2"))
 
@@ -255,11 +314,15 @@ function moveImage(e,img)
                 method: "GET",  
                 success: function(data) {
                     $('#is-container-' + idP).html(data);
-                    $("#prof108" + " .badge").html(countActs);
-                    $("#prof113" + " .badge").html(countPrjs);
-                    $("#prof110" + " .badge").html(countNews);
-                    $("#prof102" + " .badge").html(countDocs);
-                    $("#prof116" + " .badge").html(countVideos);
+                    
+                    //if (idP != "200") {
+                        $("#prof108" + " .badge").html(countActs);
+                        $("#prof113" + " .badge").html(countPrjs);
+                        $("#prof110" + " .badge").html(countNews);
+                        $("#prof102" + " .badge").html(bcount);
+                        $("#prof116" + " .badge").html(countVideos);
+                        $("#prof117" + " .badge").html(countAgritrop);
+                    //}
                     var ebci = $("#ebowlCounters").val();
                     if (ebci)
                     {
@@ -275,12 +338,12 @@ function moveImage(e,img)
                     $(window).triggerHandler("resize");
                     var iass_container = "#results-" + idP;
                     var iass_item = ".blog_grid_block";
-                    switch (idP)
+                    /*switch (idP)
                     {
                         case "102":
-                            //iass_item = "li"
+                            iass_item = "li"
                             break;
-                    }
+                    }*/
                     var ias = jQuery.ias({
                         container:iass_container,
                         item: iass_item,
@@ -321,6 +384,14 @@ function moveImage(e,img)
                             //init_pic_hover();
                         }
                     });
+                    ias.on('rendered',function(e){ 
+                        $('.messages-content').mCustomScrollbar();
+                        if ($("#page").val() == "2_7") {
+                            $(".docprev img").on("error", function(e) {
+                                $(this).remove();
+                            });
+                        }
+                    });
                     ias.extension(new IASSpinnerExtension({
                         html: spin, // optionally
                     }));
@@ -341,6 +412,14 @@ function moveImage(e,img)
                 e.preventDefault();
                 $("#sidebar-wrapper").toggleClass("active");
             });
+            //MANABOOST -> COCHE FILTRE MINAE
+            if ($('.minae input').length > 0) {
+                $(".minae input").click(function(e) {
+                    VV_dir_global.datas.load("#prof"+VV_dir_global.datas.curoldid);
+                });
+                
+            }
+            
         }
     };
     //window on load
