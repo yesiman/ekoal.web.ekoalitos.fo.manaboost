@@ -36,10 +36,12 @@ var VV_global = {};
         {
             switch (oldid)
             {
+                case "1133":
                 case "113":
                     return "5c2c4dea07c805cd14b33488";
                 case "108":
                     return "5c2c4de807c805cd14b3345c";
+                case "1022":
                 case "102":
                     return "5c2c4de807c805cd14b33449";
                 case "114":

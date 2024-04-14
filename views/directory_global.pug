@@ -111,7 +111,7 @@ block content
                   button#searchsubmit.search_btn(type='submit')
                     i.ico-search2
                   .clear
-                  if loged
+                  //if loged
                     .minae(style="display:block;margin:5px;")
                       input(type="checkbox")
                       = trads.t660bb62444d0f07f57e1a379
@@ -161,12 +161,16 @@ block content
                         = "Agritrop"
                         | 
                         .badge= agritropCount
-                    //li
-                      a(href="#",onclick="window.location.href = '/"+lang+"/2_8/hal.html'")
-                        = "HAL"
-                    //li
-                      a(href="#",onclick="window.location.href = '/"+lang+"/2_6/bowl.html'")
-                        = "Fouille de données"
+                    li#prof1022
+                      a(class=(oldid=="1022"?"selected":""), href='#',data-content='pc1022')
+                        = "Documents MINAE"
+                        | 
+                        .badge= countMinaeDocs
+                    li#prof1133
+                      a(class=(oldid=="1133"?"selected":""), href='#',data-content='pc1133')
+                        = "Projets MINAE"
+                        | 
+                        .badge= countMinaeProj
                 ul.tabs-body(style="min-height:500px;")
                   li(data-content='pc108',class=(oldid=="108" ? "selected" : ""))
                     .row
@@ -227,13 +231,6 @@ block content
                           +mix-categ_bowl(bowlExtensions,"Formats",33)
                           //+mix-categ_bowl(bowlProvinces,"Provinces",5)
                           +mix-categ_bowl(bowlKeywords,"Mots-clés",34)
-                        //.enar_accordion.plus_minus(data-type='accordion')
-                          .enar_occ_container(data-expanded='false')
-                            span.enar_occ_title= trads.t6009b32b3b189b1ff26283cc
-                            .enar_occ_content
-                                .acc_content
-                                    input(id="param4",type="hidden",value="")
-                                    +mix-categ_global("5c2ce9c307c805cd14b5fc5a","a",-1,4)
                       .col-md-9
                         .hm_blog_list.clearfix#is-container-102(style="margin-top:15px;")
                       //+mix-loader
@@ -275,9 +272,6 @@ block content
                       .col-md-9
                         .hm_blog_list.clearfix#is-container-113(style="margin-top:15px;")
                       //+mix-loader
-                  //li(data-content='pc114')
-                    .hm_blog_list.clearfix#is-container-114
-                      +mix-loader
                   li(data-content='pc110',class=(oldid=="110" ? "selected" : ""))
                     .col-md-12
                       .hm_blog_list.clearfix#is-container-110(style="margin-top:15px;")
@@ -291,6 +285,12 @@ block content
                   li(data-content='pc117',class=(oldid=="117" ? "selected" : ""))
                     .col-md-12
                       .hm_blog_list.clearfix#is-container-117(style="margin-top:15px;")
+                  li(data-content='pc1022',class=(oldid=="1022" ? "selected" : ""))
+                    .col-md-12
+                      .hm_blog_list.clearfix#is-container-1022(style="margin-top:15px;")
+                  li(data-content='pc1133',class=(oldid=="1133" ? "selected" : ""))
+                    .col-md-12
+                      .hm_blog_list.clearfix#is-container-1133(style="margin-top:15px;")
             //aside#sidebar.col-md-3.right_sidebar
               .widget_block
                 h6.widget_title= trads.t5c5d27a175254800049b2190

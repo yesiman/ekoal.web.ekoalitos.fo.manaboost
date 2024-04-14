@@ -318,6 +318,10 @@ function moveImage(e,img)
                     //if (idP != "200") {
                         $("#prof108" + " .badge").html(countActs);
                         $("#prof113" + " .badge").html(countPrjs);
+                        $("#prof1133" + " .badge").html(countPrjsMinae);
+                        $("#prof1022" + " .badge").html(countDocsMinae);
+                        
+
                         $("#prof110" + " .badge").html(countNews);
                         $("#prof102" + " .badge").html(bcount);
                         $("#prof116" + " .badge").html(countVideos);
@@ -412,13 +416,7 @@ function moveImage(e,img)
                 e.preventDefault();
                 $("#sidebar-wrapper").toggleClass("active");
             });
-            //MANABOOST -> COCHE FILTRE MINAE
-            if ($('.minae input').length > 0) {
-                $(".minae input").click(function(e) {
-                    VV_dir_global.datas.load("#prof"+VV_dir_global.datas.curoldid);
-                });
-                
-            }
+
             
         }
     };

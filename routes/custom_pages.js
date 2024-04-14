@@ -357,30 +357,49 @@ exports.directory_global = function (req, res) {
     var prom_projectsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4dea07c805cd14b33488";
+        fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });
+    var prom_projectsMinaeCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "5c2c4dea07c805cd14b33488";
+        fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });
+    var prom_docsMinaeCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "5c2c4de807c805cd14b33449";
+        fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_documentsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de807c805cd14b33449";
+        fwp.subs.p65af5f4f551ef6729af8daff = null;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_playersCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de807c805cd14b3345c";
+        fwp.subs.p65af5f4f551ef6729af8daff = null;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_newsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de907c805cd14b33478";
+        fwp.subs.p65af5f4f551ef6729af8daff = null;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_videosCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5e99ce5d1b088f21c5f20aa0";
+        fwp.subs.p65af5f4f551ef6729af8daff = null;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -388,6 +407,7 @@ exports.directory_global = function (req, res) {
         var fwp = filters;
         fwp.project = "5e536d86112f073429f1f23f";
         fwp.proto = "63886809fa24617a5dc55c41";
+        fwp.subs.p65af5f4f551ef6729af8daff = null;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -467,7 +487,9 @@ exports.directory_global = function (req, res) {
         promBKeywords,
         promBProvinces,
         promBowlCount,
-        prom_agritropCount
+        prom_agritropCount,
+        prom_docsMinaeCount,
+        prom_projectsMinaeCount
         ]
     ).then(function(values) {
         //GET RANDOMS
@@ -487,6 +509,10 @@ exports.directory_global = function (req, res) {
         datas.bowlKeywords = values[10];
         datas.bowlProvinces = values[11];
         datas.agritropCount = values[13];
+
+        datas.countMinaeDocs = values[14];
+        datas.countMinaeProj = values[15];
+
         res.render(
             "directory_global",
             datas
@@ -656,6 +682,7 @@ exports.directoryRes = function (req, res) {
         orders = {norders:true};
    
     }*/
+
     datas.protouid = req.params.protouid;
     datas.oldprotouid = req.params.oldprotouid;
     datas.fulltext = query.fulltext;
@@ -669,14 +696,18 @@ exports.directoryRes = function (req, res) {
     }
 
 
-    if (query.minae && (query.minae!="undefined") && (query.minae == "true")){ 
+    /*if (query.minae && (query.minae!="undefined") && (query.minae == "true")){ 
         filtersCounts.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
         filters.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
-    }
+    }$*/
 
-    if (!req.session || !req.session.user)
+    if ((req.params.oldprotouid == "1022") || (req.params.oldprotouid == "1133"))
     {
-        filtersCounts.subs.p65af5f4f551ef6729af8daff = 
+        //filtersCounts.subs.p65af5f4f551ef6729af8daff = 
+            filters.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+    }
+    else {
+        //filtersCounts.subs.p65af5f4f551ef6729af8daff = 
             filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
     }
 
@@ -689,24 +720,42 @@ exports.directoryRes = function (req, res) {
         var prom_projectsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4dea07c805cd14b33488";
+            fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+        var prom_projectsMinaeCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4dea07c805cd14b33488";
+            fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+        var prom_docsMinaeCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4de807c805cd14b33449";
+            fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_playersCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4de807c805cd14b3345c";
+            fwp.subs.p65af5f4f551ef6729af8daff = null;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_newsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4de907c805cd14b33478";
+            fwp.subs.p65af5f4f551ef6729af8daff = null;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_videosCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5e99ce5d1b088f21c5f20aa0";
+            fwp.subs.p65af5f4f551ef6729af8daff = null;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
@@ -715,6 +764,7 @@ exports.directoryRes = function (req, res) {
             var fwp = filtersCounts;
             fwp.proto = "63886809fa24617a5dc55c41";
             fwp.project = "5e536d86112f073429f1f23f";
+            fwp.subs.p65af5f4f551ef6729af8daff = null;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
     
@@ -723,6 +773,8 @@ exports.directoryRes = function (req, res) {
     
     
 
+
+    //BOWL
     if (req.params.oldprotouid == "102")
     {
         if (query.mode == "1") {
@@ -765,7 +817,7 @@ exports.directoryRes = function (req, res) {
         }
         if (query.param34 && (query.param34.length>0)  && (query.param34 != "999") && (query.param34 != "undefined"))
         {
-            paramsJSON.provinces = query.param34.split("|");
+            paramsJSON.keywords = query.param34.split("|");
         }
         
         /*if (query.pub) {
@@ -808,12 +860,14 @@ exports.directoryRes = function (req, res) {
                 }
         
                 if (req.params.page == 1) {    
-                    Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_agritropCount]).then(function(values) {
+                    Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_agritropCount,prom_projectsMinaeCount,prom_docsMinaeCount]).then(function(values) {
                         datas.countActs = values[1];
                         datas.countPrjs = values[0];
                         datas.countNews = values[2];
                         datas.countVideos = values[3];
                         datas.countAgritrop = values[4];
+                        datas.countMinaeProj = values[5];
+                        datas.countMinaeDocs = values[6];
                         datas.param1 = query.param1;
                         datas.param2 = query.param2;
                         datas.param3 = query.param3;
@@ -910,7 +964,7 @@ exports.directoryRes = function (req, res) {
             }
             if (query.param34 && (query.param34.length>0)  && (query.param34 != "999") && (query.param34 != "undefined"))
             {
-                paramsJSON.provinces = query.param34.split("|");
+                paramsJSON.keywords = query.param34.split("|");
             }
             
             /*if (query.pub) {
@@ -931,7 +985,7 @@ exports.directoryRes = function (req, res) {
             })
         });
 
-        let arr = [prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_bCount,prom_agritropCount];
+        let arr = [prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_bCount,prom_agritropCount,prom_projectsMinaeCount,prom_docsMinaeCount];
         //On ne recompte pas
         if (req.params.page > 1) {
             arr = [prom_results];
@@ -951,6 +1005,8 @@ exports.directoryRes = function (req, res) {
                 datas.countVideos = values[3];
                 datas.bcount = values[5];
                 datas.countAgritrop = values[6];
+                datas.countMinaeProj = values[7];
+                datas.countMinaeDocs = values[8];
             }
             
             datas.param1 = query.param1;
