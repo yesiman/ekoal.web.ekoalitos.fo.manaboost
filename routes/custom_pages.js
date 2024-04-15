@@ -695,7 +695,7 @@ exports.directoryRes = function (req, res) {
 
     }
 
-
+    //MINAE
     /*if (query.minae && (query.minae!="undefined") && (query.minae == "true")){ 
         filtersCounts.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
         filters.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
@@ -1427,6 +1427,8 @@ function showDetail(req,res,pageProtoPath,pugPage)
                 (datas.object.version["p5e74f5409d74e6e63d7962b7"]?datas.object.version["p5e74f5409d74e6e63d7962b7"]:[]),
             );
 
+            //MINAE
+            /*
             if (!req.session || !req.session.user)
             {
                 if (!filters.subs) { filters.subs = {}; }
@@ -1434,7 +1436,8 @@ function showDetail(req,res,pageProtoPath,pugPage)
                 filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
                 filters2.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
             }
-
+            */
+           
             if (filters.ids && (filters.ids.length > 0))
             {
                 promsiseIn.push(new Promise((resolve, reject) => {

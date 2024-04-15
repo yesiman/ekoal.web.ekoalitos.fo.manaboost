@@ -568,11 +568,12 @@ app.post('/:lang/carto', function (req, res) {
                 (rdata.version["p5c332df707c805cd14cf32b9"]?rdata.version["p5c332df707c805cd14cf32b9"]:[])
             )};
         
-            if (!req.session || !req.session.user)
+            //MINAE
+            /*if (!req.session || !req.session.user)
             {
                 filters.subs = {};
                 filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
-            }
+            }*/
 
         ekit.objects.getAll2(req.params.lang,filters,null,{
             p5c332d4d07c805cd14cf24b7:1,
@@ -598,11 +599,12 @@ app.post('/:lang/cartofull', function (req, res) {
         filters.text = req.body.text;
     }
 
-    if (!req.session || !req.session.user)
+    //MINAE
+    /*if (!req.session || !req.session.user)
     {
         filters.subs = {};
         filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
-    }
+    }*/
 
     ekit.objects.getAll2(req.params.lang,filters,null,{
         header:0,
@@ -656,12 +658,14 @@ app.post('/:lang/cartofull', function (req, res) {
 app.post('/:lang/cartolevel', function (req, res) {
     var filters = { proto:["5c2c4dea07c805cd14b3349f","5c2c4de807c805cd14b3345c","5c2c4dea07c805cd14b33488","5c2c4de807c805cd14b33449"],ids:req.body.ids,project:process.env.EKITSRV_PROJECTUID }
 
+    //MINAE
+    /*
     if (!req.session || !req.session.user)
     {
         filters.subs = {};
         filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
     }
-
+    */
     //ekit.objects.get(req.params.lang,req.body.uid,null,onObj,'front');
     ekit.objects.getAll2(req.params.lang,{ids:req.body.ids},null,{
         header:0,
@@ -777,11 +781,13 @@ app.post('/:lang/cartogeo', function (req, res) {
         filters.subs = {};
     }
     
+    //MINAE
+    /*
     if (!req.session || !req.session.user)
     {
         filters.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
     }
-    
+    */
     switch(protoin)
     {
         case "5c2c4de807c805cd14b3345c":
