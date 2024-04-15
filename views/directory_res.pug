@@ -18,9 +18,13 @@
               .embed-container
                 //iframe(src=item.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
           when "102"
-                a.docprev(href=href,onmousemove="moveImage(event,'i"+"item.objectid"+"')")
-                  img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
-                img(id="ie"+"item.objectid",style="position: absolute;z-index: 1;",src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+            a.docprev(href=href,onmousemove="moveImage(event,'i"+"item.objectid"+"')")
+              img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+            img(id="ie"+"item.objectid",style="position: absolute;z-index: 1;",src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+          when "1022"
+            a.docprev(href=href,onmousemove="moveImage(event,'i"+"item.objectid"+"')")
+              img(src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+            img(id="ie"+"item.objectid",style="position: absolute;z-index: 1;",src="https://boost-search.cirad.fr/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
           default
             .feature_inner
               .feature_inner_corners
@@ -104,7 +108,7 @@
     for item in items
       - var title= (item.p5c332d2707c805cd14cf217d?item.p5c332d2707c805cd14cf217d:"") + (item.p5c332d0b07c805cd14cf1ef5?item.p5c332d0b07c805cd14cf1ef5:"") + (item.p63886854fa24617a5dc55c43?item.p63886854fa24617a5dc55c43:"")
       - var uri = encodeURIComponent(title)
-      - var href ='/'+lang+'/7_'+oldprotouid+'/'+item.objectid+'/'+uri+'.html'
+      - var href ='/'+lang+'/7_'+(oldprotouid=="1022"?"102":(oldprotouid=="1133"?"113":oldprotouid)) +'/'+item.objectid+'/'+uri+'.html'
       if oldprotouid == 117
         - addClass = "bowl"
       .blog_grid_block.clearfix(class=addClass)
@@ -118,6 +122,7 @@
               .embed-container
                 iframe(src=item.p5bc4396c219d500400bbbfee width="100%" style="border: 0px none;" webkitallowfullscreen mozallowfullscreen allowfullscreen)
           when "102"
+          when "1022"
             a.docprev(href=href,onmousemove="moveImage(event,'i"+item.objectid+"')")
               img(src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name')
             img(id="i"+item.objectid,style="position: absolute;z-index: 1;",src=(item.p5c332d2907c805cd14cf21ae && (item.p5c332d2907c805cd14cf21ae.length > 0)?s3 + item.p5c332d2907c805cd14cf21ae.replace(".pdf",".jpg"):"/assets/images/logo-def.png"), alt='Project Name')
@@ -134,7 +139,7 @@
                 a.feature_inner_ling(href=href)
                   img(src=(item.p5c332d1907c805cd14cf2042 && (item.p5c332d1907c805cd14cf2042.length > 0)?s3 + item.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.png"), alt='Post Title')
         
-        if oldprotouid == 102
+        if (oldprotouid == 102) || (oldprotouid == 1022)
           .blog_grid_con(style="width:80%;")
             h6.title
               a(href=href)= title
