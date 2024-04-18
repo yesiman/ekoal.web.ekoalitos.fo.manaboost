@@ -1,8 +1,9 @@
 mixin mix-categ_global(categuid,categlib,parent,paramuid)
     ul(id="categAcor-"+paramuid,class=(parent == -1?"opened":""))
         each cat in categsAll
-            if cat.proto[0] == categuid
-                if (!cat.parent && (parent == -1))
+            if (cat.proto[0] == categuid)
+                
+                if (((cat.parent==null) || (!cat.parent)) && (parent == -1))
                     li(id="categ" + cat.objectid)
                         a(href="javascript:void(0)",onclick="VV_dir_sb.categs.add('"+paramuid+"','" + cat.objectid + "')")
                             i.ico-circle-o
