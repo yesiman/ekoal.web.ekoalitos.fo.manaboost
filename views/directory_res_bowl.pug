@@ -35,9 +35,9 @@
         .blog_grid_con
           //= bh._id
           a.docprev(style="padding-right:5px;display:inline;float:left;" href=pathDoc,target="_blank",onmousemove="moveImage(event,'i"+"item.objectid"+"')")
-            div(style="height:80px;width:80px;background-repeat: no-repeat;background-size: contain;background-image:url('"+BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail+"');")
+            div(style="height:80px;width:80px;background-repeat: no-repeat;background-size: contain;background-image:url('"+"/mediasBowls/"+bh._source.external.origin+"/"+bh._source.external.thumbnail+"');")
               //img(src=, alt='Project Name')
-          img(id="ie"+"item.objectid",style="left:100px;position: absolute;z-index: 1;",src=BOWL_MEDIA_URL+"/node/thumbnails/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
+          img(id="ie"+"item.objectid",style="left:100px;position: absolute;z-index: 1;",src="/mediasBowls/"+bh._source.external.origin+"/"+bh._source.external.thumbnail, alt='Project Name')
           h6.title(style="display:inline;")
             a(href=pathDoc,target="_blank")= title
           span.meta(style="display:block;margin-top:10px;")
