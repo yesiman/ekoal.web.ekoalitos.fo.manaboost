@@ -27,6 +27,11 @@ function redraw() {
     };
     //
     VV_relat.relat = {
+        loadAll: function () {
+            $("#txtSearch").val("");
+            VV_relat.d3.loadDataSet();
+            
+        },
         //MUT
         setFullScreen: function () {
             var i = document.getElementById("relat");
