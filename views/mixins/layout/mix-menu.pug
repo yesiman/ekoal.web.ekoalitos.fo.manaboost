@@ -8,8 +8,12 @@ mixin mix-menu(parent)
           - hasChild = true
           - break
       li.normal_menu.mobile_menu_toggle
-        a(role='button', aria-haspopup='true', aria-expanded='false', href='/'+lang+ mnu.p5bc4396c219d500400bbbfee)
-          span= mnu.p5c374961b2b8600004dc97d1
+        if mnu.p5bc4396c219d500400bbbfee.startsWith("http") < 0
+          a(role='button', aria-haspopup='true', target='_blank', aria-expanded='false', href='/'+lang+ mnu.p5bc4396c219d500400bbbfee)
+            span= mnu.p5c374961b2b8600004dc97d1
+        else
+          a(role='button', aria-haspopup='true', aria-expanded='false', href=mnu.p5bc4396c219d500400bbbfee)
+            span= mnu.p5c374961b2b8600004dc97d1
         if hasChild  
           ul
             +mix-menu(mnu._id)
