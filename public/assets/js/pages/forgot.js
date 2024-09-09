@@ -64,7 +64,7 @@ var VV_forgot = {};
             $("#forgot_btn_submit").css("display", "none");
             $(".spinner").css("display", "");
             $.ajax({
-                url: '/recover/'+$("#lang").val()+'/' + $("#username").val(),
+                url: '/recover/'+$("#lang").val()+'/' + $("#usernameForPass").val(),
                 success: function(data) {
                     VV_forgot.lostpass.checkLog(data);
                 }
