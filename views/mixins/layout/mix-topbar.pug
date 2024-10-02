@@ -26,7 +26,7 @@ mixin mix_topbar()
                       a(href="/"+lang+"/profile/" + user._id)= trads.t5c5db7f043fef3000484f67b
                   li
                     a(href="/"+lang+"/7_24/60096ab714b3991fe586df3b/tutorial_video.html")= trads.t600a7832dc77b9789f096576
-                  if (user.sa == true) || (user.sad == true)
+                  if (user.sa == true) || (user.sau == true)
                     li
                       a(href="/"+lang+"/users/"+projectUID+"/")= trads.t5c5d26a2f52f110004a938e9
                   li
@@ -170,7 +170,8 @@ mixin mix_topbar()
                 span#cart_els_cnt= "0"
               </a>
               <div class="top_cart_con">
-                <div class="top_cart_header"><h3>Vos documents</h3></div>
+                .top_cart_header
+                  h3= trads.t66f52df33a0d15631fe58613
                 <div class="top_cart_block">
                   <ul class="top_cart_list">
                     <li class="hm_cart_empty"><span>No products in the cart.</span></li>

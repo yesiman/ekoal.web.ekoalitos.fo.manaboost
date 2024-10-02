@@ -55,7 +55,11 @@ var VV_dir_sb = {};
                         $("#param9").val("");
                         break;
                     case "102":
-                        $("#param4").val("");
+                        $("#param30").val("");
+                        $("#param31").val("");
+                        $("#param32").val("");
+                        $("#param33").val("");
+                        $("#param34").val("");
                         break;
                     case "113":
                         $("#param5").val("");
