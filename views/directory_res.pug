@@ -106,7 +106,7 @@
             //<v-card-text  class="pb-0"><img src="img/icons/shuffle.svg" width="12" height="12" > &nbsp;{{card.source}}</v-card-text>
   if items
     for item in items
-      - var title= (item.p5c332d2707c805cd14cf217d?item.p5c332d2707c805cd14cf217d:"") + (item.p5c332d0b07c805cd14cf1ef5?item.p5c332d0b07c805cd14cf1ef5:"") + (item.p63886854fa24617a5dc55c43?item.p63886854fa24617a5dc55c43:"")
+      - var title= (item.p5c332d4d07c805cd14cf24b7?item.p5c332d4d07c805cd14cf24b7+" - ":"") + (item.p5c332d2707c805cd14cf217d?item.p5c332d2707c805cd14cf217d:"") + (item.p5c332d0b07c805cd14cf1ef5?item.p5c332d0b07c805cd14cf1ef5:"") + (item.p63886854fa24617a5dc55c43?item.p63886854fa24617a5dc55c43:"")
       - var uri = encodeURIComponent(title)
       - var href ='/'+lang+'/7_'+(oldprotouid=="1022"?"102":(oldprotouid=="1133"?"113":oldprotouid)) +'/'+item.objectid+'/'+uri+'.html'
       if oldprotouid == 117
