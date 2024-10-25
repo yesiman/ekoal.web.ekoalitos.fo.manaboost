@@ -122,7 +122,7 @@ app.use('/:lang', function (req, res, next) {
             } 
             //   
             req.middle.projectUID = process.env.EKITSRV_PROJECTUID;
-            req.middle.webUrl = process.env.EKITCLI_PROTOCOL+"/"+process.env.EKITCLI_DOMAIN;
+            req.middle.webUrl = process.env.EKITCLI_PROTOCOL+process.env.EKITCLI_DOMAIN;
             //
             next();
         //}
