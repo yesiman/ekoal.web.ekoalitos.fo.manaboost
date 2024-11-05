@@ -301,7 +301,7 @@ function redraw() {
             //{
             //    eid = $("#numero_entite").val();
             //}
-            $('body').toggleClass('loading');
+            //$('body').toggleClass('loading');
             var nuPid = VV_global.helper.getNewProfId(pid);
             
             //5b5ea8ed0311784a87b6dbd6
@@ -392,7 +392,7 @@ function redraw() {
                         
                         //VV_relat.d3.expandLevel(items);
                     }
-                    $('body').toggleClass('loading');
+                    //$('body').toggleClass('loading');
                 }
             });
 
@@ -503,7 +503,7 @@ function redraw() {
         },
         loadDataSet:function()
         {
-            $('body').toggleClass('loading');
+            //$('body').toggleClass('loading');
             var ids = [];
             for (var i2 = nodes.length - 1; i2 >= 0; i2--) {
                 nodes.splice(i2, 1);
@@ -583,13 +583,13 @@ function redraw() {
                     
                     VV_relat.d3.updateLinks();
                     VV_relat.d3.update();
-                    $('body').toggleClass('loading');
+                    //$('body').toggleClass('loading');
                 }
             });
         },
         updateDataSet:function(datas)
         {
-            $('body').toggleClass('loading');
+            //$('body').toggleClass('loading');
             var ids = [];
             for (var i2 = nodes.length - 1; i2 >= 0; i2--) {
                 var found = false;
@@ -683,13 +683,13 @@ function redraw() {
                     });
                     VV_relat.d3.updateLinks();
                     VV_relat.d3.scaleAndDraw();
-                    $('body').toggleClass('loading');
+                    //$('body').toggleClass('loading');
                 }
             });
         },
         updateDataSet2:function(datas)
         {
-            $('body').toggleClass('loading');
+            //$('body').toggleClass('loading');
             var ids = [];
             for (var i2 = nodes.length - 1; i2 >= 0; i2--) {
                 var found = false;
@@ -827,13 +827,13 @@ function redraw() {
                     //CHECK ORPHANS
                     
                     VV_relat.d3.update();
-                    $('body').toggleClass('loading');
+                    //$('body').toggleClass('loading');
                 }
             });
         },
         updateDataSetLevel2:function(datas)
         {
-            $('body').toggleClass('loading');
+            //$('body').toggleClass('loading');
             for (var o in datas)
             {
                 var obj = datas[o];
@@ -923,7 +923,7 @@ function redraw() {
                     //CHECK ORPHANS
                     
                     VV_relat.d3.update();
-                $('body').toggleClass('loading');
+                //$('body').toggleClass('loading');
         },
         hideProfil: function (idp) {
             var curEnt = $("#numero_entite").val();

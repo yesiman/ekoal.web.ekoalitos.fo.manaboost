@@ -138,7 +138,7 @@ var VV_global = {};
                                     `
                                     <li>
                                     <a target="_blank" href="`+data.items.hits[reli]._source.external.url+`">
-                                        <img src="http://206.81.20.186/node/thumbnails/`+data.items.hits[reli]._source.external.origin+`/`+data.items.hits[reli]._source.external.thumbnail+`" alt="Product Name">
+                                        <img src="/mediasBowls/`+data.items.hits[reli]._source.external.origin+`/`+data.items.hits[reli]._source.external.thumbnail+`" alt="Product Name">
                                         <span class="cart_top_details">
                                         <span class="top_cart_title">`+(data.items.hits[reli]._source.meta.title?data.items.hits[reli]._source.meta.title:"Inconnu")+`</span>
                                         </span>
