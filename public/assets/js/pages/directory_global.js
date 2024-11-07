@@ -213,11 +213,10 @@ function moveImage(e,img)
             }
         }
         $(".tabs-navi li").click(function (e) {
-            if(e.currentTarget.id == "prof102") {
-                VV_dir_global.datas.curoldid = "102";
+            if(e.currentTarget.id == "prof999") {
+                VV_dir_global.datas.curoldid = "999";
                 initalize102();
-                VV_dir_global.datas.load("#prof102");
-                
+                VV_dir_global.datas.load("#prof999");
                 
             }
             else {
@@ -225,7 +224,7 @@ function moveImage(e,img)
             }
             
         });
-        if (VV_dir_global.datas.curoldid=="102") {
+        if (VV_dir_global.datas.curoldid=="999") {
             initalize102();
         }
         else {
@@ -323,9 +322,10 @@ function moveImage(e,img)
                         
 
                         $("#prof110" + " .badge").html(countNews);
-                        $("#prof102" + " .badge").html(bcount);
+                        $("#prof102" + " .badge").html(countDocuments);
                         $("#prof116" + " .badge").html(countVideos);
                         $("#prof117" + " .badge").html(countAgritrop);
+                        $("#prof999" + " .badge").html(bcount);
                     //}
                     var ebci = $("#ebowlCounters").val();
                     if (ebci)

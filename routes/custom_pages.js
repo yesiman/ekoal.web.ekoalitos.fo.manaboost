@@ -396,6 +396,12 @@ exports.directory_global = function (req, res) {
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
+    var prom_eventsCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "5c2c4deb07c805cd14b334b4";
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });
     var prom_videosCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5e99ce5d1b088f21c5f20aa0";
@@ -489,7 +495,8 @@ exports.directory_global = function (req, res) {
         promBowlCount,
         prom_agritropCount,
         prom_docsMinaeCount,
-        prom_projectsMinaeCount
+        prom_projectsMinaeCount,
+        prom_eventsCount
         ]
     ).then(function(values) {
         //GET RANDOMS
@@ -498,7 +505,8 @@ exports.directory_global = function (req, res) {
         datas.newsCount = values[2];
         datas.videosCount = values[3];
         datas.categsAll = values[4];
-        datas.documentsCount = values[12];
+        datas.documentsCount = values[5];
+        datas.bowlCount = values[12];
         datas.bowlSources = values[6];
 
         console.log("datas.bowlSources",datas.bowlSources);
@@ -512,6 +520,7 @@ exports.directory_global = function (req, res) {
 
         datas.countMinaeDocs = values[14];
         datas.countMinaeProj = values[15];
+        datas.eventsCount = values[16];
 
         res.render(
             "directory_global",
@@ -769,13 +778,25 @@ exports.directoryRes = function (req, res) {
                 .catch(err => {});
     
         });
+        var prom_eventsCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4deb07c805cd14b334b4";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
+        var prom_documentsCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "5c2c4de807c805cd14b33449";
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+        });
     }
     
     
 
 
     //BOWL
-    if (req.params.oldprotouid == "102")
+    if (req.params.oldprotouid == "999")
     {
         if (query.mode == "1") {
             pugpg = "directory_res_v2";
@@ -860,7 +881,7 @@ exports.directoryRes = function (req, res) {
                 }
         
                 if (req.params.page == 1) {    
-                    Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_agritropCount,prom_projectsMinaeCount,prom_docsMinaeCount]).then(function(values) {
+                    Promise.all([prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_agritropCount,prom_projectsMinaeCount,prom_docsMinaeCount,prom_eventsCount,prom_documentsCount]).then(function(values) {
                         datas.countActs = values[1];
                         datas.countPrjs = values[0];
                         datas.countNews = values[2];
@@ -868,6 +889,7 @@ exports.directoryRes = function (req, res) {
                         datas.countAgritrop = values[4];
                         datas.countMinaeProj = values[5];
                         datas.countMinaeDocs = values[6];
+                        datas.countDocuments = values[8];
                         datas.param1 = query.param1;
                         datas.param2 = query.param2;
                         datas.param3 = query.param3;
@@ -985,7 +1007,7 @@ exports.directoryRes = function (req, res) {
             })
         });
 
-        let arr = [prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_bCount,prom_agritropCount,prom_projectsMinaeCount,prom_docsMinaeCount];
+        let arr = [prom_projectsCount, prom_playersCount, prom_newsCount, prom_videosCount,prom_results,prom_bCount,prom_agritropCount,prom_projectsMinaeCount,prom_docsMinaeCount,prom_eventsCount,prom_documentsCount];
         //On ne recompte pas
         if (req.params.page > 1) {
             arr = [prom_results];
@@ -1007,6 +1029,7 @@ exports.directoryRes = function (req, res) {
                 datas.countAgritrop = values[6];
                 datas.countMinaeProj = values[7];
                 datas.countMinaeDocs = values[8];
+                datas.countDocuments = values[10];
             }
             
             datas.param1 = query.param1;

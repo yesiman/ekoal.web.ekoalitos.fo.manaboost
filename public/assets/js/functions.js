@@ -217,14 +217,14 @@
 		$(".our_client_slider").owlCarousel({
 			direction: site_dir,
 			slideSpeed : 1000,
-			autoPlay : 4000,
+			autoPlay : false,
 			itemsDesktop: false,
 			itemsDesktopSmall: false,
 			itemsTablet: false,
 			itemsTabletSmall: false,
 			itemsMobile: false,
 			stopOnHover : true,
-			navigation : true,
+			navigation : false,
 			navigationText : [
 				"<span class='enar_owl_p'><i class='ico-angle-left'></i></span>",
 				"<span class='enar_owl_n'><i class='ico-angle-right'></i></span>"],

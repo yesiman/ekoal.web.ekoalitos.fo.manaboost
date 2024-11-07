@@ -130,6 +130,11 @@ block content
                         = trads.t5c5d272675254800049b213b
                         | 
                         .badge= documentsCount
+                    li#prof999
+                      a(class=(oldid=="999"?"selected":""), href='javascript:void(0);',data-content='pc999')
+                        = trads.t5c5d272675254800049b213b
+                        | 
+                        .badge= bowlCount
                     li#prof113
                       a(class=(oldid=="113"?"selected":""), href='javascript:void(0);',data-content='pc113')
                         = trads.t5c5d2793f52f110004a93966 
@@ -214,12 +219,16 @@ block content
                         //+mix-loader
                     
                   li(data-content='pc102',class=(oldid=="102" ? "selected" : ""))
+                    .col-md-12
+                      .hm_blog_list.clearfix#is-container-102(style="margin-top:15px;")
+                      //+mix-loader
+                  li(data-content='pc999',class=(oldid=="999" ? "selected" : ""))
                     .row
                       .col-md-3
                         .row.criterias(style="width:auto;")
                           .col-md-12
                             div( style="display: inline-block;")
-                              a(style="float:left;font-size:10px;",href="javascript:void(0)",onclick="VV_dir_sb.categs.removeAll(102)") 
+                              a(style="float:left;font-size:10px;",href="javascript:void(0)",onclick="VV_dir_sb.categs.removeAll(999)") 
                                 i.ico-remove
                                 = " " + trads.t6062f4a2d243f43a9d03e6d1
                             .news-tags.tagcloud.style2  
@@ -231,7 +240,7 @@ block content
                           //+mix-categ_bowl(bowlProvinces,"Provinces",5)
                           +mix-categ_bowl(bowlKeywords,"Mots-clés",34)
                       .col-md-9
-                        .hm_blog_list.clearfix#is-container-102(style="margin-top:15px;")
+                        .hm_blog_list.clearfix#is-container-999(style="margin-top:15px;")
                       //+mix-loader
                   li(data-content='pc113',class=(oldid=="113" ? "selected" : ""))
                     .row

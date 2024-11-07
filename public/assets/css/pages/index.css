@@ -51,6 +51,11 @@ html.mobile #swiper2 .video-slide {
 	display: none;
 }
 
+.c_logo img {
+	max-width: 150px;;
+	max-height: 100px;
+}
+
 #swiper1 .video-slide video {
 	min-width: 100%;
 	min-height: 100%;

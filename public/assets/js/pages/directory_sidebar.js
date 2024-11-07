@@ -67,6 +67,12 @@ var VV_dir_sb = {};
                         $("#param7").val("");
                         $("#param8").val("");
                         break;
+                    case "999":
+                        $("#param30").val("");
+                        $("#param31").val("");
+                        $("#param32").val("");
+                        $("#param33").val("");
+                        $("#param34").val("");
                 }
                 VV_dir_global.datas.load("#prof"+VV_dir_global.datas.curoldid);
                 $("[data-content=pc"+VV_dir_global.datas.curoldid+"] .row.criterias .news-tags").empty();
