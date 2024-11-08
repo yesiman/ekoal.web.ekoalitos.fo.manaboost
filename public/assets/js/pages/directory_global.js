@@ -320,7 +320,7 @@ function moveImage(e,img)
                         $("#prof1133" + " .badge").html(countPrjsMinae);
                         $("#prof1022" + " .badge").html(countDocsMinae);
                         
-
+                        
                         $("#prof110" + " .badge").html(countNews);
                         $("#prof102" + " .badge").html(countDocuments);
                         $("#prof116" + " .badge").html(countVideos);
