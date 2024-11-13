@@ -1,6 +1,12 @@
 mixin mix-doc
+    block append styles
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf_viewer.min.css')
     .row
         .col-12
             a.btn.btn-lg.btn-icon.btn-filled(target='_blank', href=s3 + object.version.p5c332d2907c805cd14cf21ae)
                 i.ti-file
-            embed#doc(height='600', width='100%',src=s3 + object.version.p5c332d2907c805cd14cf21ae)
+            //embed#doc(height='600', width='100%',src=s3+object.version.p5c332d2907c805cd14cf21ae)
+            iframe#pdf-js-viewer(src=s3+object.version.p5c332d2907c805cd14cf21ae title="webviewer" frameborder="0" height='600', width='100%')
+            //iframe(src="https://docs.google.com/gview?url="+webUrl+"/medias/"+object.version.p5c332d2907c805cd14cf21ae+"&embedded=true" style="width:100%; height:600px;" frameborder="0")
+    block append scripts
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs')
