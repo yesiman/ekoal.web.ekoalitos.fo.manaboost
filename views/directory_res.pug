@@ -139,7 +139,7 @@
                 a.feature_inner_ling(href=href)
                   img(src=(item.p5c332d1907c805cd14cf2042 && (item.p5c332d1907c805cd14cf2042.length > 0)?s3 + item.p5c332d1907c805cd14cf2042:"/assets/images/logo-def.jpg"), alt='Post Title')
         
-        if (oldprotouid == 102) || (oldprotouid == 1022)
+        if oldprotouid == 102
           .blog_grid_con(style="width:80%;")
             h6.title
               a(href=href)= title
@@ -149,6 +149,12 @@
                 i.in_left.ico-angle-right
                 span= trads.t5c5d286275254800049b21d9
                 i.in_right.ico-angle-right
+            a.btn_a(href=s3+item.p5c332d2907c805cd14cf21ae,target="_blank")
+              span
+                i.in_left.ico-angle-right
+                span= trads.t673326b4c3690c7175488cfd
+                i.in_right.ico-angle-rights 
+
         else if oldprotouid == 117
           - var links = item.p6388686dfa24617a5dc55c4a.split(",")
           - var ressources = item.p6388693cfa24617a5dc55c51.split(",")
