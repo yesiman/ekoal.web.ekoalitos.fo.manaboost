@@ -36,13 +36,18 @@ block content
     .content.row_spacer
       .rows_container.clearfix
         .col-md-3
-          +mix-logo
           .widget_block
-            h6.widget_title= trads.t5fc5e520d744fd443ea6b055
+            +mix-logo
+          .widget_block
             if object.version.p5efd69e2fc65132f00cff9e4
-              span= moment(object.version.p5efd69e2fc65132f00cff9e4).format('YYYY') + " "
-            if object.version.p5efd69efd444cf2f05e52ee4
-              span(style="margin-left:3px;")= " - " + moment(object.version.p5efd69efd444cf2f05e52ee4).format('YYYY') + " "
+              h6.widget_title= trads.t5fc5e520d744fd443ea6b055 + ": "
+                if object.version.p5efd69e2fc65132f00cff9e4
+                  span(style="font-size:0.9em;")= moment(object.version.p5efd69e2fc65132f00cff9e4).format('YYYY') + " "
+                if object.version.p5efd69efd444cf2f05e52ee4
+                  span(style="margin-left:3px;font-size:0.9em;")= " - " + moment(object.version.p5efd69efd444cf2f05e52ee4).format('YYYY') + " "
+            if object.version.p674e99e0e211c67af91c0d91
+              h6.widget_title= trads.t674e9cd2af89c27b16bdaa77 + ": "
+                span(style="font-size:0.9em;")= object.version.p674e99e0e211c67af91c0d91
           +mix-div
           +mix-categs("Domaines d’intervention","5e667c62a91cb09eca7a6b1d")
           +mix-categs("Pays d'intervention","5e74f5384087d8f50245cf5a")
