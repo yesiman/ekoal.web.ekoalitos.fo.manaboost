@@ -378,21 +378,22 @@ exports.directory_global = function (req, res) {
     var prom_documentsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de807c805cd14b33449";
-        fwp.subs.p65af5f4f551ef6729af8daff = null;
+        delete fwp.subs.p65af5f4f551ef6729af8daff;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_playersCount = new Promise((resolve, reject) => {
         var fwp = filters;
+        
         fwp.proto = "5c2c4de807c805cd14b3345c";
-        fwp.subs.p65af5f4f551ef6729af8daff = null;
-        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+        delete fwp.subs.p65af5f4f551ef6729af8daff;
+        ekit.objects.count2(fwp,null,'front').then((data) => {console.log("jhkl",JSON.parse(data.data).count);resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_newsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de907c805cd14b33478";
-        fwp.subs.p65af5f4f551ef6729af8daff = null;
+        delete fwp.subs.p65af5f4f551ef6729af8daff;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -405,7 +406,7 @@ exports.directory_global = function (req, res) {
     var prom_videosCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5e99ce5d1b088f21c5f20aa0";
-        fwp.subs.p65af5f4f551ef6729af8daff = null;
+        delete fwp.subs.p65af5f4f551ef6729af8daff;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -413,7 +414,7 @@ exports.directory_global = function (req, res) {
         var fwp = filters;
         fwp.project = "5e536d86112f073429f1f23f";
         fwp.proto = "63886809fa24617a5dc55c41";
-        fwp.subs.p65af5f4f551ef6729af8daff = null;
+        delete fwp.subs.p65af5f4f551ef6729af8daff;
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -749,22 +750,24 @@ exports.directoryRes = function (req, res) {
         });
         var prom_playersCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
+
             fwp.proto = "5c2c4de807c805cd14b3345c";
-            fwp.subs.p65af5f4f551ef6729af8daff = null;
-            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            delete fwp.subs.p65af5f4f551ef6729af8daff;
+            console.log(fwp);
+            ekit.objects.count2(fwp,null,'front').then((data) => {console.log("jhkl",JSON.parse(data.data).count);resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_newsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4de907c805cd14b33478";
-            fwp.subs.p65af5f4f551ef6729af8daff = null;
+            delete fwp.subs.p65af5f4f551ef6729af8daff;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_videosCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5e99ce5d1b088f21c5f20aa0";
-            fwp.subs.p65af5f4f551ef6729af8daff = null;
+            delete fwp.subs.p65af5f4f551ef6729af8daff;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
@@ -773,7 +776,7 @@ exports.directoryRes = function (req, res) {
             var fwp = filtersCounts;
             fwp.proto = "63886809fa24617a5dc55c41";
             fwp.project = "5e536d86112f073429f1f23f";
-            fwp.subs.p65af5f4f551ef6729af8daff = null;
+            delete fwp.subs.p65af5f4f551ef6729af8daff;
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
     
