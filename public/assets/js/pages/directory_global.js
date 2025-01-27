@@ -317,6 +317,7 @@ function moveImage(e,img)
                     //if (idP != "200") {
                         $("#prof108" + " .badge").html(countActs);
                         $("#prof113" + " .badge").html(countPrjs);
+                        
                         $("#prof1133" + " .badge").html(countPrjsMinae);
                         $("#prof1022" + " .badge").html(countDocsMinae);
                         

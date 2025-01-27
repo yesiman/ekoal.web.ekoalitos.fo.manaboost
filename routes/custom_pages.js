@@ -24,19 +24,57 @@ exports.home = function (req, res) {
             });
         });
         var prom_projectsCount = new Promise((resolve, reject) => {
-            cache.get(process.env.EKITSRV_PROJECTUID + ".count.proto.5c2c4dea07c805cd14b33488." + req.params.lang, function (err, value) {
+            /*cache.get(process.env.EKITSRV_PROJECTUID + ".count.proto.5c2c4dea07c805cd14b33488." + req.params.lang, function (err, value) {
                 resolve(value);
-            });
+            });*/
+            var fwp = {proto:"5c2c4dea07c805cd14b33488",project:process.env.EKITSRV_PROJECTUID,
+            subs:{lang:req.params.lang}};
+        
+            fwp.subs = {p65af5f4f551ef6729af8daff:{$nin : ["-1", "1", true, "true"]}};
+        
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
         });
         var prom_innosCount = new Promise((resolve, reject) => {
             cache.get(process.env.EKITSRV_PROJECTUID + ".count.proto.5c2c4dea07c805cd14b3349f." + req.params.lang, function (err, value) {
                 resolve(value);
             });
         });
+
+        /*var prom_projectsCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "5c2c4dea07c805cd14b33488";
+        fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });
+    var prom_projectsMinaeCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "5c2c4dea07c805cd14b33488";
+        fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });
+    var prom_docsMinaeCount = new Promise((resolve, reject) => {
+        var fwp = filters;
+        fwp.proto = "5c2c4de807c805cd14b33449";
+        fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+        ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            .catch(err => {});
+    });*/
+
+
         var prom_documentsCount = new Promise((resolve, reject) => {
-            cache.get(process.env.EKITSRV_PROJECTUID + ".count.proto.5c2c4de807c805cd14b33449." + req.params.lang, function (err, value) {
+            /*cache.get(process.env.EKITSRV_PROJECTUID + ".count.proto.5c2c4de807c805cd14b33449." + req.params.lang, function (err, value) {
                 resolve(value);
-            });
+            });*/
+            
+            var fwp = {proto:"5c2c4de807c805cd14b33449",project:process.env.EKITSRV_PROJECTUID,
+                subs:{lang:req.params.lang}};
+            
+                fwp.subs = {lang:req.params.lang,p65af5f4f551ef6729af8daff:{$nin : ["-1", "1", true, "true"]}};
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
         });
         var prom_playersCount = new Promise((resolve, reject) => {
             cache.get(process.env.EKITSRV_PROJECTUID + ".count.proto.5c2c4de807c805cd14b3345c." + req.params.lang, function (err, value) {
@@ -358,6 +396,7 @@ exports.directory_global = function (req, res) {
         var fwp = filters;
         fwp.proto = "5c2c4dea07c805cd14b33488";
         fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+        
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -371,14 +410,14 @@ exports.directory_global = function (req, res) {
     var prom_docsMinaeCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de807c805cd14b33449";
-        fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+                fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
     var prom_documentsCount = new Promise((resolve, reject) => {
         var fwp = filters;
         fwp.proto = "5c2c4de807c805cd14b33449";
-        delete fwp.subs.p65af5f4f551ef6729af8daff;
+        fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
         ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
             .catch(err => {});
     });
@@ -520,6 +559,7 @@ exports.directory_global = function (req, res) {
         datas.agritropCount = values[13];
 
         datas.countMinaeDocs = values[14];
+        
         datas.countMinaeProj = values[15];
         datas.eventsCount = values[16];
 
@@ -706,10 +746,10 @@ exports.directoryRes = function (req, res) {
     }
 
     //MINAE
-    /*if (query.minae && (query.minae!="undefined") && (query.minae == "true")){ 
+    if (query.minae && (query.minae!="undefined") && (query.minae == "true")){ 
         filtersCounts.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
         filters.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
-    }$*/
+    }
 
     if ((req.params.oldprotouid == "1022") || (req.params.oldprotouid == "1133"))
     {
@@ -730,21 +770,29 @@ exports.directoryRes = function (req, res) {
         var prom_projectsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4dea07c805cd14b33488";
-            fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+            if (!req.session || !req.session.user)
+                {
+                    fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
+                }
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_projectsMinaeCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4dea07c805cd14b33488";
-            fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
-            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+            
+                    fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+            
+            ekit.objects.count2(fwp,null,'front').then((data) => { console.log("prom_projectsMinaeCount",JSON.parse(data.data).count);resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
         var prom_docsMinaeCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4de807c805cd14b33449";
-            fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+            if (req.session || req.session.user)
+                {
+                    fwp.subs.p65af5f4f551ef6729af8daff = {$in : ["-1", "1", true, "true"]};
+                }
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
@@ -771,16 +819,6 @@ exports.directoryRes = function (req, res) {
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
-    
-        var prom_agritropCount = new Promise((resolve, reject) => {
-            var fwp = filtersCounts;
-            fwp.proto = "63886809fa24617a5dc55c41";
-            fwp.project = "5e536d86112f073429f1f23f";
-            delete fwp.subs.p65af5f4f551ef6729af8daff;
-            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
-                .catch(err => {});
-    
-        });
         var prom_eventsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4deb07c805cd14b334b4";
@@ -790,9 +828,20 @@ exports.directoryRes = function (req, res) {
         var prom_documentsCount = new Promise((resolve, reject) => {
             var fwp = filtersCounts;
             fwp.proto = "5c2c4de807c805cd14b33449";
+            fwp.subs.p65af5f4f551ef6729af8daff = {$nin : ["-1", "1", true, "true"]};
             ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
                 .catch(err => {});
         });
+        var prom_agritropCount = new Promise((resolve, reject) => {
+            var fwp = filtersCounts;
+            fwp.proto = "63886809fa24617a5dc55c41";
+            fwp.project = "5e536d86112f073429f1f23f";
+            delete fwp.subs.p65af5f4f551ef6729af8daff;
+            ekit.objects.count2(fwp,null,'front').then((data) => {resolve(JSON.parse(data.data).count);})
+                .catch(err => {});
+    
+        });
+        
     }
     
     
@@ -890,9 +939,10 @@ exports.directoryRes = function (req, res) {
                         datas.countNews = values[2];
                         datas.countVideos = values[3];
                         datas.countAgritrop = values[4];
+                        console.log("klmk",values[5]);
                         datas.countMinaeProj = values[5];
                         datas.countMinaeDocs = values[6];
-                        datas.countDocuments = values[8];
+                        datas.countDocuments = values[8];//8
                         datas.param1 = query.param1;
                         datas.param2 = query.param2;
                         datas.param3 = query.param3;
@@ -1031,7 +1081,10 @@ exports.directoryRes = function (req, res) {
                 datas.bcount = values[5];
                 datas.countAgritrop = values[6];
                 datas.countMinaeProj = values[7];
+
                 datas.countMinaeDocs = values[8];
+
+                console.log("datas.countMinaeProj",datas.countMinaeProj);
                 datas.countDocuments = values[10];
             }
             
