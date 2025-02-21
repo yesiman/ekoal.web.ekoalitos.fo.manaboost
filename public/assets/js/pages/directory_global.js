@@ -261,7 +261,7 @@ function moveImage(e,img)
             return ret;
         },
         load: function (target) {
-            jQuery.ias().destroy();
+            
             var idP = target.replace("#prof", "");
             var spin = '<div class="custloader"><div class="dot1"></div><div class="dot2"></div></div>';
             $('#is-container-' + idP).html(spin);
@@ -312,12 +312,12 @@ function moveImage(e,img)
                 url: urll,
                 method: "GET",  
                 success: function(data) {
+                    jQuery.ias().destroy();
                     $('#is-container-' + idP).html(data);
                     
                     //if (idP != "200") {
                         $("#prof108" + " .badge").html(countActs);
                         $("#prof113" + " .badge").html(countPrjs);
-                        
                         $("#prof1133" + " .badge").html(countPrjsMinae);
                         $("#prof1022" + " .badge").html(countDocsMinae);
                         

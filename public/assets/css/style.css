@@ -5763,7 +5763,7 @@ a.img_popup:after {
 }
 .docprev img {
     float:left;
-    height:170px;
+    width: 100px;
 }
 .docprev + img
 {
