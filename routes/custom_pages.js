@@ -1088,6 +1088,21 @@ exports.directoryRes = function (req, res) {
                 datas.countDocuments = values[10];
             }
             
+            if (req.params.protouid == "5e99ce5d1b088f21c5f20aa0") {
+                //MODIFY VIDEO URL
+                for(var o in datas.items)
+                {
+                    if (datas.items[o].p5bc4396c219d500400bbbfee && (datas.items[o].p5bc4396c219d500400bbbfee.indexOf("youtube")>0)) {
+                        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                        const match = datas.items[o].p5bc4396c219d500400bbbfee.match(regExp);
+
+                        let videoId = (match && match[2].length === 11)? match[2]: null;
+                        datas.items[o].p5bc4396c219d500400bbbfee='https://www.youtube.com/embed/' + videoId;
+                        
+                    }
+                }
+            }
+
             datas.param1 = query.param1;
             datas.param2 = query.param2;
             datas.param3 = query.param3;
@@ -1422,7 +1437,21 @@ function showDetail(req,res,pageProtoPath,pugPage)
         //
         var prom_object = new Promise((resolve, reject) => {
             ekit.objects.get2(req.params.lang,req.params.uid,null,'front').then((data) => {
-                resolve(JSON.parse(data.data));
+                let parsed = JSON.parse(data.data);
+                if (pageProtoPath == "7_116") {
+                    
+                    
+                    
+                    if (parsed.version.p5bc4396c219d500400bbbfee && (parsed.version.p5bc4396c219d500400bbbfee.indexOf("youtube")>0)) {
+                        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                        const match = parsed.version.p5bc4396c219d500400bbbfee.match(regExp);
+                        let videoId = (match && match[2].length === 11)? match[2]: null;
+                        parsed.version.p5bc4396c219d500400bbbfee='https://www.youtube.com/embed/' + videoId;  
+                    }
+                    //}
+                }
+
+                resolve(parsed);
             })
             .catch(err => {
                 
