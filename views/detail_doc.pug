@@ -57,6 +57,16 @@ block content
                 +mix-doc
   //+mix-contact
 block append scripts
+  script.
+    var item = {
+      uid:"#{object.version.objectid}",
+      proto:"#{object.proto[0]}",
+      pdf:"#{object.version.p5c332d2907c805cd14cf21ae}",
+      lat:"#{(object.version.p5b614f984bfe681400f79ff5?object.version.p5b614f984bfe681400f79ff5[1]:'0')}",
+      lng:"#{(object.version.p5b614f984bfe681400f79ff5?object.version.p5b614f984bfe681400f79ff5[0]:'0')}",
+      title:"#{(object.version.p5c332d4d07c805cd14cf24b7 && (object.version.p5c332d4d07c805cd14cf24b7!='')?object.version.p5c332d4d07c805cd14cf24b7:object.version.p5c332d2707c805cd14cf217d)}"
+    };
+  <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
   script(type='text/javascript', src='../assets/js/star-rating/star-rating.min.js')
   script(src="../assets/js/validation.js")
-  script(src='../assets/js/detail.js')
+  script(src='../assets/js/pages/detail.js')

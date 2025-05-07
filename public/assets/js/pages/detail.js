@@ -519,7 +519,6 @@ var levels = {};
     //document ready
     VV_detail.documentOnReady = {
         init: function () {
-            
             if ($(".rich-content").length>0) {
                 if ($(".rich-content").html().indexOf("[[NETWORKS]]")>-1){
                     const urlParams = new URLSearchParams(window.location.search);
@@ -582,9 +581,19 @@ var levels = {};
             }
             //VV_detail.blog.addReplyForm("nbComments");
             $('ul.tabs-navi a').click(function (e) {
+                
                 switch ($(e.currentTarget).attr("data-content")) {
                     case "localize":
                         VV_dir_map.map.init('map_detail');
+                        break;
+                    case "new":
+                        var adobeDCView = new AdobeDC.View({clientId: "87f03329d94a4cb69a057b51b4e31390", divId: "adobe-dc-view"});
+                        adobeDCView.previewFile(
+                        {
+                            content:   {location: {url:s3+item.pdf}},
+                            metaData: {fileName:"preview.pdf"}
+                        },
+                        {showAnnotationTools: false,enableFormFilling:false,showBookmarks:false});
                         break;
                     case "relats":
                         VV_relat.d3.init();
